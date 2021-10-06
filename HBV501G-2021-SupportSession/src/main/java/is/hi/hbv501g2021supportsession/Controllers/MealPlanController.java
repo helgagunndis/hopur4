@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class MealPlanController {
     @RequestMapping("/")
     public String HomeController() {
         //Business Logic
         // Call a method in service class
         // Add some data to the Model
-        return "home";
+        return "mealplan";
     }
 }
