@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1ba269-e9df-4337-ae31-a60749b5132e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/css/main.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/exit-menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/hamburger-menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/replay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/script.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +41,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -64,5 +73,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
