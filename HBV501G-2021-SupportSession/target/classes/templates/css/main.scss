@@ -1,0 +1,177 @@
+:root {
+  --pri-color :rgb(255, 166, 0);
+  --sec-color : rgb(0, 162, 255);
+  --gray-color: rgb(73, 73, 73);
+}
+
+body{
+  background: #f2f2f2;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar{
+  background: #fff;
+  height: 10vh;
+
+  .navbar-content{
+    padding: 1em;
+  }
+
+  .web-name{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 1.2em;
+
+    span{
+      color: var(--pri-color);
+    }
+  }
+  nav{
+    display: none;
+  }
+  .container{
+    display: flex;
+    place-content: space-between;
+  }
+  .mobile-menu{
+    cursor: pointer;
+  }
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.mainpage{
+  width: 100%;
+  overflow:auto;
+  text-align: center;
+}
+
+
+.left-col{
+  background: var(--sec-color);
+  float:left;
+  width: 50%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .col-box{
+    margin: 2.5em;
+  }
+  .subhead{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--gray-color);
+    letter-spacing: .3em;
+  }
+  h1{
+    font-size: 2.5em;
+    line-height: 1.3em;
+    margin-top: .2em;
+
+    .content{
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+}
+.right-col{
+  background-color: var(--pri-color);
+  float:right;
+  width: 50%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .col-box{
+    margin: 2.5em;
+  }
+
+  .subhead{
+    text-transform: uppercase;
+    font-weight: bold;
+    color:var(--gray-color);
+    letter-spacing: .3em;
+  }
+  h1{
+    font-size: 2.5em;
+    line-height: 1.3em;
+    margin-top: .2em;
+
+    .content{
+      color: black;
+      text-decoration: none;
+    }
+  }
+}
+footer{
+  background: var(--gray-color);
+  padding-top: 3.5em;
+  padding-bottom: 1em;
+  color: white;
+
+  li{
+    background: rgb(143, 143, 143);
+    text-align: center;
+    padding: 2em 1em;
+    width: 80%;
+    margin: 0 auto 5em auto;
+    border-radius: 1em;
+    img{
+      width: 5em;
+      height: 5em;
+      border: 1px solid rgb(143, 143, 143);
+      border-radius: 50%;
+      margin-top: -4em;
+    }
+
+  }
+
+}
+
+nav{
+  position: fixed;
+  z-index: 999;
+  width: 66%;
+  right: 0;
+  top: 0;
+  background: var(--gray-color);
+  height: 100vh;
+  padding: 1em;
+
+  ul.pri-nav{
+    margin-top: 4em;
+  }
+  li{
+    a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: .5em;
+      font-size: 1.3em;
+      text-align: right;
+
+      &:hover{
+        font-weight: bold;
+      }
+    }
+  }
+}
+nav.menu-btn{
+  display: block;
+}
+
+.mobile-menu-exit{
+  float: right;
+  margin: .5em;
+  cursor: pointer;
+}
