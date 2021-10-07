@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1ba269-e9df-4337-ae31-a60749b5132e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/css/main.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/exit-menu.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/hamburger-menu.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/img/replay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
