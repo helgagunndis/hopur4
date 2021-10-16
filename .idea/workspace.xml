@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="" />
+    <list default="true" id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/MealPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/MealPlanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Persistence/Entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Persistence/Entities/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +21,7 @@
       <list>
         <option value="CSS File" />
         <option value="SCSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -28,22 +35,57 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="hopur4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="hopur4" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Hbv501G2021SupportSessionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="HBV501G-2021-SupportSession" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501g2021supportsession.Hbv501G2021SupportSessionApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4b1ba269-e9df-4337-ae31-a60749b5132e" name="Changes" comment="" />
+      <changelist id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="" />
       <created>1633564222418</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -52,6 +94,7 @@
       <workItem from="1633946776703" duration="46000" />
       <workItem from="1633946884899" duration="45000" />
       <workItem from="1633946944132" duration="94000" />
+      <workItem from="1634409958877" duration="1898000" />
     </task>
     <servers />
   </component>
