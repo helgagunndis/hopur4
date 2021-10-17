@@ -12,7 +12,7 @@ public class Recipe {
     private int recipeServings;
     private List<Ingredients> ingredients = new ArrayList<>();
 
-    public Recipe(){
+    public Recipe() {
 
     }
 

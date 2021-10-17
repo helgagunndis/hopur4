@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/MealPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/MealPlanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Hbv501G2021SupportSessionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Hbv501G2021SupportSessionApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Persistence/Entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Persistence/Entities/Recipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/recipes.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/recipes.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,8 @@
         <option value="CSS File" />
         <option value="SCSS File" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -42,6 +47,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -49,13 +55,16 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="is.hi.hbv501g2021supportsession.Services.Implementation" />
     </key>
   </component>
   <component name="RunManager">
@@ -95,6 +104,7 @@
       <workItem from="1633946884899" duration="45000" />
       <workItem from="1633946944132" duration="94000" />
       <workItem from="1634409958877" duration="1898000" />
+      <workItem from="1634429464925" duration="3429000" />
     </task>
     <servers />
   </component>
