@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="HBV501G-2021-SupportSession" options="-parameters" />
+      <module name="HBV501G-2021-SupportSession" options="-parameters --add-modules java.base" />
     </option>
   </component>
 </project>

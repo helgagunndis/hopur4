@@ -16,7 +16,7 @@ public class MealPlanController {
     }
 
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
-    public String viewAllRecipes(Recipe recipe){
+    public String viewAllRecipes(Recipe recipe) {
         return "recipes";
     }
 }

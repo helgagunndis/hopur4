@@ -5,6 +5,29 @@
     <title>Recipes</title>
 </head>
 <body>
-Uppskriftir koma hér
+<div th:switch="${recipes}">
+    <h2 th:case="null">No recipes</h2>
+    <div th:case="*">
+        <h2>Recipes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipes : ${recipes}">
+                <td th:text="${recipes.recipeTitle}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>
+
+
+
+
