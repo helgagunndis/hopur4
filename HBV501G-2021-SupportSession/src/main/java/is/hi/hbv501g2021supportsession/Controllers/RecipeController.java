@@ -19,10 +19,11 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-   /* @RequestMapping(value="/recipes", method = RequestMethod.GET)
-    public String viewRecipes(Recipe recipe){
-        return "recipes";
-    }*/
-    //List<Recipe> allReicipes = recipeService.viewAll();
+   @RequestMapping("/recipes")
+    public String viewRecipes(Model model) {
+        //List<Recipe> allRecipes = recipeService.viewAll();
+        model.addAttribute("recipes", recipeService.viewAll());
+       return "recipes";
+   }
 
 }

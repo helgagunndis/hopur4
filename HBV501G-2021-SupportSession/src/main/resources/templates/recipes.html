@@ -5,6 +5,7 @@
     <title>Recipes</title>
 </head>
 <body>
+
 <div th:switch="${recipes}">
     <h2 th:case="null">No recipes</h2>
     <div th:case="*">
@@ -13,13 +14,14 @@
             <thead>
             <tr>
                 <th>Title</th>
+                <th>Time</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="recipes : ${recipes}">
-                <td th:text="${recipes.recipeTitle}"></td>
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.recipeTitle}"></td>
+                <td th:text="${recipe.recipeTime}"></td>
             </tr>
-
             </tbody>
         </table>
     </div>
