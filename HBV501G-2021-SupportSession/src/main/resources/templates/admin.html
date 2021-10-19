@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/admin}" th:object="${recipe}" method="post">
+  <label for="recipeTitle">Title</label>
+  <input type="text" th:field="*{recipeTitle}" id="recipeTitle" placeholder="Title">
+  <span th:if="${#fields.hasErrors('recipeTitle')}" th:errors="*{recipeTitle}"></span>
+  <label for="recipeCategory">Category</label>
+  <input type="text" th:field="*{recipeCategory}" id="recipeCategory" placeholder="Category">
+  <span th:if="${#fields.hasErrors('recipeCategory')}" th:errors="*{recipeCategory}"></span>
+  <label for="recipeMethod">Method</label>
+  <input type="text" th:field="*{recipeMethod}" id="recipeMethod" placeholder="Method">
+  <span th:if="${#fields.hasErrors('recipeMethod')}" th:errors="*{recipeMethod}"></span>
+  <label for="recipeTime">Time</label>
+  <input type="text" th:field="*{recipeTime}" id="recipeTime" placeholder="Time">
+  <span th:if="${#fields.hasErrors('recipeTime')}" th:errors="*{recipeTime}"></span>
+  <label for="recipeServings">Servings</label>
+  <input type="text" th:field="*{recipeServings}" id="recipeServings" placeholder="Servings">
+  <span th:if="${#fields.hasErrors('recipeServings')}" th:errors="*{recipeServings}"></span>
+  <input type="submit" value="Add recipe">
+</form>
+</body>
+</html>

@@ -23,6 +23,11 @@ public class RecipeServiceImplementation implements RecipeService {
         return recipeRepository.findAll();
     }
 
+    @Override
+    public Recipe save(Recipe recipe){
+        return recipeRepository.save(recipe);
+    }
+
 
 
 }
