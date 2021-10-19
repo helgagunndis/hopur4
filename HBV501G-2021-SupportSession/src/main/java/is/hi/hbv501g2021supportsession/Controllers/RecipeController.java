@@ -21,8 +21,7 @@ public class RecipeController {
 
    @RequestMapping("/recipes")
     public String viewRecipes(Model model) {
-        //List<Recipe> allRecipes = recipeService.viewAll();
-        model.addAttribute("recipes", recipeService.viewAll());
+        model.addAttribute("recipes", recipeService.findAll());
        return "recipes";
    }
 

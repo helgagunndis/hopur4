@@ -1,16 +1,30 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
+import jdk.jfr.Enabled;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
+@Table(name = "recipes")
 public class Recipe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long recipeID;
+
     private String recipeTitle;
     private int recipeCategory;
     private String recipeMethod;
     private String recipeTime;
     private int recipeServings;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ingredients> ingredients = new ArrayList<>();
+
+    @ManyToOne
+    private MealPlan mealPlan;
 
     public Recipe() {
 
