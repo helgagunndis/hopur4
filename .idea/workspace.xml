@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Services/Implementation/RecipeServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Services/Implementation/RecipeServiceImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/mealplan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/recipes.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/recipes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/target/classes/templates/mealplan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +104,7 @@
       <workItem from="1634409958877" duration="1898000" />
       <workItem from="1634429464925" duration="3510000" />
       <workItem from="1634551221841" duration="853000" />
-      <workItem from="1634737202360" duration="6355000" />
+      <workItem from="1634737202360" duration="11041000" />
     </task>
     <servers />
   </component>
