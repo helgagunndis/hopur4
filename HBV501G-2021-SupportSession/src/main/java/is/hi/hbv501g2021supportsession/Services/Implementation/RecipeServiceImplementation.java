@@ -18,16 +18,14 @@ public class RecipeServiceImplementation implements RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
+
     @Override
-    public List<Recipe> findAll(){
+    public List<Recipe> findAll() {
         return recipeRepository.findAll();
-    }
 
+    }
     @Override
-    public Recipe save(Recipe recipe){
-        return recipeRepository.save(recipe);
+        public Recipe save(Recipe recipe){
+            return recipeRepository.save(recipe);
     }
-
-
-
 }

@@ -9,6 +9,9 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.10" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.10" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-test:2.5.5" />
         </element>
       </element>
     </root>
