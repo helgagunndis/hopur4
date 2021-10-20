@@ -41,7 +41,7 @@
         </div>
     </div>
 </nav>
-<!--<div th:switch="${recipes}">
+<div th:switch="${recipes}">
    <h2 th:case="null">No recipes</h2>
     <div th:case="*">
         <div class="row">
@@ -63,29 +63,6 @@
         </div>
     </div>
 </div>
--->
-
-<div th:switch="${recipes}">
-    <h2 th:case="null">No recipes</h2>
-    <div th:case="*">
-        <h2>Recipes</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="recipe : ${recipes}">
-                <td th:text="${recipe.recipeTitle}"></td>
-                <td th:text="${recipe.recipeTime}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
 </body>
 </html>
 
