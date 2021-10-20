@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04b9df68-1ad7-4a01-9e75-7935c8434a69" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/HBV501G_2021_SupportSession_Web_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/HBV501G_2021_SupportSession_Web_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Spring_5_2_3_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Spring_5_2_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Controllers/RecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Services/Implementation/RecipeServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/java/is/hi/hbv501g2021supportsession/Services/Implementation/RecipeServiceImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/img/exit.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/img/menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBV501G-2021-SupportSession/src/main/resources/templates/img/replay.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +102,7 @@
       <workItem from="1634409958877" duration="1898000" />
       <workItem from="1634429464925" duration="3510000" />
       <workItem from="1634551221841" duration="853000" />
+      <workItem from="1634737202360" duration="100000" />
     </task>
     <servers />
   </component>
