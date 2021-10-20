@@ -16,7 +16,7 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService){
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
