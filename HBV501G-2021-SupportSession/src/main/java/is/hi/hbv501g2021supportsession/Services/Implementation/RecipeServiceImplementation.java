@@ -24,9 +24,18 @@ public class RecipeServiceImplementation implements RecipeService {
         }
     }
 
-    @Override
+
     public List<Recipe> viewAll(){
         return recipeRepository;
     }
 
+    @Override
+    public List<Recipe> findAll() {
+        return null;
+    }
+
+    @Override
+    public Recipe save(Recipe recipe) {
+        return null;
+    }
 }
