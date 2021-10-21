@@ -59,7 +59,7 @@
     </div>
 </div>
 <div class="container px-3">
-    <div class="row mt-2">
+    <div class="row mt-2 g-2">
         <div class="col-3">
             <input class="form-check-input" type="checkbox" value="" id="monday" checked>
             <label class="form-check-label" for="monday">
@@ -67,9 +67,12 @@
             </label>
         </div>
         <div class="col-6">
-            <!---<div th:switch="${recipe}">
-                <td th:text="${recipe.title}"></td>
-            </div>-->
+            <div th:switch="${recipes}">
+                <h5 th:case="null">No recipes</h5>
+                <div th:case="*">
+                    <h5 class="" th:text="${recipe.recipeTitle}"></h5>
+                </div>
+            </div>
         </div>
         <div class="col-md-3 ">
             <button class="btn btn-warning btn-sm" type="button" >Reyna aftur</button>
@@ -77,12 +80,12 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container px-6">
     <div class="row gx-2 mx-2 m-4 justify-content-center">
-        <div class="col-3">
+        <div class="col-md-3 mt-1">
             <button class="btn btn-primary top-button"type="button">Velja af handahófi</button>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 mt-1">
             <button class="btn btn-primary top-button"type="button">Samþykkja</button>
         </div>
     </div>
