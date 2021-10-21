@@ -310,6 +310,8 @@ modules.xml
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.idea/workspace.xml
+
 ### Java-Web ###
 ## ignoring target file
 target/
@@ -416,3 +418,4 @@ $RECYCLE.BIN/
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+
