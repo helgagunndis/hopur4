@@ -19,10 +19,11 @@ public class UserController {
     public UserController(UserService userService){
         this.userService=userService;
     }
-    // end-points to add
-    //signup (GET ,POST) to methoods
-    // login(GET,POST)
-    //loggedin (GET)
+
+    //End points to add
+    // signup (GET, POST)
+    // login (GET, POST)
+    // loggedin (GET)
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){

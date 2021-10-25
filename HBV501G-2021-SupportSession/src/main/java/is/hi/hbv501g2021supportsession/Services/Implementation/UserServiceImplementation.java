@@ -22,9 +22,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void delete(User user) {
-         userRepository.delete(user);
-    }
+    public void delete(User user) {userRepository.delete(user);}
 
     @Override
     public List<User> findAll() {
@@ -38,6 +36,12 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User login(User user) {
+        User doesExist = findByUsername(user.getUsername());
+        if(doesExist != null){
+            if(doesExist.getUserPassword().equals(user.getUserPassword())){
+                return doesExist;
+            }
+        }
         return null;
     }
 }
