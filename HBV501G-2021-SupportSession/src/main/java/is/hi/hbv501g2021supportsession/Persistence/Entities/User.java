@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userID;
+    private long ID;
 
     private String username;
     private String userEmail;
@@ -19,31 +19,25 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealPlan> mealPlanList = new ArrayList<>();
 
-    public User(long userID, String userName, String userEmail, String userPassword) {
-        this.userID = userID;
-        this.username = userName;
+    public User() {
+    }
+
+    public User(String username, String userEmail, String userPassword) {
+        this.username = username;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
     }
 
-    public User() {
+    public List<MealPlan> getUserMealPlan(){ return mealPlanList;}
 
-    }
-
-    public long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(long userID) {
-        this.userID = userID;
-    }
+    public void setMealPlan(List<MealPlan> mealPlanList){ this.mealPlanList=mealPlanList;}
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserEmail() {
@@ -61,5 +55,4 @@ public class User {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
-
 }
