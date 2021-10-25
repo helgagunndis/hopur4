@@ -1,5 +1,6 @@
 package is.hi.hbv501g2021supportsession.Services.Implementation;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredients;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.RecipeRepository;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
@@ -29,5 +30,10 @@ public class RecipeServiceImplementation implements RecipeService {
         public Recipe save(Recipe recipe){
 
         return recipeRepository.save(recipe);
+    }
+
+    @Override
+    public Ingredients save(Ingredients ingredients){
+        return recipeRepository.save(ingredients);
     }
 }
