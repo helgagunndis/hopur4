@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
     <link th:href="@{home.css}" href="../static/home.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<a th:href="${faq}"></a>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid m-2">
         <a class="navbar-brand" href="../">Matseðill<span class="text-warning">Vikunnar</span></a>
@@ -24,10 +25,10 @@
                     <a class="nav-link" href="../">Heim</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Uppskriftir</a>
+                    <a class="nav-link" href="../recipes">Uppskriftir</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../faq">Algengar Spurningar</a>
+                    <a class="nav-link active" aria-current="page" href="#">Algengar Spurningar</a>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -41,33 +42,7 @@
         </div>
     </div>
 </nav>
-<div class="container px-5">
-    <div th:switch="${recipes}">
-       <h2 th:case="null">No recipes</h2>
-        <div th:case="*">
-            <div class="row justify-content-center mt-2">
-                <div th:each="recipe : ${recipes}" class="card mx-1 mt-2" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${recipe.recipeTitle}"></h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Timi : <span th:text="${recipe.recipeTime}"></span></li>
-                        <li class="list-group-item">Fyrir hvað marga : <span th:text="${recipe.recipeServings}"></span></li>
-                    </ul>
-                    <div class="card-body">
-                        <p class="card-text" th:text="${recipe.recipeMethod}"></p>
-                        <p class="card-text"><small class="text-muted">Þessi uppskirft er fengin</small></p>
-                        <a href="#" class="card-link"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<p>Algengar spurningar og svör</p>
 </body>
+
 </html>
-
-
-
-
