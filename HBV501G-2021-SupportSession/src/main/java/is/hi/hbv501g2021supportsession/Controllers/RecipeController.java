@@ -1,5 +1,6 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredients;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,15 @@ public class RecipeController {
         }
 
     @RequestMapping(value= "/admin", method = RequestMethod.POST)
-    public String adminSave(Recipe recipe, BindingResult result, Model model){
+    public String adminSave(Recipe recipe, Ingredients ingredients, BindingResult result, Model model){
         if(result.hasErrors()){
             return "admin";
         }
         recipeService.save(recipe);
+
+
+
         return "redirect:/recipes";
     }
-
-
-
-
 
 }
