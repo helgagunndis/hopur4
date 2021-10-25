@@ -16,9 +16,12 @@ public class Recipe {
 
     private String recipeTitle;
     private int recipeCategory;
+    private String recipeSummary;
+    private String recipeImage;
     private String recipeMethod;
     private String recipeTime;
     private int recipeServings;
+    private String recipeCredit;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ingredients> ingredients = new ArrayList<>();
@@ -36,6 +39,9 @@ public class Recipe {
         this.recipeMethod = recipeMethod;
         this.recipeTime = recipeTime;
         this.recipeServings = recipeServings;
+        this.recipeSummary = recipeSummary;
+        this.recipeImage = recipeImage;
+        this.recipeCredit = recipeCredit;
     }
 
     public long getRecipeID() {
@@ -92,5 +98,29 @@ public class Recipe {
 
     public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getRecipeSummary() {
+        return recipeSummary;
+    }
+
+    public void setRecipeSummary(String recipeSummary) {
+        this.recipeSummary = recipeSummary;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
+    }
+
+    public String getRecipeCredit() {
+        return recipeCredit;
+    }
+
+    public void setRecipeCredit(String recipeCredit) {
+        this.recipeCredit = recipeCredit;
     }
 }
