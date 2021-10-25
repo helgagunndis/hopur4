@@ -3,10 +3,10 @@
     --sec-color: rgb(255, 166, 0);
     --gray-color: rgb(73, 73, 73);
 }
-
 .Col {
     padding: 1rem;
 }
+
 .top-button{
     width: 100%;
     display: inline-block;
