@@ -9,5 +9,7 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findAll();
     Recipe save(Recipe recipe);
-    Ingredients save(Ingredients ingredients);
+
+    void delete(Recipe recipe);
+
 }

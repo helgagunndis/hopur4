@@ -16,6 +16,7 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
     public RecipeServiceImplementation(RecipeRepository recipeRepository){
+
         this.recipeRepository = recipeRepository;
     }
 
@@ -27,7 +28,8 @@ public class RecipeServiceImplementation implements RecipeService {
     }
     @Override
         public Recipe save(Recipe recipe){
-            return recipeRepository.save(recipe);
+
+        return recipeRepository.save(recipe);
     }
 
     @Override
