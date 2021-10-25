@@ -3,26 +3,38 @@ package is.hi.hbv501g2021supportsession.Controllers;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 
+@Controller
 public class UserController {
-    UserService userService;
 
+    UserService userService;
     @Autowired
     public UserController(UserService userService){
-        this.userService = userService;
+        this.userService=userService;
     }
+    // end-points to add
+    //signup (GET ,POST) to methoods
+    // login(GET,POST)
+    //loggedin (GET)
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signupGET(User user){
+        return "signup";
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/signup";
         }
-        User exists = userService.findByUsername(user.getUserName());
+        User exists = userService.findByUsername(user.getUsername());
         if(exists == null){
             userService.save(user);
         }
@@ -33,7 +45,6 @@ public class UserController {
     public String loginGET(User user){
         return "login";
     }
-/*
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
@@ -56,5 +67,7 @@ public class UserController {
             return "loggedInUser";
         }
         return "redirect:/";
-    } */
+    }
+
+
 }
