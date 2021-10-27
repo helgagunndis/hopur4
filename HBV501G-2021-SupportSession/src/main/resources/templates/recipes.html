@@ -41,30 +41,61 @@
         </div>
     </div>
 </nav>
-<div class="container px-5">
+<div class="container px-2">
     <div th:switch="${recipes}">
        <h2 th:case="null">No recipes</h2>
         <div th:case="*">
             <div class="row justify-content-center mt-2">
-                <div th:each="recipe : ${recipes}" class="card mx-1 mt-2" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${recipe.recipeTitle}"></h5>
+                    <div th:each="recipe : ${recipes}" class="card mx-1 mt-2" style="width: 18rem;">
+                        <!-- Button trigger modal -->
+                        <button class="btn" type="button" data-toggle="modal"  th:data-target="'#' + ${recipe.recipeTitle}">
+                        <img th:src="${recipe.recipeImage}" class="card-img-top" alt="..." style="max-height: 18rem;">
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" th:id="${recipe.recipeTitle}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" th:text="${recipe.recipeTitle}"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <div th:text="${recipe.recipeMethod}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Loka</button>
+                                        <button type="button" class="btn btn-primary">Vista PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="card-body">
+                            <h5 class="card-title" th:text="${recipe.recipeTitle}"></h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Timi : <span th:text="${recipe.recipeTime}"></span></li>
+                        </ul>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Fyrir hvað marga : <span th:text="${recipe.recipeServings}"></span></li>
+                        </ul>
+                        <div class="card-body">
+                            <p class="card-text" th:text="${recipe.recipeSummary}"></p>
+                            <p class="card-text"><small class="text-muted">Þessi uppskrift er fengin</small></p>
+                            <a th:href="${recipe.recipeCredit}" class="card-link">Síðan</a>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Timi : <span th:text="${recipe.recipeTime}"></span></li>
-                        <li class="list-group-item">Fyrir hvað marga : <span th:text="${recipe.recipeServings}"></span></li>
-                    </ul>
-                    <div class="card-body">
-                        <p class="card-text" th:text="${recipe.recipeMethod}"></p>
-                        <p class="card-text"><small class="text-muted">Þessi uppskirft er fengin</small></p>
-                        <a href="#" class="card-link"></a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
 
