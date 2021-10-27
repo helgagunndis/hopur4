@@ -14,20 +14,20 @@
 <body >
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid m-2">
-        <a class="navbar-brand" href="#">Matseðill<span class="text-warning">Vikunnar</span></a>
+        <a class="navbar-brand" href="../">Matseðill<span class="text-warning">Vikunnar</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Heim</a>
+                    <a class="nav-link " href="../">Heim</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recipes">Uppskriftir</a>
+                    <a class="nav-link" href="../recipes">Uppskriftir</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/faq">Algengar Spurningar</a>
+                    <a class="nav-link" href="../faq">Algengar Spurningar</a>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="#">Mínar Síður</a>
                 </li>
                 <li class="nav-item pt-1">
-                    <a class="btn btn-outline-primary btn-sm" href="/login" role="button">Innskrá</a>
+                    <a class="btn btn-outline-primary btn-sm" href="../login" role="button">Innskrá</a>
                 </li>
             </ul>
         </div>
@@ -44,12 +44,17 @@
 <div class="container px-5">
     <div class="row">
         <div class="col">
-            <p class="text-uppercase fs-4 fw-bold">Hæ, <span>th:text="${LoggedInUser.username}"</span></p>
+            <p class="text-uppercase fs-4 fw-bold"> Hæ, <span th:text="${LoggedInUser.username}"> </span></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <p class="fs-5"> Mínar uppskriftir</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Hérna koma uppskriftir / vikumatseðlar sem viðskiptavinur hefur verið með.
         </div>
     </div>
 </div>

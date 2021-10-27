@@ -17,3 +17,6 @@
 .btn-warning :hover{
     color: white;
 }
+.card-img-top{
+    max-height: 18rem;
+}
