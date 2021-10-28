@@ -11,4 +11,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Recipe save(Recipe recipe);
     void delete(Recipe recipe);
 
+    Ingredients save(Ingredients ingredients);
 }

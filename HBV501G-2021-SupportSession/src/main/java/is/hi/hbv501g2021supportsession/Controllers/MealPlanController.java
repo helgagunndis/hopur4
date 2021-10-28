@@ -17,4 +17,10 @@ public class MealPlanController {
         return "mealplan";
     }
 
+    //algengar spurningar síða
+    @RequestMapping("/faq")
+    public String faqPage() {
+        return "faq";
+    }
+
 }

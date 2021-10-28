@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -19,10 +20,11 @@ public class UserController {
     public UserController(UserService userService){
         this.userService=userService;
     }
-    // end-points to add
-    //signup (GET ,POST) to methoods
-    // login(GET,POST)
-    //loggedin (GET)
+
+    //End points to add
+    // signup (GET, POST)
+    // login (GET, POST)
+    // loggedin (GET)
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){
@@ -37,14 +39,24 @@ public class UserController {
         User exists = userService.findByUsername(user.getUsername());
         if(exists == null){
             userService.save(user);
+            // If it is able to make new user
+            return "redirect:/";
         }
+        // What to do when user is already in the database?
         return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(User user){
-        return "login";
+    public String loginGET(User user, HttpSession session, Model model){
+        User sessionUser = (User) session.getAttribute("LoggedInUser");
+        if(sessionUser  != null){
+            model.addAttribute("LoggedInUser", sessionUser);
+            // If user is logged in then go to my website.
+            return "LoggedInUser";
+        }
+        return "/login";
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
@@ -64,10 +76,17 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
-            return "loggedInUser";
+            return "LoggedInUser";
+        }
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
         }
         return "redirect:/";
     }
-
-
 }
