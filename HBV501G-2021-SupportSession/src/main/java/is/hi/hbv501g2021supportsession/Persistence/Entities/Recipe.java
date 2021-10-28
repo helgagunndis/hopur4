@@ -1,10 +1,9 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
-import jdk.jfr.Enabled;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -23,17 +22,16 @@ public class Recipe {
     private int recipeServings;
     private String recipeCredit;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ingredients> ingredients = new ArrayList<>();
+    @OneToMany(mappedBy = "recipe")
+    private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     @ManyToOne
     private MealPlan mealPlan;
 
     public Recipe() {
-
     }
 
-    public Recipe(String recipeTitle, int recipeCategory, String recipeMethod, String recipeTime, int recipeServings) {
+    public Recipe(String recipeTitle, int recipeCategory, String recipeMethod, String recipeTime, int recipeServings, Set<IngredientInfo> ingredientInfo) {
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeMethod = recipeMethod;
@@ -92,14 +90,6 @@ public class Recipe {
         this.recipeServings = recipeServings;
     }
 
-    public List<Ingredients> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredients> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public String getRecipeSummary() {
         return recipeSummary;
     }
@@ -122,5 +112,14 @@ public class Recipe {
 
     public void setRecipeCredit(String recipeCredit) {
         this.recipeCredit = recipeCredit;
+    }
+
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
