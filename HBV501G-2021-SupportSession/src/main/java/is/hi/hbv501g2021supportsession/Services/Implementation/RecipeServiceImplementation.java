@@ -1,14 +1,14 @@
 package is.hi.hbv501g2021supportsession.Services.Implementation;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredients;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.RecipeRepository;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeServiceImplementation implements RecipeService {
@@ -32,8 +32,18 @@ public class RecipeServiceImplementation implements RecipeService {
         return recipeRepository.save(recipe);
     }
 
+
+
     @Override
-    public Ingredients save(Ingredients ingredients){
-        return recipeRepository.save(ingredients);
+    public Optional<Recipe> findByID(Recipe recipe) {
+        return recipeRepository.findById(recipe.getRecipeID());
     }
+
+  //  @Override
+   // public void add(Ingredient ingredient) {
+     //   this.recipeRepository.add(ingredient);
+   // }
+
+
+
 }
