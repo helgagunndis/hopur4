@@ -1,42 +1,34 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name= "Ingredients")
-public class Ingredients {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ingredientID;
+public class Ingredient {
 
     private String ingredientName;
     private String amount;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
 
+    @OneToMany(mappedBy = "ingredient")
+    private List<IngredientInfo> ingredientInfo = new ArrayList<IngredientInfo>();
 
-    public Ingredients(long ingredientID, String ingredientName, String amount) {
-        this.ingredientID = ingredientID;
+    public Ingredient(String amount, String ingredientName) {
+        this.amount= amount;
         this.ingredientName = ingredientName;
-        this.amount = amount;
     }
 
-    public Ingredients() {
-    }
-
-    public long getIngredientID() {
-        return ingredientID;
-    }
-
-    public void setIngredientID(long ingredientID) {
-        this.ingredientID = ingredientID;
+    public Ingredient() {
     }
 
     public String getIngredientName() {
@@ -54,4 +46,5 @@ public class Ingredients {
     public void setAmount(String amount) {
         this.amount = amount;
     }
+
 }
