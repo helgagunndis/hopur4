@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * A controller class used for login and sign-in of the user.
+ */
 @Controller
 public class UserController {
+
 
     UserService userService;
     private Object model;
@@ -30,12 +34,26 @@ public class UserController {
     // login (GET, POST)
     // loggedin (GET)
 
+    /**
+     *
+     * @param user
+     * @return signup page where user can sign up for account
+     */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){
         return "signup";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST )
+
+    /**
+     *
+     * @param user
+     * @param result
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/signup";
@@ -51,6 +69,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param user
+     * @param session
+     * @param model
+     * @return if user is logged in, then return the users homepage
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
@@ -62,6 +87,14 @@ public class UserController {
         return "/login";
     }
 
+    /**
+     *
+     * @param user
+     * @param result
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
@@ -76,6 +109,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
@@ -86,6 +125,11 @@ public class UserController {
         return "redirect:/login";
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

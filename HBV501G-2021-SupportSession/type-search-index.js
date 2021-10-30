@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"is.hi.hbv501g2021supportsession.Controllers","l":"UserController"}];updateSearchResults();
