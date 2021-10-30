@@ -20,10 +20,14 @@ public class UserController {
 
 
     UserService userService;
+    private Object model;
+
     @Autowired
     public UserController(UserService userService){
         this.userService=userService;
     }
+
+
 
     //End points to add
     // signup (GET, POST)
@@ -40,6 +44,7 @@ public class UserController {
         return "signup";
     }
 
+
     /**
      *
      * @param user
@@ -48,17 +53,19 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
+
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/signup";
         }
-        User exists = userService.findByUsername(user.getUsername());
-        if(exists == null){
-            userService.save(user);
-            // If it is able to make new user
-            return "redirect:/";
+        User usernameExists = userService.findByUsername(user.getUsername());
+        if(usernameExists != null){
+            // When user is already in database
+            model.addAttribute("usernameExists",usernameExists);
+            return "/signup";
         }
-        // What to do when user is already in the database?
+        userService.save(user);
+        // If it's able to make new user
         return "redirect:/";
     }
 

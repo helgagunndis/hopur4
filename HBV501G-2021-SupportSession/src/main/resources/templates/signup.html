@@ -68,6 +68,11 @@
         <button type="submit" class="btn btn-primary top-button">Stofna nýjan aðgang</button>
       </div>
     </div>
+    <div class="row pt-2 justify-content-center">
+      <div th:if="${usernameExists != null}" class="alert alert-danger notification col-6" role="alert">
+        <p>Þetta notendanafn er frátekið </p>
+      </div>
+    </div>
   </form>
 </div>
 </body>
