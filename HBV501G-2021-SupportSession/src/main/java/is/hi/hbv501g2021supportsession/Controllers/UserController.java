@@ -27,14 +27,9 @@ public class UserController {
         this.userService=userService;
     }
 
-    //TODO
-    //End points to add
-    // signup (GET, POST)
-    // login (GET, POST)
-    // loggedin (GET)
 
     /**
-     * Adds user to db
+     * Get info about user signing up
      * @param user
      * @return signup.html
      */
@@ -44,11 +39,11 @@ public class UserController {
     }
 
     /**
-     * Checks if errors in signup and redirects to signup.html
+     * Checks if errors in signup, is already in DB or new user
      * @param user
      * @param result
      * @param model
-     * @return signup.html
+     * @return mealpaln
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
 
@@ -58,22 +53,19 @@ public class UserController {
         }
         User usernameExists = userService.findByUsername(user.getUsername());
         if(usernameExists != null){
-            // When user is already in database
             model.addAttribute("usernameExists",usernameExists);
             return "/signup";
         }
-        //TODO What to do when user is already in the database?
         userService.save(user);
-        // If it's able to make new user
         return "redirect:/";
     }
 
     /**
-     * Displays logged-in users homepage
+     * Get login only ef user isn't login
      * @param user
      * @param session
      * @param model
-     * @return LoggedInUser.html
+     * @return login
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
@@ -92,7 +84,7 @@ public class UserController {
      * @param result
      * @param model
      * @param session
-     * @return
+     * @return mealplan
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
@@ -108,8 +100,13 @@ public class UserController {
         return "redirect:/";
     }
 
-   //má taka þetta út?
-   /* @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
+    /**
+     * Check if user is logged in
+     * @param model
+     * @param session
+     * @return LoggedInUser
+     */
+    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         if(sessionUser  != null){
@@ -117,12 +114,12 @@ public class UserController {
             return "LoggedInUser";
         }
         return "redirect:/login";
-    }*/
+    }
 
     /**
-     * user log out and redirects to main page
+     * user log out
      * @param request
-     * @return
+     * @return mealplan
      */
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
