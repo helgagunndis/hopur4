@@ -31,9 +31,9 @@ public class RecipeController {
     }
 
     /**
-     *
+     * Adds all recipes in db to html
      * @param model
-     * @return recipe page
+     * @return recipes.html
      */
    @RequestMapping("/recipes")
     public String viewRecipes(Model model) {
@@ -42,23 +42,22 @@ public class RecipeController {
    }
 
     /**
-     *
+     * admin page - to add recipes into db
      * @param recipe
-     * @return admin page where admin can add recipes to recipe page
+     * @return admin.html
      */
-   /* Admin aðgangur til að setja inn uppskriftir. Er að tékka að gagnagrunnurinn sé rétt tengdur*/
    @RequestMapping(value = "/admin")
     public String adminPage(Recipe recipe){
         return "admin";
-        }
+    }
 
     /**
-     *
+     * Saves ingredients, when successfully saved to db redirect to recipes.html
      * @param recipe
      * @param ingredient
      * @param result
      * @param model
-     * @return admin can save recipes to recipe page
+     * @return
      */
     @RequestMapping(value= "/admin", params ={"save"})
     public String adminSave(Recipe recipe, Ingredient ingredient, BindingResult result, Model model){
@@ -70,16 +69,18 @@ public class RecipeController {
     }
 
     /**
-     *
+     * Adds new row and adds ingredient to database
      * @param recipe
      * @param ingredient
      * @param bindingResult
-     * @return admin can add rows for ingredients
+     * @return admin.html
      */
     @RequestMapping(value="/admin", params={"addRow"})
     public String addRow(Recipe recipe, Ingredient ingredient,  BindingResult bindingResult) {
         recipe.getIngredients().add(new Ingredient());
         return "admin";
     }
+
+    //TODO ingredients hasnt successfully connected to db. needs fixing
 
 }

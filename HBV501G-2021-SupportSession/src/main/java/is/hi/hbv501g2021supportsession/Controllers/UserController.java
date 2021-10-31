@@ -27,8 +27,7 @@ public class UserController {
         this.userService=userService;
     }
 
-
-
+    //TODO
     //End points to add
     // signup (GET, POST)
     // login (GET, POST)
@@ -43,7 +42,6 @@ public class UserController {
     public String signupGET(User user){
         return "signup";
     }
-
 
     /**
      *
@@ -64,6 +62,7 @@ public class UserController {
             model.addAttribute("usernameExists",usernameExists);
             return "/signup";
         }
+        //TODO What to do when user is already in the database?
         userService.save(user);
         // If it's able to make new user
         return "redirect:/";
