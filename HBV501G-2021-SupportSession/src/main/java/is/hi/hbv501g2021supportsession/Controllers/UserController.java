@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * A controller class used for login and sign-in of the user.
+ * A controller class used for login and sign-up of the user.
  */
 @Controller
 public class UserController {
@@ -27,30 +27,28 @@ public class UserController {
         this.userService=userService;
     }
 
-
-
+    //TODO
     //End points to add
     // signup (GET, POST)
     // login (GET, POST)
     // loggedin (GET)
 
     /**
-     *
+     * Adds user to db
      * @param user
-     * @return signup page where user can sign up for account
+     * @return signup.html
      */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){
         return "signup";
     }
 
-
     /**
-     *
+     * Checks if errors in signup and redirects to signup.html
      * @param user
      * @param result
      * @param model
-     * @return
+     * @return signup.html
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
 
@@ -64,31 +62,32 @@ public class UserController {
             model.addAttribute("usernameExists",usernameExists);
             return "/signup";
         }
+        //TODO What to do when user is already in the database?
         userService.save(user);
         // If it's able to make new user
         return "redirect:/";
     }
 
     /**
-     *
+     * Displays logged-in users homepage
      * @param user
      * @param session
      * @param model
-     * @return if user is logged in, then return the users homepage
+     * @return LoggedInUser.html
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
-            // If user is logged in then go to my website.
+            // If user is logged in then go to my homepage.
             return "LoggedInUser";
         }
         return "/login";
     }
 
     /**
-     *
+     * Finds errors in login and checks if user exists in db
      * @param user
      * @param result
      * @param model
@@ -109,13 +108,8 @@ public class UserController {
         return "redirect:/";
     }
 
-    /**
-     *
-     * @param session
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
+   //má taka þetta út?
+   /* @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         if(sessionUser  != null){
@@ -123,10 +117,10 @@ public class UserController {
             return "LoggedInUser";
         }
         return "redirect:/login";
-    }
+    }*/
 
     /**
-     *
+     * user log out and redirects to main page
      * @param request
      * @return
      */
