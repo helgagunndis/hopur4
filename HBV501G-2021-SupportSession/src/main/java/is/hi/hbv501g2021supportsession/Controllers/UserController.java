@@ -12,20 +12,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * A controller class used for login and sign-in of the user.
+ */
 @Controller
 public class UserController {
 
+
     UserService userService;
+    private Object model;
+
     @Autowired
     public UserController(UserService userService){
         this.userService=userService;
     }
 
     //TODO
+    //End points to add
     // signup (GET, POST)
     // login (GET, POST)
     // loggedin (GET)
 
+    /**
+     *
+     * @param user
+     * @return signup page where user can sign up for account
+     */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){
         return "signup";
@@ -39,17 +51,20 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
+
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/signup";
         }
-        User exists = userService.findByUsername(user.getUsername());
-        if(exists == null){
-            userService.save(user);
-            // If it is able to make new user
-            return "redirect:/";
+        User usernameExists = userService.findByUsername(user.getUsername());
+        if(usernameExists != null){
+            // When user is already in database
+            model.addAttribute("usernameExists",usernameExists);
+            return "/signup";
         }
         //TODO What to do when user is already in the database?
+        userService.save(user);
+        // If it's able to make new user
         return "redirect:/";
     }
 
@@ -58,7 +73,7 @@ public class UserController {
      * @param user
      * @param session
      * @param model
-     * @return
+     * @return if user is logged in, then return the users homepage
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){

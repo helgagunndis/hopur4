@@ -14,11 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * A controller class for adding, finding and saving recipes
+ */
 @Controller
 public class RecipeController {
+
+
     private RecipeService recipeService;
     private IngredientService ingredientService;
+
 
     @Autowired
     public RecipeController(RecipeService recipeService) {
