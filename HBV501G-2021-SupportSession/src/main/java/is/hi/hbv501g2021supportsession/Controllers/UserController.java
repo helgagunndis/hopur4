@@ -21,7 +21,7 @@ public class UserController {
         this.userService=userService;
     }
 
-    //End points to add
+    //TODO
     // signup (GET, POST)
     // login (GET, POST)
     // loggedin (GET)
@@ -31,6 +31,13 @@ public class UserController {
         return "signup";
     }
 
+    /**
+     *
+     * @param user
+     * @param result
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
@@ -42,10 +49,17 @@ public class UserController {
             // If it is able to make new user
             return "redirect:/";
         }
-        // What to do when user is already in the database?
+        //TODO What to do when user is already in the database?
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param user
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
@@ -57,6 +71,14 @@ public class UserController {
         return "/login";
     }
 
+    /**
+     *
+     * @param user
+     * @param result
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
@@ -71,6 +93,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
@@ -81,6 +109,11 @@ public class UserController {
         return "redirect:/login";
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
