@@ -1,11 +1,11 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
+
+import is.hi.hbv501g2021supportsession.Services.MealPlanService;
+import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * A controller class for meal plan
@@ -13,8 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MealPlanController {
 
+    RecipeService recipeService;
+    MealPlanService mealPlanService;
+
+
+    //@Autowired
+    //public MealPlanController(MealPlanService mealPlanService ){
+    //    this.mealPlanService = mealPlanService;
+    //}
+
+
     @RequestMapping("/")
-    public String HomeController() {
+    public String home(Model model) {
         //Business Logic
         // Call a method in service class
         // Add some data to the Model
