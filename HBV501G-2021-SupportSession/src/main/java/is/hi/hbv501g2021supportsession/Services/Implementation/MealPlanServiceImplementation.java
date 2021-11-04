@@ -10,9 +10,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class MealPlanServiceImplementation implements MealPlanService {
-    private MealPlanRepository mealPlanRepository;
+   /* private MealPlanRepository mealPlanRepository;
 
-    @Autowired
+    @Override
+    public List<MealPlan> findAll(User user) {
+        return null;
+    }
+
+    @Override
+    public MealPlan save(int numberOfDays, MealPlan mealPlan) {
+        return null;
+    }
+
+    @Override
+    public Recipe findByCategory(int recipeCategory) {
+        return null;
+    }
+
+    @Override
+    public Recipe findByTitle(String recipeTitle) {
+        return null;
+    }
+
+    /**@Autowired
     public MealPlanServiceImplementation(MealPlanRepository mealPlanRepository){
         this.mealPlanRepository = mealPlanRepository;
     }
@@ -35,4 +55,5 @@ public class MealPlanServiceImplementation implements MealPlanService {
     public Recipe findByTitle(String recipeTitle) {
         return mealPlanRepository.findByTitle(recipeTitle);
     }
+    */
 }

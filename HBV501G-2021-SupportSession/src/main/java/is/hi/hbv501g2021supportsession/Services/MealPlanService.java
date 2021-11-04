@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MealPlanService {
-    List<MealPlan> findAll(User user);
+    /*List<MealPlan> findAll(User user);
     MealPlan save(int numberOfDays,MealPlan mealPlan);
     Recipe findByCategory(int recipeCategory);
-    Recipe findByTitle(String recipeTitle);
+    Recipe findByTitle(String recipeTitle);*/
 }
