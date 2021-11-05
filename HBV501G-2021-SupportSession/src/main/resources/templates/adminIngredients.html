@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/adminIngredients}" th:object="${ingredientInfo}" method="post">
+
+<label for="ingredientName">Title</label>
+<input type="text" th:field="*{ingredientName}" id="ingredientName" placeholder="ingredient">
+<span th:if="${#fields.hasErrors('ingredientName')}" th:errors="*{ingredientName}"></span>
+
+<input type="submit" name="saveIngred" value="Add Ingredient">
+</form>
+
+</body>
+</html>
