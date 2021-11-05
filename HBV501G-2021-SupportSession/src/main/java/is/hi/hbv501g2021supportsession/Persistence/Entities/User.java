@@ -28,6 +28,14 @@ public class User {
         this.userPassword = userPassword;
     }
 
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
     public List<MealPlan> getUserMealPlan(){ return mealPlanList;}
 
     public void setMealPlan(List<MealPlan> mealPlanList){ this.mealPlanList=mealPlanList;}

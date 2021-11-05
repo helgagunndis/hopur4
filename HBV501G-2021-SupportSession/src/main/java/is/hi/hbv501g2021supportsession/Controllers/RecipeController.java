@@ -94,5 +94,6 @@ public class RecipeController {
     }
 
 
+    //TODO ingredients hasnt successfully connected to db. needs fixing
 
 }

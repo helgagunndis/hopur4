@@ -31,8 +31,20 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     @Override
-    public Optional<Recipe> findByID(Recipe recipe) {
-        return recipeRepository.findById(recipe.getRecipeID());
+    public Recipe findByRecipeID(Long id) {
+        return recipeRepository.findByRecipeID(id);
     }
+
+    @Override
+    public List<Recipe> findByRecipeCategory(int category) {
+        return recipeRepository.findByRecipeCategory(category);
+    }
+
+    //  @Override
+   // public void add(Ingredient ingredient) {
+     //   this.recipeRepository.add(ingredient);
+   // }
+
+
 
 }
