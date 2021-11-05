@@ -6,54 +6,33 @@ import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.MealPlanRepository;
 import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MealPlanServiceImplementation implements MealPlanService {
-   /* private MealPlanRepository mealPlanRepository;
+   private MealPlanRepository mealPlanRepository;
 
-    @Override
-    public List<MealPlan> findAll(User user) {
-        return null;
-    }
 
-    @Override
-    public MealPlan save(int numberOfDays, MealPlan mealPlan) {
-        return null;
-    }
-
-    @Override
-    public Recipe findByCategory(int recipeCategory) {
-        return null;
-    }
-
-    @Override
-    public Recipe findByTitle(String recipeTitle) {
-        return null;
-    }
-
-    /**@Autowired
+    @Autowired
     public MealPlanServiceImplementation(MealPlanRepository mealPlanRepository){
         this.mealPlanRepository = mealPlanRepository;
     }
 
-    @Override
-    public List<MealPlan> findAll(User user) {
-        return mealPlanRepository.findAll(user);
-    }
+
+   @Override
+   public MealPlan save(MealPlan mealPlan) {
+      return mealPlanRepository.save(mealPlan);
+   }
+
+   @Override
+   public MealPlan findByMealPlanID(Long ID) {
+      return mealPlanRepository.findByMealPlanID(ID);
+   }
 
     @Override
-    public MealPlan save(int numberOfDays, MealPlan mealPlan) {
-        return mealPlanRepository.save(numberOfDays,mealPlan);
+    public MealPlan findByUser(User user) {
+        return mealPlanRepository.findByUser(user);
     }
-
-    @Override
-    public Recipe findByCategory(int findByCategory) {
-        return mealPlanRepository.findByCategory(findByCategory);
-    }
-    @Override
-    public Recipe findByTitle(String recipeTitle) {
-        return mealPlanRepository.findByTitle(recipeTitle);
-    }
-    */
 }

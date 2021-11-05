@@ -70,6 +70,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
+        System.out.println("userControler:   " + sessionUser );
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
             // If user is logged in then go to my homepage.

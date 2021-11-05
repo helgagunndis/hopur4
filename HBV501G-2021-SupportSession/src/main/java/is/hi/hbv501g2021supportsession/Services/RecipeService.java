@@ -10,6 +10,7 @@ public interface RecipeService {
     List<Recipe> findAll();
     Recipe save(Recipe recipe);
    // void add(Ingredient ingredient);
-    Optional<Recipe> findByID(Recipe recipe);
+    Recipe findByRecipeID(Long id);
+    List<Recipe> findByRecipeCategory(int category);
 
 }
