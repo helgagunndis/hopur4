@@ -49,8 +49,7 @@
         <th>ingredient</th>
         <th>amount</th>
         <th>
-          <input type="submit" name="addRow" value="Add row">
-
+          <input type="submit" name="addRow" value = "Add Ingredient">
         </th>
       </tr>
       </thead>
@@ -59,7 +58,11 @@
       <tr th:each="ingredient,itemStat : *{ingredients}">
         <td th:text="${itemStat.count}"></td>
         <td>
-          <input type="text" th:field="*{ingredients[__${itemStat.index}__].ingredientName}" th:errorclass="fieldError">
+
+
+          <select th:field="*{ingredients[__${itemStat.index}__].ingredientName}">
+            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
+          </select>
 
         </td>
         <td>
@@ -69,13 +72,8 @@
       </tbody>
     </table>
   </div>
-
-
   <input type="submit" name="save" value="Add recipe">
 </form>
-
-
-
 
 </body>
 </html>

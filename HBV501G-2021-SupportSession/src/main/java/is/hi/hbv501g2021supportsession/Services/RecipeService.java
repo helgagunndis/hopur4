@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface RecipeService {
     List<Recipe> findAll();
     Recipe save(Recipe recipe);
-   // void add(Ingredient ingredient);
     Optional<Recipe> findByID(Recipe recipe);
 
 }
