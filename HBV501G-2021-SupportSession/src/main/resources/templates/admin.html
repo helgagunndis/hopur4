@@ -41,38 +41,14 @@
   <span th:if="${#fields.hasErrors('recipeImage')}" th:errors="*{recipeImage}"></span>
 
 
-  <div>
-    <table>
-      <thead>
-      <tr>
-        <th>no.</th>
-        <th>ingredient</th>
-        <th>amount</th>
-        <th>
-          <input type="submit" name="addRow" value = "Add Ingredient">
-        </th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr th:each="ingredient,itemStat : *{ingredients}">
-        <td th:text="${itemStat.count}"></td>
-        <td>
-
-
-          <select th:field="*{ingredients[__${itemStat.index}__].ingredientName}">
-            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
-          </select>
-
-        </td>
-        <td>
-          <input type="text" th:field="*{ingredients[__${itemStat.index}__].amount}" th:errorclass="fieldError">
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="form-group blu-margin">
+    <select class="form-control" th:field="${allIngredients}"  id="ingredients">
+      <option value="0">select ingredient</option>
+      <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
+    </select>
   </div>
-  <input type="submit" name="save" value="Add recipe">
+
+  <input type="submit" name="action" value="save">
 </form>
 
 </body>

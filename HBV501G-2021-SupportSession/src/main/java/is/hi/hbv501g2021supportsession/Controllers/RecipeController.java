@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,51 +50,24 @@ public class RecipeController {
      * @param recipe
      * @return admin.html
      */
-   @RequestMapping(value = "/admin") //, method = RequestMethod.GET)
+   @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage( Recipe recipe, Model model){
        List<IngredientInfo> allIngredients = ingredientService.findAll();
        model.addAttribute("allIngredients", allIngredients);
-       System.out.println("hér");
+
        return "admin";
     }
 
-    /**
-     * Saves recipes, when successfully saved to db redirect to recipes.html
-     * @param recipe
-     * @param result
-     * @param model
-     * @return
-     */
-    @RequestMapping(value= "/admin", params = {"save"}) //, method = RequestMethod.POST)
-    public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model){
+    @RequestMapping(value="/admin", method=RequestMethod.POST)
+    public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model) {
         if(result.hasErrors()){
             return "admin";
         }
-
+        model.addAttribute("recipes", recipeService.findAll());
 
         recipeService.save(recipe);
         return "redirect:/recipes";
     }
 
-
-    /**
-     * Adds new row and adds ingredient to database
-     * @param recipe
-     * @param ingredient
-     * @param bindingResult
-     * @return admin.html
-     */
-   @RequestMapping(value="/admin", params={"addRow"})// method = RequestMethod.GET)
-    public String addRow(Recipe recipe, Ingredient ingredient,  BindingResult bindingResult, Model model) {
-       // List<IngredientInfo> allIngredients = ingredientService.findAll();
-       // model.addAttribute("allIngredients", allIngredients);
-        System.out.println("ingredients");
-        recipe.getIngredients().add(new Ingredient());
-
-        return "admin";
-    }
-
-
-    //TODO ingredients hasnt successfully connected to db. needs fixing
 
 }
