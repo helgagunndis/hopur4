@@ -1,5 +1,7 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * A controller class used for login and sign-up of the user.
@@ -129,5 +132,11 @@ public class UserController {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    //FAQ Page
+    @RequestMapping(value = "/faq", method = RequestMethod.GET)
+    public String faqPage(){
+        return "faq";
     }
 }
