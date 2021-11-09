@@ -18,13 +18,10 @@
       <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${i}">
       </option>
     </select>
-
-
-
   </div>
 <div>
   <label for="recipeMethod">Method</label>
-  <input type="textarea" rows="4" cols="50" th:field="*{recipeMethod}" id="recipeMethod" placeholder="Method">
+  <input type="text" th:field="*{recipeMethod}" id="recipeMethod" placeholder="Method">
   <span th:if="${#fields.hasErrors('recipeMethod')}" th:errors="*{recipeMethod}"></span>
 </div>
   <div>
@@ -53,8 +50,6 @@
   <input type="text" th:field="*{recipeImage}" id="recipeImage" placeholder="Image">
   <span th:if="${#fields.hasErrors('recipeImage')}" th:errors="*{recipeImage}"></span>
   </div>
-
-
   <div>
     <table>
       <thead>
@@ -69,7 +64,7 @@
         <td th:text="${itemStat.count}"></td>
         <td>
           <select th:field="*{ingredients[__${itemStat.index}__].ingredientName}">
-            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
+            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.ingredientName}" th:text="${ingredient.ingredientName}"></option>
           </select>
         </td>
         <td>
@@ -84,7 +79,5 @@
   </div>
   <button type="submit" name="save">save</button>
 </form>
-
-
 </body>
 </html>
