@@ -1,5 +1,6 @@
 package is.hi.hbv501g2021supportsession.Services.Implementation;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g2021supportsession.Services.UserService;
@@ -44,4 +45,5 @@ public class UserServiceImplementation implements UserService {
         }
         return null;
     }
+
 }

@@ -26,13 +26,32 @@ public class RecipeServiceImplementation implements RecipeService {
 
     }
     @Override
-        public Recipe save(Recipe recipe){
+    public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
     }
 
     @Override
-    public Optional<Recipe> findByID(Recipe recipe) {
-        return recipeRepository.findById(recipe.getRecipeID());
+    public Recipe findByRecipeID(Long id) {
+        return recipeRepository.findByRecipeID(id);
     }
+
+    @Override
+    public Recipe findRandomRecipe(int category) {
+        List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
+        int random =(int) (Math.random() * (recipeCategory.size()));
+        return recipeCategory.get(random);
+    }
+
+    @Override
+    public List<Recipe> findByRecipeCategoryLessThanEqual(int category){
+        return recipeRepository.findByRecipeCategoryLessThanEqual(category);
+    }
+
+    //  @Override
+   // public void add(Ingredient ingredient) {
+     //   this.recipeRepository.add(ingredient);
+   // }
+
+
 
 }

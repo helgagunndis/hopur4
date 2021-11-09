@@ -10,5 +10,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findAll();
     Recipe save(Recipe recipe);
     void delete(Recipe recipe);
-    
+    Recipe findByRecipeID(Long id);
+    List<Recipe> findByRecipeCategory(int category);
+    List<Recipe> findByRecipeCategoryLessThanEqual(int category);
 }
