@@ -26,7 +26,7 @@ public class RecipeServiceImplementation implements RecipeService {
 
     }
     @Override
-        public Recipe save(Recipe recipe){
+    public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
     }
 
@@ -36,8 +36,15 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     @Override
-    public List<Recipe> findByRecipeCategory(int category) {
-        return recipeRepository.findByRecipeCategory(category);
+    public Recipe findRandomRecipe(int category) {
+        List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
+        int random =(int) (Math.random() * (recipeCategory.size()));
+        return recipeCategory.get(random);
+    }
+
+    @Override
+    public List<Recipe> findByRecipeCategoryLessThanEqual(int category){
+        return recipeRepository.findByRecipeCategoryLessThanEqual(category);
     }
 
     //  @Override

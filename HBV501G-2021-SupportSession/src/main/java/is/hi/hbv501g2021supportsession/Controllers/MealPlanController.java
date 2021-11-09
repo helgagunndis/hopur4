@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +29,20 @@ public class MealPlanController {
     MealPlanService mealPlanService;
     UserService userService;
 
+    private int Category=4;
+    private int Numbdays=7;
+    private Recipe Monday;
+    private Recipe Tuesday;
+    private Recipe Wednesday;
+    private Recipe Thursday;
+    private Recipe Friday;
+    private Recipe Saturday;
+    private Recipe Sunday;
+
+   /* private List<Recipe> weekdays; //Monday, Tuesday ...
+    private List weekdaysCheckbox; // 1 for on 0 for off*/
+
+
     @Autowired
     public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService){
         this.mealPlanService = mealPlanService;
@@ -36,69 +52,38 @@ public class MealPlanController {
 
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String mealplan(Model model, MealPlan mealPlan, User user, HttpSession session){
-        // er userinn logaður inni ?
-        User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if(sessionUser != null){
-            System.out.println("þú er loggaður inni");
-            User mealPlanE =mealPlan.getUser();
-            System.out.println(mealPlanE);
-            if(mealPlanE==null){
-                mealPlanService.save(mealPlan);
-                mealPlan.setUser(sessionUser);
-                User n =mealPlan.getUser();
-                System.out.println(n.getUsername());
-            }
-            else {
-                System.out.println("þú átt nú þegar mealplan");
-                model.addAttribute("mealPlanExists",mealPlanE);
-            }
-        }
-        //ef mealplanið er ekki með ákveðið category þá er 4 default
-        int category=mealPlan.getRecipeCategory();
-        if(category==0){
-            mealPlan.setRecipeCategory(4);
-            List recipeCategory = recipeService.findAll();
-            model.addAttribute("categoryRecipe", recipeCategory);
-        }
-
-        return "mealplan";
-    }
-
-    @RequestMapping(value = "/gategory" , method = RequestMethod.GET)
-    public String recipeListGET(Model model, Recipe recipe, MealPlan mealPlan){
-        int category =recipe.getRecipeCategory();
-        mealPlan.setRecipeCategory(category);
-        List recipeCategory;
-        switch(category) {
-            case 3:
-                recipeCategory = recipeService.findByRecipeCategory(3);
-                recipeCategory.addAll(recipeService.findByRecipeCategory(2));
-                recipeCategory.addAll(recipeService.findByRecipeCategory(1));
-                break;
-            case 2:
-                recipeCategory = recipeService.findByRecipeCategory(2);
-                recipeCategory.addAll(recipeService.findByRecipeCategory(1));
-                break;
-            case 1:
-                recipeCategory = recipeService.findByRecipeCategory(1);
-                break;
-            default:
-                recipeCategory = recipeService.findAll();
-        }
+    public String mealplan(Model model, HttpSession session) {
+        // Athuga hvaða category er verið að vinna með
+        List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
         model.addAttribute("categoryRecipe", recipeCategory);
+
+        if(Monday==null|| Monday.getRecipeCategory() > Category){
+            Monday = recipeService.findRandomRecipe(Category);
+
+        }
+        model.addAttribute("mondayRecipe", Monday);
         return "mealplan";
     }
-    @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
-    public String chooseRecipeGET(Model model, Recipe recipe){
-        Recipe thatRecipe=recipeService.findByRecipeID(recipe.getRecipeID());
-        System.out.println(thatRecipe.getRecipeID());
+
+
+    @RequestMapping(value = "/category" , method = RequestMethod.GET)
+    public String recipeListGET(Model model, Recipe recipe, MealPlan mealPlan){
+        Category = recipe.getRecipeCategory();
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
+    public String chooseRecipeGET(Model model, Recipe recipe){
+        Monday =recipeService.findByRecipeID(recipe.getRecipeID());
+        return "redirect:/";
+    }
 
-
-    //@RequestMapping(value = "/loggedin")
+    @RequestMapping(value = "/tryagain",method = RequestMethod.GET)
+    public String tryagain(Model model, Recipe recipe, MealPlan mealPlan){
+        Monday = recipeService.findRandomRecipe(Category);
+        model.addAttribute("mondayRecipe", Monday);
+        return "redirect:/";
+    }
 
 
 }

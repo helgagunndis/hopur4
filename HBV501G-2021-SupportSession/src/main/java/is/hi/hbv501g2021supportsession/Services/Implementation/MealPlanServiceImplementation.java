@@ -31,8 +31,4 @@ public class MealPlanServiceImplementation implements MealPlanService {
       return mealPlanRepository.findByMealPlanID(ID);
    }
 
-    @Override
-    public MealPlan findByUser(User user) {
-        return mealPlanRepository.findByUser(user);
-    }
 }

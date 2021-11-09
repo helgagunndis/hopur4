@@ -11,6 +11,7 @@ public interface RecipeService {
     Recipe save(Recipe recipe);
    // void add(Ingredient ingredient);
     Recipe findByRecipeID(Long id);
-    List<Recipe> findByRecipeCategory(int category);
+    Recipe findRandomRecipe(int category);
+    List<Recipe> findByRecipeCategoryLessThanEqual(int category);
 
 }

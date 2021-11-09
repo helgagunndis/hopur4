@@ -44,7 +44,7 @@
 </nav>
 
 <div class="container px-5">
-    <form action="#" th:action="@{/gategory}" th:object="${recipe}" method="get">
+    <form action="#" th:action="@{/category}" th:object="${recipe}" method="get">
         <div class="row gx-2 mx-2 m-4 justify-content-center">
             <div class="col-sm mt-1">
                 <button class="btn btn-primary top-button"type="submit" name="recipeCategory" th:value="4">Alæta</button>
@@ -64,19 +64,24 @@
 <div class="container px-3">
     <div class="row mt-2 g-2">
         <div class="col-3">
-            <!--<input class="form-check-input" type="checkbox" th:value="${mealPlan.numberOfDays}" th:name="numberOfDays" th:id="monday" th:errorclass="fieldError" checked>
+            <input type="checkbox" id="monday" checked>
+                <label  for="monday">Mánudagur</label>
+            </input>
+            <!--<input class="form-check-input" type="checkbox" th:value="${mealPlan.numberOfDays}" th:name="monday" th:id="monday" th:errorclass="fieldError" checked>
 
             <label class="form-check-label" for="monday">
                 Mánudagur
             </label> -->
         </div>
-        <div class="col-6">
-            <div th:each="recipe : ${categoryRecipe}">
+        <div class="col-5">
+            <div th:each="recipe : ${mondayRecipe}">
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-md-3 ">
-            <button class="btn btn-warning btn-sm" type="button" >Reyna aftur</button>
+        <div class="col-sm-4 ">
+            <p action="#" th:action="@{/tryagain}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            </p>
 
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal">Velja uppskrift</button>

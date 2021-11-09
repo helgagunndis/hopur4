@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface MealPlanRepository extends JpaRepository<MealPlan, Long> {
+public interface MealPlanRepository extends JpaRepository<MealPlan, Long>  {
     //List<MealPlan> findAll(User user);
     MealPlan save(MealPlan mealPlan);
     MealPlan findByMealPlanID(Long id);
-    MealPlan findByUser(User user);
 }
