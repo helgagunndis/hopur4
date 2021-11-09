@@ -26,12 +26,17 @@ public class RecipeController {
     private RecipeService recipeService;
     private IngredientInfoService ingredientService;
 
-
     @Autowired
     public RecipeController(RecipeService recipeService,IngredientInfoService ingredientService) {
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
     }
+
+    @ModelAttribute("allIngredients")
+    public List<IngredientInfo> populateIngredients() {
+        return this.ingredientService.findAll();
+    }
+
 
 
     /**
@@ -50,15 +55,15 @@ public class RecipeController {
      * @param recipe
      * @return admin.html
      */
-   @RequestMapping(value = "/admin", method = RequestMethod.GET)
+   @RequestMapping(value = "/admin") //, method = RequestMethod.GET)
     public String adminPage( Recipe recipe, Model model){
-       List<IngredientInfo> allIngredients = ingredientService.findAll();
-       model.addAttribute("allIngredients", allIngredients);
+       /*List<IngredientInfo> allIngredients = ingredientService.findAll();
+       model.addAttribute("allIngredients", allIngredients);*/
 
        return "admin";
     }
 
-    @RequestMapping(value="/admin", method=RequestMethod.POST)
+   /* @RequestMapping(value="/admin", method=RequestMethod.POST)
     public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model) {
         if(result.hasErrors()){
             return "admin";
@@ -67,6 +72,29 @@ public class RecipeController {
 
         recipeService.save(recipe);
         return "redirect:/recipes";
+    }*/
+
+    @RequestMapping(value= "/admin", params ={"save"})
+    public String adminSave(Recipe recipe, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "admin";
+        }
+        recipeService.save(recipe);
+        return "redirect:/recipes";
+    }
+
+    /**
+     * Adds new row and adds ingredient to database
+     * @param recipe
+     * @param ingredient
+     * @param bindingResult
+     * @return admin.html
+     */
+    @RequestMapping(value="/admin", params={"addRow"})
+    public String addRow(Recipe recipe, Ingredient ingredient,  BindingResult bindingResult, Model model) {
+        recipe.getIngredients().add(new Ingredient());
+
+        return "admin";
     }
 
 

@@ -7,49 +7,84 @@
 <body>
 
 <form action="#" th:action="@{/admin}" th:object="${recipe}" method="post">
-
+<div>
   <label for="recipeTitle">Title</label>
   <input type="text" th:field="*{recipeTitle}" id="recipeTitle" placeholder="Title">
   <span th:if="${#fields.hasErrors('recipeTitle')}" th:errors="*{recipeTitle}"></span>
+</div>
+  <div>
+    <label>Category</label>
+    <select th:field="*{recipeCategory}" name = "Category">
+      <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${i}">
+      </option>
+    </select>
 
-  <label for="recipeCategory">Category</label>
-  <input type="text" th:field="*{recipeCategory}" id="recipeCategory">
-  <span th:if="${#fields.hasErrors('recipeCategory')}" th:errors="*{recipeCategory}"></span>
 
+
+  </div>
+<div>
   <label for="recipeMethod">Method</label>
-  <input type="text" th:field="*{recipeMethod}" id="recipeMethod" placeholder="Method">
+  <input type="textarea" rows="4" cols="50" th:field="*{recipeMethod}" id="recipeMethod" placeholder="Method">
   <span th:if="${#fields.hasErrors('recipeMethod')}" th:errors="*{recipeMethod}"></span>
-
+</div>
+  <div>
   <label for="recipeTime">Time</label>
   <input type="text" th:field="*{recipeTime}" id="recipeTime" placeholder="Time">
   <span th:if="${#fields.hasErrors('recipeTime')}" th:errors="*{recipeTime}"></span>
-
-  <label for="recipeServings">Servings</label>
-  <input type="text" th:field="*{recipeServings}" id="recipeServings" placeholder="Servings">
-  <span th:if="${#fields.hasErrors('recipeServings')}" th:errors="*{recipeServings}"></span>
-
+  </div>
+<div>
+  <label>Servings</label>
+  <select th:field="*{recipeServings}" name = "Servings">
+    <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}" th:text="${i}"></option>
+  </select>
+</div>
+  <div>
   <label for="recipeSummary">Summary</label>
   <input type="text" th:field="*{recipeSummary}" id="recipeSummary" placeholder="Summary">
   <span th:if="${#fields.hasErrors('recipeSummary')}" th:errors="*{recipeSummary}"></span>
-
+  </div>
+  <div>
   <label for="recipeCredit">credit</label>
   <input type="text" th:field="*{recipeCredit}" id="recipeCredit" placeholder="credit">
   <span th:if="${#fields.hasErrors('recipeCredit')}" th:errors="*{recipeCredit}"></span>
-
-  <label for="recipeServings">image link</label>
+  </div>
+  <div>
+  <label for="recipeImage">image link</label>
   <input type="text" th:field="*{recipeImage}" id="recipeImage" placeholder="Image">
   <span th:if="${#fields.hasErrors('recipeImage')}" th:errors="*{recipeImage}"></span>
-
-
-  <div class="form-group blu-margin">
-    <select class="form-control" th:field="${allIngredients}"  id="ingredients">
-      <option value="0">select ingredient</option>
-      <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
-    </select>
   </div>
 
-  <input type="submit" name="action" value="save">
+
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>no.</th>
+        <th>ingredient</th>
+        <th>amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="ingredient,itemStat : *{ingredients}">
+        <td th:text="${itemStat.count}"></td>
+        <td>
+          <select th:field="*{ingredients[__${itemStat.index}__].ingredientName}">
+            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
+          </select>
+        </td>
+        <td>
+          <input type="text" th:field="*{ingredients[__${itemStat.index}__].amount}" th:errorclass="fieldError">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <th>
+      <button type="submit" name="addRow">add ingredient</button>
+    </th>
+  </div>
+  <button type="submit" name="save">save</button>
 </form>
+
 
 </body>
 </html>

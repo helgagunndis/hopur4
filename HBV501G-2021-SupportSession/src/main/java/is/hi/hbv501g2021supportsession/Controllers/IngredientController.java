@@ -44,6 +44,6 @@ public class IngredientController {
             return "adminIngredients";
         }
         ingredientService.save(ingredientInfo);
-        return "redirect:/recipes";
+        return "redirect:/admin";
     }
 }
