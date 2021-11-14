@@ -17,11 +17,6 @@ public class IngredientInfoServiceImplementation implements IngredientInfoServic
         this.ingredientInfoRepository = ingredientInfoRepository;
     }
 
-    /*@Override
-    public IngredientInfo add(IngredientInfo ingredientInfo) {
-        return ingredientInfoRepository.add(ingredientInfo);
-    }*/
-
     @Override
     public IngredientInfo save(IngredientInfo ingredientInfo) {
         return ingredientInfoRepository.save(ingredientInfo);
