@@ -57,30 +57,23 @@ public class RecipeController {
      */
    @RequestMapping(value = "/admin") //, method = RequestMethod.GET)
     public String adminPage( Recipe recipe, Model model){
-       /*List<IngredientInfo> allIngredients = ingredientService.findAll();
-       model.addAttribute("allIngredients", allIngredients);*/
-
        return "admin";
     }
 
-   /* @RequestMapping(value="/admin", method=RequestMethod.POST)
-    public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model) {
-        if(result.hasErrors()){
-            return "admin";
-        }
-        model.addAttribute("recipes", recipeService.findAll());
-
-        recipeService.save(recipe);
-        return "redirect:/recipes";
-    }*/
-
+    /**
+     * saves recipe to db
+     * @param recipe
+     * @param ingredients
+     * @param result
+     * @param model
+     * @return recipe.html
+     */
     @RequestMapping(value= "/admin", params ={"save"})
     public String adminSave(Recipe recipe, Ingredient ingredients, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/error";
         }
         ingredientService.save(ingredients);
-
         recipeService.save(recipe);
 
         return "redirect:/recipes";

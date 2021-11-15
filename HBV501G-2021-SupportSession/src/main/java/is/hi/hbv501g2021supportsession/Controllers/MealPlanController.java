@@ -168,4 +168,16 @@ public class MealPlanController {
         model.addAttribute("sundayRecipe", Sunday);
         return "redirect:/";
     }
+
+    //confirm page
+    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
+    public String confirm(Model model, Recipe recipe){
+        //TODO all ingredients added to a shopping list
+        //TODO recipe titles from meal plan shown
+
+       // mealPlanService.save(mealplan(mealPlanService.getID));
+        // þarf kannski að setja form í kringum allt í html til að það les gildin
+
+        return "confirm";
+    }
 }
