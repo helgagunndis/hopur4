@@ -52,7 +52,7 @@ public class UserController {
 
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
-            return "redirect:/signup";
+            return "redirect:/error";
         }
         User usernameExists = userService.findByUsername(user.getUsername());
         if(usernameExists != null){
@@ -93,7 +93,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
-            return "login";
+            return "redirect:/error";
         }
         User exists = userService.login(user);
         if(exists != null){
