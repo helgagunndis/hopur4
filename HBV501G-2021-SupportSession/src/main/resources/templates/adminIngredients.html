@@ -8,7 +8,7 @@
 
 <form action="#" th:action="@{/adminIngredients}" th:object="${ingredientInfo}" method="post">
 
-<label for="ingredientName">Title</label>
+<label for="ingredientName">Ingredient:</label>
 <input type="text" th:field="*{ingredientName}" id="ingredientName" placeholder="ingredient">
 <span th:if="${#fields.hasErrors('ingredientName')}" th:errors="*{ingredientName}"></span>
 

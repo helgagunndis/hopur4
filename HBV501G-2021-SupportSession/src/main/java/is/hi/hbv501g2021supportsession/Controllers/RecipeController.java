@@ -4,6 +4,7 @@ import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Services.IngredientInfoService;
+import is.hi.hbv501g2021supportsession.Services.IngredientService;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,14 +23,21 @@ public class RecipeController {
 
 
     private RecipeService recipeService;
-    private IngredientInfoService ingredientService;
-
+    private IngredientInfoService infoIngredientService;
+    private IngredientService ingredientService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService,IngredientInfoService ingredientService) {
+    public RecipeController(RecipeService recipeService,IngredientInfoService infoIngredientService, IngredientService ingredientService) {
         this.recipeService = recipeService;
+        this.infoIngredientService = infoIngredientService;
         this.ingredientService = ingredientService;
     }
+
+    @ModelAttribute("allIngredients")
+    public List<IngredientInfo> populateIngredients() {
+        return this.infoIngredientService.findAll();
+    }
+
 
 
     /**
@@ -51,30 +58,33 @@ public class RecipeController {
      */
    @RequestMapping(value = "/admin") //, method = RequestMethod.GET)
     public String adminPage( Recipe recipe, Model model){
-       List<IngredientInfo> allIngredients = ingredientService.findAll();
-       model.addAttribute("allIngredients", allIngredients);
-       System.out.println("hér");
+       /*List<IngredientInfo> allIngredients = ingredientService.findAll();
+       model.addAttribute("allIngredients", allIngredients);*/
+
        return "admin";
     }
 
-    /**
-     * Saves recipes, when successfully saved to db redirect to recipes.html
-     * @param recipe
-     * @param result
-     * @param model
-     * @return
-     */
-    @RequestMapping(value= "/admin", params = {"save"}) //, method = RequestMethod.POST)
-    public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model){
+   /* @RequestMapping(value="/admin", method=RequestMethod.POST)
+    public String adminSave(Recipe recipe, IngredientInfo ingredientInfo, BindingResult result, Model model) {
         if(result.hasErrors()){
             return "admin";
         }
-
+        model.addAttribute("recipes", recipeService.findAll());
 
         recipeService.save(recipe);
         return "redirect:/recipes";
-    }
+    }*/
 
+    @RequestMapping(value= "/admin", params ={"save"})
+    public String adminSave(Recipe recipe, Ingredient ingredients, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "admin";
+        }
+        ingredientService.save(ingredients);
+        recipeService.save(recipe);
+
+        return "redirect:/recipes";
+    }
 
     /**
      * Adds new row and adds ingredient to database
@@ -83,17 +93,12 @@ public class RecipeController {
      * @param bindingResult
      * @return admin.html
      */
-   @RequestMapping(value="/admin", params={"addRow"})// method = RequestMethod.GET)
+    @RequestMapping(value="/admin", params={"addRow"})
     public String addRow(Recipe recipe, Ingredient ingredient,  BindingResult bindingResult, Model model) {
-       // List<IngredientInfo> allIngredients = ingredientService.findAll();
-       // model.addAttribute("allIngredients", allIngredients);
-        System.out.println("ingredients");
         recipe.getIngredients().add(new Ingredient());
 
         return "admin";
     }
 
-
-    //TODO ingredients hasnt successfully connected to db. needs fixing
 
 }
