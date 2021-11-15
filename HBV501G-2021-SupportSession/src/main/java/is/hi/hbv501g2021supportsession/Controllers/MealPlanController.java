@@ -100,7 +100,7 @@ public class MealPlanController {
         Category = recipe.getRecipeCategory();
         return "redirect:/";
     }
-    //Þarf að breyta þessum þannig
+    //Þarf að breyta þessum þannig að hann geti valið númer hvað dagurinn er
     @RequestMapping(value = "/mondayChooseRecipe",method = RequestMethod.GET)
     public String mondayChooseRecipeGET(Model model, Recipe recipe){
         Monday =recipeService.findByRecipeID(recipe.getRecipeID());
@@ -108,6 +108,7 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+    // þarf að breyta nafninu á numberofDays
     @RequestMapping(value = "/tryagain",method = RequestMethod.GET)
     public String tryagain(Model model, Recipe recipe, MealPlan mealPlan){
         int weekday=mealPlan.getNumberOfDays();
