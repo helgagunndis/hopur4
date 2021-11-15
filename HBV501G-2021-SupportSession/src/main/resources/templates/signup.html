@@ -50,17 +50,17 @@
   <form action="#" th:action="@{/signup}" th:object="${user}"  method="post">
     <div class="row pt-2 justify-content-center">
       <div class="col-6">
-        <input type="text" class="form-control" placeholder="Notendanafn" aria-label="Notendanafn"  name="username" id="username" th:field="*{username}"/>
+        <input type="text" required class="form-control" placeholder="Notendanafn" aria-label="Notendanafn"  name="username" id="username" th:field="*{username}"/>
       </div>
     </div>
     <div class="row pt-2 justify-content-center">
       <div class="col-6">
-       <input type="text" class="form-control" placeholder="Lykilorð" aria-label="Lykilorð" name="userPassword" id="userPassword" th:value="*{userPassword}"/>
+       <input type="password" required class="form-control" placeholder="Lykilorð" aria-label="Lykilorð" name="userPassword" id="userPassword" th:value="*{userPassword}"/>
       </div>
     </div>
     <div class="row pt-2 justify-content-center">
       <div class="col-6">
-        <input type="text" class="form-control" placeholder="Netfang" aria-label="netfang" name="userEmail" id="userEmail" th:value="*{userEmail}"/>
+        <input type="email" required class="form-control" placeholder="Netfang" aria-label="netfang" name="userEmail" id="userEmail" th:value="*{userEmail}"/>
       </div>
     </div>
     <div class="row pt-2 justify-content-center">

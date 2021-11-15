@@ -80,8 +80,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/mondaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="0">Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -133,8 +133,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/tuesdaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="1" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -186,8 +186,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/wednesdaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="2" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -231,7 +231,6 @@
             <input type="checkbox" id="thursday" checked>
             <label  for="thursday">Fimmtudagur</label>
             </input>
-
         </div>
         <div class="col-5">
             <div th:each="recipe : ${thursdayRecipe}">
@@ -239,8 +238,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/thursdaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="3" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -292,8 +291,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/fridaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}"method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="4" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -345,8 +344,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/saturdaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="5" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -398,8 +397,8 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <form action="#" th:action="@{/sundaytryagain}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" >Reyna aftur</button>
+            <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="6" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->

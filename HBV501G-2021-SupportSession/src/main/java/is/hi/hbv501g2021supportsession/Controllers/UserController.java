@@ -134,9 +134,4 @@ public class UserController {
         return "redirect:/";
     }
 
-    //FAQ Page
-    @RequestMapping(value = "/faq", method = RequestMethod.GET)
-    public String faqPage(){
-        return "faq";
-    }
 }
