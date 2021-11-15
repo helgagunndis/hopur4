@@ -17,7 +17,7 @@ public class IngredientInfo {
     @ManyToOne(fetch = FetchType.LAZY)
     private Ingredient ingredient;
 
-    public IngredientInfo(String ingredientName, List<Ingredient> ingredients) {
+    public IngredientInfo(String ingredientName, Ingredient ingredient) {
         IngredientName = ingredientName;
         this.ingredient = ingredient;
     }

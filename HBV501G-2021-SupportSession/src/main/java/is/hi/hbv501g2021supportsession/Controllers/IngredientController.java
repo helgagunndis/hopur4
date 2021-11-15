@@ -41,7 +41,7 @@ public class IngredientController {
     @RequestMapping(value = "/adminIngredients", params = {"saveIngred"})
     public String adminSaveIngredients(IngredientInfo ingredientInfo, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "adminIngredients";
+            return "redirect:/error";
         }
         ingredientService.save(ingredientInfo);
         return "redirect:/admin";

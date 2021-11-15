@@ -1,6 +1,5 @@
 package is.hi.hbv501g2021supportsession.Persistence.Repositories;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +12,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Recipe findByRecipeID(Long id);
     List<Recipe> findByRecipeCategory(int category);
     List<Recipe> findByRecipeCategoryLessThanEqual(int category);
+
 }
