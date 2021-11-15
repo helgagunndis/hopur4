@@ -85,5 +85,4 @@ public class MealPlanController {
         return "redirect:/";
     }
 
-
 }
