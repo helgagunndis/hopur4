@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HBV501G-2021-SupportSession.iml" filepath="$PROJECT_DIR$/.idea/HBV501G-2021-SupportSession.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HBV501G-2021-SupportSession.iml" filepath="$PROJECT_DIR$/HBV501G-2021-SupportSession.iml" />
     </modules>
   </component>
 </project>
