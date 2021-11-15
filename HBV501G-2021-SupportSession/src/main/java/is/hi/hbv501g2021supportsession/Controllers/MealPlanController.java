@@ -110,6 +110,7 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+
     //Tuesday
     @RequestMapping(value = "/tuesdayChooseRecipe",method = RequestMethod.GET)
     public String tuesdayChooseRecipeGET(Model model, Recipe recipe){
@@ -199,4 +200,5 @@ public class MealPlanController {
         model.addAttribute("sundayRecipe", Sunday);
         return "redirect:/";
     }
+
 }
