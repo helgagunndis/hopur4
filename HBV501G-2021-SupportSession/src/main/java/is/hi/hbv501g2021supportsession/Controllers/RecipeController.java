@@ -78,7 +78,7 @@ public class RecipeController {
     @RequestMapping(value= "/admin", params ={"save"})
     public String adminSave(Recipe recipe, Ingredient ingredients, BindingResult result, Model model){
         if(result.hasErrors()){
-            return "admin";
+            return "redirect:/error";
         }
         ingredientService.save(ingredients);
         recipeService.save(recipe);
