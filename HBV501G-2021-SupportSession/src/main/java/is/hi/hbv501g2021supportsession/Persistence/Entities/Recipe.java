@@ -31,7 +31,9 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String recipeTitle, int recipeCategory, String recipeMethod, String recipeTime, int recipeServings, Set<IngredientInfo> ingredientInfo) {
+    public Recipe(String recipeTitle, int recipeCategory, String recipeMethod,
+                  String recipeTime, int recipeServings, String recipeSummary,
+                  String recipeImage, String recipeCredit, List<Ingredient> ingredients) {
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeMethod = recipeMethod;
@@ -40,6 +42,7 @@ public class Recipe {
         this.recipeSummary = recipeSummary;
         this.recipeImage = recipeImage;
         this.recipeCredit = recipeCredit;
+        this.ingredients = ingredients;
     }
 
     public long getRecipeID() {

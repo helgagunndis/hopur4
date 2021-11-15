@@ -1,6 +1,5 @@
 package is.hi.hbv501g2021supportsession.Services.Implementation;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.RecipeRepository;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RecipeServiceImplementation implements RecipeService {
@@ -53,6 +51,8 @@ public class RecipeServiceImplementation implements RecipeService {
     public List<Recipe> findByRecipeCategoryLessThanEqual(int category){
         return recipeRepository.findByRecipeCategoryLessThanEqual(category);
     }
+
+
 
     //  @Override
    // public void add(Ingredient ingredient) {

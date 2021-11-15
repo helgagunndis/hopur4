@@ -39,7 +39,6 @@ public class RecipeController {
     }
 
 
-
     /**
      * Adds all recipes in db to html
      * @param model
@@ -81,6 +80,7 @@ public class RecipeController {
             return "redirect:/error";
         }
         ingredientService.save(ingredients);
+
         recipeService.save(recipe);
 
         return "redirect:/recipes";
