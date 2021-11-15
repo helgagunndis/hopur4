@@ -43,6 +43,13 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     @Override
+    public Recipe findRecipe(int category, int randomNumber) {
+        List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
+
+        return recipeCategory.get(randomNumber);
+    }
+
+    @Override
     public List<Recipe> findByRecipeCategoryLessThanEqual(int category){
         return recipeRepository.findByRecipeCategoryLessThanEqual(category);
     }
