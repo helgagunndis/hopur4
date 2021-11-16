@@ -127,7 +127,6 @@ public class MealPlanController {
 
 /*
 
-
     //Tuesday
     @RequestMapping(value = "/tuesdayChooseRecipe",method = RequestMethod.GET)
     public String tuesdayChooseRecipeGET(Model model, Recipe recipe){
