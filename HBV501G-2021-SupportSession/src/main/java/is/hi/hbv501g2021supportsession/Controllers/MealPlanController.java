@@ -101,12 +101,15 @@ public class MealPlanController {
         return "redirect:/";
     }
     //Þarf að breyta þessum þannig að hann geti valið númer hvað dagurinn er
+
     @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
     public String chooseRecipeGET(Model model, Recipe recipe, MealPlan mealplan){
         int weekday=mealplan.getNumberOfDays();
         System.out.println(weekday);
         Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
+
+
         return "redirect:/";
     }
 
@@ -121,7 +124,10 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+
 /*
+
+
     //Tuesday
     @RequestMapping(value = "/tuesdayChooseRecipe",method = RequestMethod.GET)
     public String tuesdayChooseRecipeGET(Model model, Recipe recipe){
@@ -171,5 +177,19 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+
  */
+
+    //confirm page
+    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
+    public String confirm(Model model, Recipe recipe){
+        //TODO all ingredients added to a shopping list
+        //TODO recipe titles from meal plan shown
+
+       // mealPlanService.save(mealplan(mealPlanService.getID));
+        // þarf kannski að setja form í kringum allt í html til að það les gildin
+
+        return "confirm";
+    }
+
 }

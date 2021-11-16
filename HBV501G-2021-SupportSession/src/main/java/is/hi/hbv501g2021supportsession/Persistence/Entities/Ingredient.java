@@ -23,9 +23,11 @@ public class Ingredient {
     @OneToMany(mappedBy = "ingredient")
     private List<IngredientInfo> ingredientInfo = new ArrayList<IngredientInfo>();
 
-    public Ingredient(String amount, String ingredientName) {
+    public Ingredient(long id, String amount, String ingredientName, List<IngredientInfo> ingredientInfo) {
         this.amount= amount;
         this.ingredientName = ingredientName;
+        this.id = id;
+        this.ingredientInfo = ingredientInfo;
     }
 
     public Ingredient() {
@@ -47,4 +49,19 @@ public class Ingredient {
         this.amount = amount;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<IngredientInfo> getIngredientInfo() {
+        return ingredientInfo;
+    }
+
+    public void setIngredientInfo(List<IngredientInfo> ingredientInfo) {
+        this.ingredientInfo = ingredientInfo;
+    }
 }
