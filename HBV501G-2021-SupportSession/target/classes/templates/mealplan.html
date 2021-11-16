@@ -100,13 +100,15 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/mondayChooseRecipe}" th:object="${recipe}" method="get" >
-                                    <td>
-                                        <!--<data-dismiss="modal"-->
-                                        <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
-                                            <h5 class="" th:text="${recipes.recipeTitle}"></h5>
-                                        </button>
-                                    </td>
+
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
+                                        <td>
+                                         <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="0" />
+                                            <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
+                                                <h5 class="" th:text="${recipes.recipeTitle}"></h5>
+                                            </button>
+                                        </td>
                                     </form>
                                 </tr>
                                 </tbody>
@@ -153,9 +155,10 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/tuesdayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="1" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -206,9 +209,10 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/wednesdayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="2" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -259,9 +263,10 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/thursdayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="3" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -312,9 +317,10 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/fridayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="4" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -365,9 +371,10 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/saturdayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
+                                            <input type="hidden" name="numberOfDays" value="5" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -418,10 +425,11 @@
                             <table class="table">
                                 <tbody>
                                 <tr th:each="recipes: ${categoryRecipe}">
-                                    <form action="#" th:action="@{/sundayChooseRecipe}" th:object="${recipe}" method="get" >
+                                    <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
+                                            <input type="hidden" name="numberOfDays" value="6" />
+                                            <button type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
                                         </td>
