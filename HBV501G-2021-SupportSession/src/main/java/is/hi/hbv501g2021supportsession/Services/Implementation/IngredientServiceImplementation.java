@@ -8,6 +8,8 @@ import is.hi.hbv501g2021supportsession.Services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IngredientServiceImplementation implements IngredientService {
     private IngredientRepository ingredientRepository;
@@ -21,4 +23,9 @@ public class IngredientServiceImplementation implements IngredientService {
     public Ingredient save(Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
     }
+
+
+
+
 }
+
