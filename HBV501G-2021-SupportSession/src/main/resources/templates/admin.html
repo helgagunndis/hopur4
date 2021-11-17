@@ -62,11 +62,13 @@
       <tbody>
       <tr th:each="ingredient,itemStat : *{ingredients}">
         <td th:text="${itemStat.count}"></td>
+
         <td>
-          <select th:field="*{ingredients[__${itemStat.index}__].ingredientName}">
-            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.ingredientName}" th:text="${ingredient.ingredientName}"></option>
+          <select th:field="*{ingredients[__${itemStat.index}__].ingredientInfo}">
+            <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}" th:text="${ingredient.ingredientName}"></option>
           </select>
         </td>
+          <input type="hidden" th:field="*{ingredients[__${itemStat.index}__].id}" id="id">
         <td>
           <input type="text" th:field="*{ingredients[__${itemStat.index}__].amount}" th:errorclass="fieldError">
         </td>
