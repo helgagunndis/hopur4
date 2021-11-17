@@ -101,10 +101,15 @@ public class MealPlanController {
         return "redirect:/";
     }
     //Þarf að breyta þessum þannig að hann geti valið númer hvað dagurinn er
-    @RequestMapping(value = "/mondayChooseRecipe",method = RequestMethod.GET)
-    public String mondayChooseRecipeGET(Model model, Recipe recipe){
-        Monday =recipeService.findByRecipeID(recipe.getRecipeID());
-        weekdays.set(0,Monday);
+
+    @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
+    public String chooseRecipeGET(Model model, Recipe recipe, MealPlan mealplan){
+        int weekday=mealplan.getNumberOfDays();
+        System.out.println(weekday);
+        Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
+        weekdays.set(weekday,newRecipe);
+
+
         return "redirect:/";
     }
 
@@ -119,6 +124,8 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+
+/*
 
     //Tuesday
     @RequestMapping(value = "/tuesdayChooseRecipe",method = RequestMethod.GET)
@@ -169,6 +176,9 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+
+ */
+
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String confirm(Model model, Recipe recipe){
@@ -180,4 +190,5 @@ public class MealPlanController {
 
         return "confirm";
     }
+
 }
