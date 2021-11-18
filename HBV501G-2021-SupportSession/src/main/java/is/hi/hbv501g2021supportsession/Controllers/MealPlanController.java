@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A controller class for meal plan
@@ -25,7 +22,6 @@ public class MealPlanController {
     MealPlanService mealPlanService;
 
     private int Category=4;
-    private boolean firstRun=false;
 
    private ArrayList<Recipe> weekdays; //Monday, Tuesday ...
    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
@@ -39,35 +35,11 @@ public class MealPlanController {
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String mealplan(Model model, HttpSession session) {
-        // Finnum hvaða category við erum að vinna með.
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
         model.addAttribute("categoryRecipe", recipeCategory);
 
-        // Spurning um að setja þetta inn implementation ?
-        Set<Integer> randomNumbers = new HashSet<>();
-        while(randomNumbers.size() != 8){
-            randomNumbers.add(1 + (int) (Math.random() * recipeCategory.size()));
-        }
-        List<Integer> randomNumberList = new ArrayList<Integer>(randomNumbers);
-
-        // þarf að skilgreina betur hvenær á að keyra þetta!
-        if(!firstRun){
-            weekdays =new ArrayList<Recipe>();
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(0)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(1)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(2)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(3)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(4)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(5)));
-            weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(6)));
-
-            /* //nota í staðin?
-            for(int i=0; i<7; i++){
-             weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(i)));
-             }
-            */
-
-            firstRun=true;
+        if(weekdays==null){
+            weekdays = recipeService.findListOfRecipe(Category);
         }
 
         model.addAttribute("mondayRecipe", weekdays.get(0));
@@ -77,35 +49,43 @@ public class MealPlanController {
         model.addAttribute("fridayRecipe", weekdays.get(4));
         model.addAttribute("saturdayRecipe", weekdays.get(5));
         model.addAttribute("sundayRecipe", weekdays.get(6));
-
         return "mealplan";
     }
 
-
+    // Velur category
     @RequestMapping(value = "/category" , method = RequestMethod.GET)
-    public String recipeListGET(Model model, Recipe recipe){
+    public String recipeListGET(Recipe recipe){
         Category = recipe.getRecipeCategory();
         return "redirect:/";
     }
 
-    //chosen recipe for chosen day
-    @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
-    public String chooseRecipeGET(Model model, Recipe recipe, MealPlan mealplan){
+    // random recipe
+    @RequestMapping(value = "/manualRecipes",method = RequestMethod.GET)
+    public String manualRecipes(Recipe recipe, MealPlan mealplan){
         int weekday=mealplan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
-
         return "redirect:/";
     }
 
     // fær nýja uppskrift og setur inn í listan á réttan stað miðað við valdan dag
-    @RequestMapping(value = "/tryagain",method = RequestMethod.GET)
-    public String tryagain(Model model, Recipe recipe, MealPlan mealPlan){
+    @RequestMapping(value = "/generateOneMeal",method = RequestMethod.GET)
+    public String generateOneMeal(MealPlan mealPlan){
         int weekday=mealPlan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findRandomRecipe(Category);
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
+    @RequestMapping(value = "/generateWholeWeek",method = RequestMethod.GET)
+    public String generateWholeWeek(Model model){
+        weekdays= null;
+        /*ArrayList<Recipe> newWeekdays = recipeService.findListOfRecipe(Category);
+        for (int i=0; i<7; i++) {
+            weekdays.set(i,newWeekdays.get(i));
+        }*/
+        return "redirect:/";
+    }
+
 
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
