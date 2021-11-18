@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ public class RecipeController {
     private RecipeService recipeService;
     private IngredientInfoService infoIngredientService;
     private IngredientService ingredientService;
+
 
     @Autowired
     public RecipeController(RecipeService recipeService,IngredientInfoService infoIngredientService, IngredientService ingredientService) {
@@ -73,14 +75,19 @@ public class RecipeController {
         if(result.hasErrors()){
             return "redirect:/error";
         }
-        ingredientService.save(ingredients);
+        List<Ingredient> ingredientList =  recipe.getIngredients();
+
         recipeService.save(recipe);
+
+        for (Ingredient ingredient : ingredientList){
+            Ingredient newIngredient = ingredientService.save(new Ingredient(ingredient.getAmount(), ingredient.getIngredientInfo(), recipe));
+        }
 
         return "redirect:/recipes";
     }
 
     /**
-     * Adds new row and adds ingredient to database
+     * Adds new row
      * @param recipe
      * @param ingredient
      * @param bindingResult
@@ -89,9 +96,6 @@ public class RecipeController {
     @RequestMapping(value="/admin", params={"addRow"})
     public String addRow(Recipe recipe, Ingredient ingredient,  BindingResult bindingResult, Model model) {
         recipe.getIngredients().add(new Ingredient());
-
         return "admin";
     }
-
-
 }

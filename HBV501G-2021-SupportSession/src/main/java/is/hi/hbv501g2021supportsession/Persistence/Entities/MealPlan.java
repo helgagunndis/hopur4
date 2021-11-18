@@ -12,7 +12,7 @@ public class MealPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanID;
 
-    private int numberOfDays;
+    private int numberOfWeekDays;
     private int recipeCategory;
 
     @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL)
@@ -25,9 +25,8 @@ public class MealPlan {
 
     }
 
-    public MealPlan(long mealPlanID, int numberOfDays, int recipeCategory) {
+    public MealPlan(long mealPlanID, int recipeCategory) {
         this.mealPlanID = mealPlanID;
-        this.numberOfDays = numberOfDays;
         this.recipeCategory = recipeCategory;
     }
 
@@ -37,14 +36,6 @@ public class MealPlan {
 
     public void setMealPlanID(long mealPlanID) {
         this.mealPlanID = mealPlanID;
-    }
-
-    public int getNumberOfDays() {
-        return numberOfDays;
-    }
-
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
     }
 
     public int getRecipeCategory() {
@@ -69,6 +60,14 @@ public class MealPlan {
 
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public int getNumberOfWeekDays() {
+        return numberOfWeekDays;
+    }
+
+    public void setNumberOfWeekDays(int numberOfWeekDays) {
+        this.numberOfWeekDays = numberOfWeekDays;
     }
 
 }

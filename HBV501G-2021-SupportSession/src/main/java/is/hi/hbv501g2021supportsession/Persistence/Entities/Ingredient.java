@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name= "Ingredients")
 public class Ingredient {
 
-    private String ingredientName;
+   // private String ingredientName;
     private String amount;
 
     @Id
@@ -20,26 +20,26 @@ public class Ingredient {
     @ManyToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
 
-    @OneToMany(mappedBy = "ingredient")
-    private List<IngredientInfo> ingredientInfo = new ArrayList<IngredientInfo>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private IngredientInfo ingredientInfo;
 
-    public Ingredient(long id, String amount, String ingredientName, List<IngredientInfo> ingredientInfo) {
+    public Ingredient(String amount, IngredientInfo ingredientInfo, Recipe recipe) {
         this.amount= amount;
-        this.ingredientName = ingredientName;
-        this.id = id;
+       // this.ingredientName = ingredientName;
         this.ingredientInfo = ingredientInfo;
+        this.recipe =recipe;
     }
 
     public Ingredient() {
     }
 
-    public String getIngredientName() {
+    /*public String getIngredientName() {
         return ingredientName;
     }
 
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
-    }
+    }*/
 
     public String getAmount() {
         return amount;
@@ -57,11 +57,19 @@ public class Ingredient {
         this.id = id;
     }
 
-    public List<IngredientInfo> getIngredientInfo() {
+    public IngredientInfo getIngredientInfo() {
         return ingredientInfo;
     }
 
-    public void setIngredientInfo(List<IngredientInfo> ingredientInfo) {
+    public void setIngredientInfo(IngredientInfo ingredientInfo) {
         this.ingredientInfo = ingredientInfo;
     }
+
+   /* public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }*/
 }

@@ -12,13 +12,13 @@ public class IngredientInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String IngredientName;
+    private String ingredientName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Ingredient ingredient;
+    @OneToMany(mappedBy = "ingredientInfo")
+    private List<Ingredient> ingredient = new ArrayList<Ingredient>();
 
-    public IngredientInfo(String ingredientName, Ingredient ingredient) {
-        IngredientName = ingredientName;
+    public IngredientInfo(String ingredientName, List<Ingredient> ingredient) {
+        this.ingredientName= ingredientName;
         this.ingredient = ingredient;
     }
 
@@ -26,18 +26,18 @@ public class IngredientInfo {
     }
 
     public String getIngredientName() {
-        return IngredientName;
+        return ingredientName;
     }
 
     public void setIngredientName(String ingredientName) {
-        IngredientName = ingredientName;
+        this.ingredientName = ingredientName;
     }
 
-    public Ingredient getIngredient() {
+    public List<Ingredient> getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(Ingredient ingredient) {
+    public void setIngredient(List<Ingredient> ingredient) {
         this.ingredient = ingredient;
     }
 
