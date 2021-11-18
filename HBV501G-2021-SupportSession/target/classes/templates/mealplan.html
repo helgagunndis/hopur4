@@ -81,7 +81,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="0">Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="0">Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -104,7 +104,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                          <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="0" />
+                                            <input type="hidden" name="numberOfWeekDay" value="0" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -136,7 +136,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="1" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="1" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -158,7 +158,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="1" />
+                                            <input type="hidden" name="numberOfWeekDay" value="1" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -190,7 +190,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="2" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="2" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -212,7 +212,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="2" />
+                                            <input type="hidden" name="numberOfWeekDay" value="2" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -243,7 +243,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="3" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="3" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -265,7 +265,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="3"/>
+                                            <input type="hidden" name="numberOfWeekDay" value="3"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -297,7 +297,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}"method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="4" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="4" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -319,7 +319,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="4"/>
+                                            <input type="hidden" name="numberOfWeekDay" value="4"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -351,7 +351,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="5" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="5" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -373,7 +373,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="5"/>
+                                            <input type="hidden" name="numberOfWeekDay" value="5"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>
@@ -405,7 +405,7 @@
         </div>
         <div class="col-sm-4 ">
             <form action="#" th:action="@{/tryagain}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfDays" th:value="6" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="6" >Reyna aftur</button>
             </form>
 
             <!-- Button trigger modal -->
@@ -427,7 +427,7 @@
                                     <form action="#" th:action="@{/chooseRecipe}" th:object="${mealplan}" method="get" >
                                         <td>
                                             <!--<data-dismiss="modal"-->
-                                            <input type="hidden" name="numberOfDays" value="6"/>
+                                            <input type="hidden" name="numberOfWeekDay" value="6"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
                                             </button>

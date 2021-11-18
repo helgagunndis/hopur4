@@ -1,7 +1,6 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
 import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Services.IngredientInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +13,13 @@ public class IngredientController {
     private IngredientInfoService infoIngredientService;
 
     @Autowired
-    public IngredientController(IngredientInfoService ingredientService) {
+    public IngredientController(IngredientInfoService infoIngredientService) {
         this.infoIngredientService = infoIngredientService;
     }
 
     @RequestMapping(value = "/adminIngredients")
     public String adminIngredientsPage(IngredientInfo ingredientInfo) {
        // model.addAttribute("ingredients", infoIngredientService.findAll());
-
         return "adminIngredients";
     }
 

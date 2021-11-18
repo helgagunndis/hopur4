@@ -61,6 +61,12 @@ public class MealPlanController {
             weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(5)));
             weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(6)));
 
+            /* //nota í staðin?
+            for(int i=0; i<7; i++){
+             weekdays.add(recipeService.findRecipe(Category, randomNumberList.get(i)));
+             }
+            */
+
             firstRun=true;
         }
 
