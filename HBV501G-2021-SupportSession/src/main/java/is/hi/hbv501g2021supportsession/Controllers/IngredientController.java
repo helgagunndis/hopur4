@@ -11,23 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IngredientController {
-    private IngredientInfoService ingredientService;
+    private IngredientInfoService infoIngredientService;
 
     @Autowired
     public IngredientController(IngredientInfoService ingredientService) {
-        this.ingredientService = ingredientService;
+        this.infoIngredientService = infoIngredientService;
     }
-
-   /* @RequestMapping("/adminIngredients")
-    public String viewIngredients(Model model) {
-        model.addAttribute("ingredientName", ingredientService.findAll());
-        return "adminIngredients";
-    }*/
-
-    //TODO ingredients hasn't successfully connected to db. needs fixing
 
     @RequestMapping(value = "/adminIngredients")
     public String adminIngredientsPage(IngredientInfo ingredientInfo) {
+       // model.addAttribute("ingredients", infoIngredientService.findAll());
+
         return "adminIngredients";
     }
 
@@ -43,7 +37,8 @@ public class IngredientController {
         if (result.hasErrors()) {
             return "redirect:/error";
         }
-        ingredientService.save(ingredientInfo);
+        infoIngredientService.save(ingredientInfo);
         return "redirect:/admin";
     }
+
 }

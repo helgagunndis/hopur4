@@ -26,7 +26,7 @@ public class RecipeController {
     private RecipeService recipeService;
     private IngredientInfoService infoIngredientService;
     private IngredientService ingredientService;
-    private int count;
+
 
     @Autowired
     public RecipeController(RecipeService recipeService,IngredientInfoService infoIngredientService, IngredientService ingredientService) {

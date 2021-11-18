@@ -109,7 +109,6 @@ public class MealPlanController {
         Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
 
-
         return "redirect:/";
     }
 
