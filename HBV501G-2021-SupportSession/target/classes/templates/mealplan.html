@@ -61,8 +61,9 @@
     </form>
 </div>
 
-<!-- Monday -->
+
 <div class="container px-5">
+    <!-- Monday -->
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="monday" checked>
@@ -116,8 +117,8 @@
         </div>
     </div>
 <!-- Tuesday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="tuesday" checked>
             <label  for="tuesday">Þriðjudagur</label>
             </input>
@@ -127,11 +128,12 @@
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
                 <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="1" >Reyna aftur</button>
             </form>
-
+        </div>
+        <div class="col-md-2">
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal2">Velja uppskrift</button>
             <!-- Modal -->
@@ -167,8 +169,8 @@
         </div>
     </div>
 <!-- Wednesday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="wednesday" checked>
             <label  for="wednesday">Miðvikudagur</label>
             </input>
@@ -179,10 +181,12 @@
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
                 <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="2" >Reyna aftur</button>
             </form>
+        </div>
+        <div class="col-md-2">
 
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal3">Velja uppskrift</button>
@@ -219,8 +223,8 @@
         </div>
     </div>
 <!-- Thursday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="thursday" checked>
             <label  for="thursday">Fimmtudagur</label>
             </input>
@@ -230,11 +234,12 @@
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
                 <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="3" >Reyna aftur</button>
             </form>
-
+        </div>
+        <div class="col-md-2">
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal4">Velja uppskrift</button>
             <!-- Modal -->
@@ -270,23 +275,23 @@
         </div>
     </div>
 <!-- Friday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="friday" checked>
             <label  for="friday">Föstudagur</label>
             </input>
-
         </div>
         <div class="col-5">
             <div th:each="recipe : ${fridayRecipe}">
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}"method="get">
                 <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="4" >Reyna aftur</button>
             </form>
-
+        </div>
+        <div class="col-md-2">
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal5">Velja uppskrift</button>
             <!-- Modal -->
@@ -322,23 +327,23 @@
         </div>
     </div>
 <!-- Saturday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="saturday" checked>
             <label  for="saturday">Laugardagur</label>
             </input>
-
         </div>
         <div class="col-5">
             <div th:each="recipe : ${saturdayRecipe}">
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
-                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="5" >Reyna aftur</button>
+                <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="5">Reyna aftur</button>
             </form>
-
+        </div>
+        <div class="col-md-2">
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal6">Velja uppskrift</button>
             <!-- Modal -->
@@ -374,23 +379,23 @@
         </div>
     </div>
 <!-- Sunday -->
-    <div class="row mt-2 g-2">
-        <div class="col-3">
+    <div class="row mt-2 px-5 gx-2">
+        <div class="col-3 ps-5">
             <input type="checkbox" id="sunday" checked>
             <label  for="sunday">Sunnudagur</label>
             </input>
-
         </div>
         <div class="col-5">
             <div th:each="recipe : ${sundayRecipe}">
                 <h5 class="" th:text="${recipe.recipeTitle}"></h5>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-md-2 ps-5">
             <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
                 <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="6" >Reyna aftur</button>
             </form>
-
+        </div>
+        <div class="col-md-2">
             <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal7">Velja uppskrift</button>
             <!-- Modal -->

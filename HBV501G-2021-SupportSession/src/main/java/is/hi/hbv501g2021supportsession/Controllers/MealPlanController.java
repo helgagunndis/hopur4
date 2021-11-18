@@ -32,7 +32,6 @@ public class MealPlanController {
         this.recipeService = recipeService;
     }
 
-
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String mealplan(Model model, HttpSession session) {
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
@@ -76,8 +75,9 @@ public class MealPlanController {
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
+
     @RequestMapping(value = "/generateWholeWeek",method = RequestMethod.GET)
-    public String generateWholeWeek(Model model){
+    public String generateWholeWeek(){
         weekdays= null;
         /*ArrayList<Recipe> newWeekdays = recipeService.findListOfRecipe(Category);
         for (int i=0; i<7; i++) {
