@@ -85,7 +85,7 @@ public class MealPlanController {
 
     @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
     public String chooseRecipeGET(Model model, Recipe recipe, MealPlan mealplan){
-        int weekday=mealplan.getNumberOfWeekDays();
+        int weekday=mealplan.getNumberOfWeekDay();
         System.out.println(weekday);
         Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
@@ -96,7 +96,7 @@ public class MealPlanController {
     // þarf að breyta nafninu á numberofDays
     @RequestMapping(value = "/tryagain",method = RequestMethod.GET)
     public String tryagain(Model model, Recipe recipe, MealPlan mealPlan){
-        int weekday=mealPlan.getNumberOfWeekDays();
+        int weekday=mealPlan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findRandomRecipe(Category);
 
         // fær nýja uppskrift og setur inn í listan á réttan stað miðað við takkann
