@@ -81,83 +81,25 @@ public class MealPlanController {
         Category = recipe.getRecipeCategory();
         return "redirect:/";
     }
-    //Þarf að breyta þessum þannig að hann geti valið númer hvað dagurinn er
 
+    //chosen recipe for chosen day
     @RequestMapping(value = "/chooseRecipe",method = RequestMethod.GET)
     public String chooseRecipeGET(Model model, Recipe recipe, MealPlan mealplan){
         int weekday=mealplan.getNumberOfWeekDay();
-        System.out.println(weekday);
         Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
 
         return "redirect:/";
     }
 
-    // þarf að breyta nafninu á numberofDays
+    // fær nýja uppskrift og setur inn í listan á réttan stað miðað við valdan dag
     @RequestMapping(value = "/tryagain",method = RequestMethod.GET)
     public String tryagain(Model model, Recipe recipe, MealPlan mealPlan){
         int weekday=mealPlan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findRandomRecipe(Category);
-
-        // fær nýja uppskrift og setur inn í listan á réttan stað miðað við takkann
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
-
-
-/*
-
-    //Tuesday
-    @RequestMapping(value = "/tuesdayChooseRecipe",method = RequestMethod.GET)
-    public String tuesdayChooseRecipeGET(Model model, Recipe recipe){
-        Tuesday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("tuesdayRecipe", Tuesday);
-        return "redirect:/";
-    }
-
-    //Wednesday
-    @RequestMapping(value = "/wednesdayChooseRecipe",method = RequestMethod.GET)
-    public String wednesdayChooseRecipeGET(Model model, Recipe recipe){
-        Wednesday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("wednesdayRecipe", Wednesday);
-        return "redirect:/";
-    }
-
-    //Thursday
-    @RequestMapping(value = "/thursdayChooseRecipe",method = RequestMethod.GET)
-    public String thursdayChooseRecipeGET(Model model, Recipe recipe){
-        Thursday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("thursdayRecipe", Thursday);
-        return "redirect:/";
-    }
-
-    //Friday
-    @RequestMapping(value = "/fridayChooseRecipe",method = RequestMethod.GET)
-    public String fridayChooseRecipeGET(Model model, Recipe recipe){
-        Friday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("fridayRecipe", Friday);
-        return "redirect:/";
-    }
-
-    //Saturday
-    @RequestMapping(value = "/saturdayChooseRecipe",method = RequestMethod.GET)
-    public String saturdayChooseRecipeGET(Model model, Recipe recipe){
-        Saturday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("saturdayRecipe", Saturday);
-        return "redirect:/";
-    }
-
-
-    //Sunday
-    @RequestMapping(value = "/sundayChooseRecipe",method = RequestMethod.GET)
-    public String sundayChooseRecipeGET(Model model, Recipe recipe){
-        Sunday =recipeService.findByRecipeID(recipe.getRecipeID());
-        model.addAttribute("sundayRecipe", Sunday);
-        return "redirect:/";
-    }
-
-
- */
 
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
