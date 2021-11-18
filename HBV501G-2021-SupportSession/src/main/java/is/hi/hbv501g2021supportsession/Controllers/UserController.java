@@ -37,9 +37,7 @@ public class UserController {
      * @return signup.html
      */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signupGET(User user){
-        return "signup";
-    }
+    public String signupGET(User user){ return "/signup";}
 
     /**
      * Checks if errors in signup, is already in DB or new user
@@ -49,7 +47,6 @@ public class UserController {
      * @return mealpaln
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-
     public String signupPOST(User user, BindingResult result, Model model){
         if(result.hasErrors()){
             return "redirect:/error";
@@ -60,7 +57,7 @@ public class UserController {
             return "/signup";
         }
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     /**
@@ -73,10 +70,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
-        System.out.println("userControler:   " + sessionUser );
+        //System.out.println("userControler:   " + sessionUser );
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
-            // If user is logged in then go to my homepage.
             return "LoggedInUser";
         }
         return "/login";
@@ -88,7 +84,7 @@ public class UserController {
      * @param result
      * @param model
      * @param session
-     * @return mealplan
+     * @return LoggedInUser
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
@@ -101,7 +97,8 @@ public class UserController {
             model.addAttribute("LoggedInUser", exists);
             return "LoggedInUser";
         }
-        return "redirect:/";
+
+        return "/login";
     }
 
     /**
@@ -125,13 +122,18 @@ public class UserController {
      * @param request
      * @return mealplan
      */
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/faq",method = RequestMethod.GET)
+    public String fag() {
+        return "/faq";
     }
 
 }

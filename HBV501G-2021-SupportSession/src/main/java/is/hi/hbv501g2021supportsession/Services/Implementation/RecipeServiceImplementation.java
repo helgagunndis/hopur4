@@ -6,7 +6,7 @@ import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RecipeServiceImplementation implements RecipeService {
@@ -17,12 +17,9 @@ public class RecipeServiceImplementation implements RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-
     @Override
-    public List<Recipe> findAll() {
-        return recipeRepository.findAll();
+    public List<Recipe> findAll() {return recipeRepository.findAll();}
 
-    }
     @Override
     public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
@@ -43,7 +40,6 @@ public class RecipeServiceImplementation implements RecipeService {
     @Override
     public Recipe findRecipe(int category, int randomNumber) {
         List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
-
         return recipeCategory.get(randomNumber);
     }
 
@@ -51,6 +47,25 @@ public class RecipeServiceImplementation implements RecipeService {
     public List<Recipe> findByRecipeCategoryLessThanEqual(int category){
         return recipeRepository.findByRecipeCategoryLessThanEqual(category);
     }
+
+    // Býr til lista af uppskriftum sem hafa einstakt recipe id.
+    @Override
+    public ArrayList<Recipe> findListOfRecipe(int category){
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Recipe>  weekdays = new ArrayList<Recipe>();
+        List recipeCategory = findByRecipeCategoryLessThanEqual(category);
+
+        for (int i=1; i < recipeCategory.size(); i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        for (int i=0; i<7; i++) {
+            weekdays.add(findRecipe(category, list.get(i)));
+        }
+
+        return weekdays;
+    }
+
 
 
 

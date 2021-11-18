@@ -2,6 +2,7 @@ package is.hi.hbv501g2021supportsession.Services;
 
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface RecipeService {
@@ -12,7 +13,7 @@ public interface RecipeService {
     Recipe findRandomRecipe(int category);
 
     Recipe findRecipe(int category, int randomNumber);
-
+    ArrayList<Recipe> findListOfRecipe(int category);
     List<Recipe> findByRecipeCategoryLessThanEqual(int category);
 
 
