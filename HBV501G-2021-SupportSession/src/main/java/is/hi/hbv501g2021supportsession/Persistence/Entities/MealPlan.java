@@ -12,7 +12,7 @@ public class MealPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanID;
 
-    private int numberOfWeekDays;
+    private int numberOfWeekDay;
     private int recipeCategory;
 
     @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL)
@@ -62,12 +62,12 @@ public class MealPlan {
         this.recipes = recipes;
     }
 
-    public int getNumberOfWeekDays() {
-        return numberOfWeekDays;
+    public int getNumberOfWeekDay() {
+        return numberOfWeekDay;
     }
 
-    public void setNumberOfWeekDays(int numberOfWeekDays) {
-        this.numberOfWeekDays = numberOfWeekDays;
+    public void setNumberOfWeekDay(int numberOfWeekDay) {
+        this.numberOfWeekDay = numberOfWeekDay;
     }
 
 }
