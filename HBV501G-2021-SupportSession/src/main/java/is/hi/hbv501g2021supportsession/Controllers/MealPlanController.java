@@ -166,15 +166,21 @@ public class MealPlanController {
  */
 
     //confirm page
-    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
+    /*@RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String confirm(Model model, Recipe recipe){
         //TODO all ingredients added to a shopping list
         //TODO recipe titles from meal plan shown
 
        // mealPlanService.save(mealplan(mealPlanService.getID));
-        // þarf kannski að setja form í kringum allt í html til að það les gildin
 
-        return "confirm";
+
+        return "redirect:/confirm";
     }
+
+   /* @RequestMapping("/mealplan")
+    public String viewMealplan(Model model) {
+        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(x);
+        return "confirm";
+    }*/
 
 }
