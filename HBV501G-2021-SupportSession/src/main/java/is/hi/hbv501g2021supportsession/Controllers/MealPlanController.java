@@ -2,8 +2,10 @@ package is.hi.hbv501g2021supportsession.Controllers;
 
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
+import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import java.util.*;
 public class MealPlanController {
     RecipeService recipeService;
     MealPlanService mealPlanService;
+    UserService userService;
 
     private int Category=4;
 
@@ -27,9 +30,10 @@ public class MealPlanController {
    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
 
     @Autowired
-    public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService){
+    public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService,UserService userService){
         this.mealPlanService = mealPlanService;
         this.recipeService = recipeService;
+        this.userService =userService;
     }
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
@@ -88,15 +92,30 @@ public class MealPlanController {
 
 
     //confirm page
-    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
-    public String confirm(Model model, Recipe recipe){
+    @RequestMapping(value = "/createMealPlan",method = RequestMethod.GET)
+    public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan){
         //TODO all ingredients added to a shopping list
         //TODO recipe titles from meal plan shown
 
-       // mealPlanService.save(mealplan(mealPlanService.getID));
-        // þarf kannski að setja form í kringum allt í html til að það les gildin
+        User sessionUser = (User) session.getAttribute("LoggedInUser");
+        model.addAttribute("LoggedInUser", sessionUser);
 
-        return "confirm";
+        if(sessionUser!=null){
+            mealPlan.setUser(sessionUser);
+            mealPlanService.save(mealPlan);
+        }
+
+        model.addAttribute("mondayRecipe", weekdays.get(0));
+        model.addAttribute("tuesdayRecipe", weekdays.get(1));
+        model.addAttribute("wednesdayRecipe", weekdays.get(2));
+        model.addAttribute("thursdayRecipe", weekdays.get(3));
+        model.addAttribute("fridayRecipe", weekdays.get(4));
+        model.addAttribute("saturdayRecipe", weekdays.get(5));
+        model.addAttribute("sundayRecipe", weekdays.get(6));
+
+       // mealPlanService.save(mealplan(mealPlanService.getID));
+
+        return "/confirm";
     }
 
 }

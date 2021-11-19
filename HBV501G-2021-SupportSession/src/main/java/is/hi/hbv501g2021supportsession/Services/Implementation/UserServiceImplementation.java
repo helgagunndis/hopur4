@@ -2,6 +2,7 @@ package is.hi.hbv501g2021supportsession.Services.Implementation;
 
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
+import is.hi.hbv501g2021supportsession.Persistence.Repositories.MealPlanRepository;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import java.util.List;
 @Service
 public class UserServiceImplementation implements UserService {
     UserRepository userRepository;
+    MealPlanRepository mealPlanRepository;
     
     @Autowired
-    private UserServiceImplementation (UserRepository userRepository){
+    private UserServiceImplementation (UserRepository userRepository,MealPlanRepository mealPlanRepository){
         this.userRepository=userRepository;
+        this.mealPlanRepository=mealPlanRepository;
     }
     @Override
     public User save(User user) {
@@ -45,5 +48,16 @@ public class UserServiceImplementation implements UserService {
         }
         return null;
     }
+
+    @Override
+    public List<MealPlan> ViewArchived(User user) {
+        return user.getUserMealPlan();
+    }
+
+    /*@Override
+    public void saveMealPlan(MealPlan mealPlan, User user) {
+        user.addToMealPlan(mealPlan);
+        return;
+    }*/
 
 }

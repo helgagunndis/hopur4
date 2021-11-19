@@ -4,6 +4,7 @@ import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Persistence.Repositories.MealPlanRepository;
+import is.hi.hbv501g2021supportsession.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ public class MealPlanServiceImplementation implements MealPlanService {
     }
 
 
-   @Override
+
+    @Override
    public MealPlan save(MealPlan mealPlan) {
       return mealPlanRepository.save(mealPlan);
    }

@@ -12,7 +12,6 @@
     <link th:href="@{home.css}" href="../static/home.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<a th:href="${confirm}"></a>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid m-2">
         <a class="navbar-brand" href="../">Matseðill<span class="text-warning">Vikunnar</span></a>
@@ -25,10 +24,10 @@
                     <a class="nav-link" href="../">Heim</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../recipes">Uppskriftir</a>
+                    <a class="nav-link" href="/recipes">Uppskriftir</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../faq">Algengar spurningar</a>
+                    <a class="nav-link" href="/faq">Algengar spurningar</a>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -42,8 +41,48 @@
         </div>
     </div>
 </nav>
-<h1>staðfest</h1>
+<div class="container px-5">
+    <div class ="row">
+        <!-- if user is loggedin -->
+        <div th:if="${LoggedInUser}">
+            <div>Velkomin/nn, <span th:text="' ' + ${LoggedInUser.username}"></span></div>
+            <div>Matarplanið þitt er komið á síðuna þína , svo þú getur ná í það hvenær sem er</div>
+        </div>
+        <!-- else -->
+        <div th:unless="${LoggedInUser}">
+            <div>Þú ert ekki skáður inn</div>
+        </div>
+    </div>
 
+    <div class="row pt-2">
+        <div th:if="${mondayRecipe}">
+            <div class="col">
+                <p class="font-weight-bold">Mánudagur </p>
+                <div th:text="${mondayRecipe.recipeTitle}"></div>
+                <div th:text="${mondayRecipe.recipeMethod}"></div>
+            </div>
+            <div class="col">
+                <!--
+                <div th:each="ingredients: ${mondayRecipe.ingredients}">
+                    <div th:text="${ingredients}"></div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="font-weight-bold"> Þriðjudagur </div>
+        <div th:if="${tuesdayRecipe}">
+            <div th:text="${tuesdayRecipe.recipeTitle}"></div>
+            <div th:text="${tuesdayRecipe.recipeMethod}"></div>
+        </div>
+    </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
