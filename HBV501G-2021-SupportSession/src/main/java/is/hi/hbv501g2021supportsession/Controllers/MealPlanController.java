@@ -1,5 +1,6 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
@@ -42,8 +43,10 @@ public class MealPlanController {
         model.addAttribute("categoryRecipe", recipeCategory);
 
         if(weekdays==null){
+            weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
         }
+        System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
 
         model.addAttribute("mondayRecipe", weekdays.get(0));
         model.addAttribute("tuesdayRecipe", weekdays.get(1));
@@ -74,9 +77,15 @@ public class MealPlanController {
     // fær nýja uppskrift og setur inn í listan á réttan stað miðað við valdan dag
     @RequestMapping(value = "/generateOneMeal",method = RequestMethod.GET)
     public String generateOneMeal(MealPlan mealPlan){
+        //System.out.println(weekdays.get(2).getIngredients().get(0).getIngredientInfo().getIngredientName());
         int weekday=mealPlan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findRandomRecipe(Category);
         weekdays.set(weekday,newRecipe);
+        List<Ingredient> ingredients=weekdays.get(2).getIngredients();
+        System.out.println(ingredients.get(0).getIngredientInfo().getIngredientName());
+        //System.out.println("Þetta er fyrsta hráefnið í uppskrift númer 2 "+weekdays.get(2).getIngredients().get(0).getIngredientInfo().getIngredientName());
+
+
         return "redirect:/";
     }
 
@@ -102,16 +111,15 @@ public class MealPlanController {
 
         if(sessionUser!=null){
             mealPlan.setUser(sessionUser);
+            mealPlan.setNumberOfWeekDay(7);
+            mealPlan.setRecipeCategory(Category);
             mealPlanService.save(mealPlan);
+            model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
         }
 
-        model.addAttribute("mondayRecipe", weekdays.get(0));
-        model.addAttribute("tuesdayRecipe", weekdays.get(1));
-        model.addAttribute("wednesdayRecipe", weekdays.get(2));
-        model.addAttribute("thursdayRecipe", weekdays.get(3));
-        model.addAttribute("fridayRecipe", weekdays.get(4));
-        model.addAttribute("saturdayRecipe", weekdays.get(5));
-        model.addAttribute("sundayRecipe", weekdays.get(6));
+        model.addAttribute("weekdays", weekdays);
+       System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
+
 
        // mealPlanService.save(mealplan(mealPlanService.getID));
 

@@ -1,6 +1,7 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
 import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.UserService;
@@ -93,12 +94,15 @@ public class UserController {
         }
         User exists = userService.login(user);
         if(exists != null){
+            List<MealPlan> mealPlanList = userService.ViewArchived(exists);
+            System.out.println(mealPlanList.get(0).getRecipes());
+
             session.setAttribute("LoggedInUser", exists);
             model.addAttribute("LoggedInUser", exists);
-            return "LoggedInUser";
+            return "/LoggedInUser";
         }
 
-        return "/login";
+        return "login";
     }
 
     /**
@@ -113,10 +117,11 @@ public class UserController {
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
 
-            System.out.println(sessionUser.getUserMealPlan());
-
-            return "LoggedInUser";
+            List<MealPlan> mealPlanList = userService.ViewArchived(sessionUser);
+            System.out.println(mealPlanList.get(0).getRecipes());
+            return "/LoggedInUser";
         }
+        // ef hann er ekki skráður inn fer hann á login síðuna
         return "redirect:/login";
     }
 

@@ -55,26 +55,26 @@
     </div>
 
     <div class="row pt-2">
-        <div th:if="${mondayRecipe}">
-            <div class="col">
+        <div th:if="${weekdays.get(0)}">
+            <div class="col-8">
                 <p class="font-weight-bold">Mánudagur </p>
-                <div th:text="${mondayRecipe.recipeTitle}"></div>
-                <div th:text="${mondayRecipe.recipeMethod}"></div>
+                <div th:text="${weekdays.get(0).recipeTitle}"></div>
+                <div th:text="${weekdays.get(0).recipeMethod}"></div>
             </div>
-            <div class="col">
-                <!--
-                <div th:each="ingredients: ${mondayRecipe.ingredients}">
-                    <div th:text="${ingredients}"></div>
+            <div class="col-4">
+                <!--weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName()-->
+                <div th:each="ingredients,iterStat : ${weekdays.get(0).getIngredients()}">
+                    <span th:text="${ingredients}"/><!--This will print the index value-->
+                    <span th:text="${iterStat.index}"/><!--This will print the Index-->
                 </div>
-                -->
             </div>
         </div>
     </div>
     <div class="row pt-2">
         <div class="font-weight-bold"> Þriðjudagur </div>
-        <div th:if="${tuesdayRecipe}">
-            <div th:text="${tuesdayRecipe.recipeTitle}"></div>
-            <div th:text="${tuesdayRecipe.recipeMethod}"></div>
+        <div th:if="${weekdays.get(1)}">
+            <div th:text="${weekdays.get(1).recipeTitle}"></div>
+            <div th:text="${weekdays.get(1).recipeMethod}"></div>
         </div>
     </div>
 

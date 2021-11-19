@@ -51,7 +51,8 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public List<MealPlan> ViewArchived(User user) {
-        return user.getUserMealPlan();
+        List<MealPlan> list = mealPlanRepository.findMealPlanByUserID(user.getID());
+        return list;
     }
 
     /*@Override
