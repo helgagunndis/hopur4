@@ -178,7 +178,7 @@ public class MealPlanController {
     }
 
    /* @RequestMapping("/mealplan")
-    public String viewMealplan(Model model) {
+    public String viewMealplan(Model model, MealPlan mealplan) {
         model.addAttribute("mealplan", mealPlanService.findByMealPlanID(x);
         return "confirm";
     }*/
