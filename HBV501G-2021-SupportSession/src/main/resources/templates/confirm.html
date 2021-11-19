@@ -25,6 +25,19 @@
         </tr>
         </tbody>
     </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Innkaupalisti</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="list : ${recipesList}">
+            <td th:text="${list.ingredients}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>

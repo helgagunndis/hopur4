@@ -97,6 +97,9 @@ public class MealPlanController {
        System.out.println(mealplan.getMealPlanID());
 
         //TODO all ingredients added to a shopping list
+        model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
+
+
         //TODO recipe titles from meal plan shown
 
         return "confirm";
