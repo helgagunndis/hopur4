@@ -5,13 +5,14 @@
     <title>Máltíðir vikunar</title>
 </head>
 <body>
+<h1>máltíðir vikunar</h1>
 
-<h1>máltíiðir vikunar</h1>
-    <div th:switch="${mealplan}">
-        <h2 th:case="null">No mealplan found!</h2>
-        <div th:case="*">
-        </div>
+<div th:switch="${mealplan}">
+    <h2 th:case="null">Engar máltíðir fundust</h2>
+    <div th:case="*">
     </div>
+</div>
+
 </body>
 
 </html>
