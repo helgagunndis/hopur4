@@ -88,7 +88,7 @@ public class MealPlanController {
 
 
     //confirm page
-    /*@RequestMapping(value = "/confirm",method = RequestMethod.GET)
+    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String confirm(Model model, Recipe recipe){
         //TODO all ingredients added to a shopping list
         //TODO recipe titles from meal plan shown
@@ -96,13 +96,13 @@ public class MealPlanController {
        // mealPlanService.save(mealplan(mealPlanService.getID));
 
 
-        return "redirect:/confirm";
+        return "confirm";
     }
 
-   /* @RequestMapping("/mealplan")
+    @RequestMapping("/mealplan")
     public String viewMealplan(Model model, MealPlan mealplan) {
-        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(x);
+       // model.addAttribute("mealplan", mealPlanService.findByMealPlanID(x);
         return "confirm";
-    }*/
+    }
 
 }
