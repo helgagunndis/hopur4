@@ -46,7 +46,6 @@ public class MealPlanController {
             weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
         }
-        System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
 
         model.addAttribute("mondayRecipe", weekdays.get(0));
         model.addAttribute("tuesdayRecipe", weekdays.get(1));
@@ -77,15 +76,9 @@ public class MealPlanController {
     // fær nýja uppskrift og setur inn í listan á réttan stað miðað við valdan dag
     @RequestMapping(value = "/generateOneMeal",method = RequestMethod.GET)
     public String generateOneMeal(MealPlan mealPlan){
-        //System.out.println(weekdays.get(2).getIngredients().get(0).getIngredientInfo().getIngredientName());
         int weekday=mealPlan.getNumberOfWeekDay();
         Recipe newRecipe =recipeService.findRandomRecipe(Category);
         weekdays.set(weekday,newRecipe);
-        List<Ingredient> ingredients=weekdays.get(2).getIngredients();
-        System.out.println(ingredients.get(0).getIngredientInfo().getIngredientName());
-        //System.out.println("Þetta er fyrsta hráefnið í uppskrift númer 2 "+weekdays.get(2).getIngredients().get(0).getIngredientInfo().getIngredientName());
-
-
         return "redirect:/";
     }
 
