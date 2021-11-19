@@ -76,7 +76,6 @@
         </tr>
         </tbody>
     </table>
-
     <table>
         <thead>
         <tr>
@@ -84,17 +83,13 @@
         </tr>
         </thead>
         <tbody>
-
-        <!--weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName();-->
-        <!--day.getIngredients().get(0).getIngredientInfo().getIngredientName();-->
-
-        <tr th:each="day : ${recipesList}"> <!--hérna fæ ég hvern vikudag-->
-            <div th:each="list :${day.ingredients}" ><!--hérna fæ ég innihaldsefni í hverri uppskrift-->
-                    <td th:text="${list}"></td>
+        <tr th:each="list : ${recipesList}"> <!--hérna fæ ég hvern vikudag-->
+                <td th:text="${list.ingredients}"></td>
             </div>
         </tr>
         </tbody>
     </table>
+
     </div>
 </div>
 
