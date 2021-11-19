@@ -90,17 +90,16 @@ public class MealPlanController {
     //redirct to confirm page and saves mealplan
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String confirm(Model model, Recipe recipe, MealPlan mealplan){
-       mealPlanService.save(mealplan); //tekur ekki inn nein gildi
+        //TODO skipun tekur ekki inn gildi, þarf að laga
+       mealPlanService.save(mealplan);
        long mpID = mealplan.getMealPlanID();
        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
 
        System.out.println(mealplan.getMealPlanID());
 
-        //TODO all ingredients added to a shopping list
+        //recipe ingredients from mealplan
         model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
 
-
-        //TODO recipe titles from meal plan shown
 
         return "confirm";
     }
