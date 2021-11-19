@@ -12,5 +12,7 @@ public interface UserService {
     List<User> findAll();
     User findByUsername(String username);
     User login(User user);
+    //void saveMealPlan(MealPlan mealPlan, User user);
+    List<MealPlan> ViewArchived(User user);
 }
 

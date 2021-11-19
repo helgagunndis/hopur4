@@ -22,7 +22,7 @@ public class Recipe {
     private int recipeServings;
     private String recipeCredit;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe",fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     @ManyToOne

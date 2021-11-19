@@ -1,9 +1,12 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
+import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,7 @@ import java.util.*;
 public class MealPlanController {
     RecipeService recipeService;
     MealPlanService mealPlanService;
+    UserService userService;
 
     private int Category=4;
 
@@ -27,9 +31,10 @@ public class MealPlanController {
    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
 
     @Autowired
-    public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService){
+    public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService,UserService userService){
         this.mealPlanService = mealPlanService;
         this.recipeService = recipeService;
+        this.userService =userService;
     }
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
@@ -38,6 +43,7 @@ public class MealPlanController {
         model.addAttribute("categoryRecipe", recipeCategory);
 
         if(weekdays==null){
+            weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
         }
 
@@ -87,21 +93,32 @@ public class MealPlanController {
     }
 
 
-    //redirct to confirm page and saves mealplan
-    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
-    public String confirm(Model model, Recipe recipe, MealPlan mealplan){
-        //TODO skipun tekur ekki inn gildi, þarf að laga
-       mealPlanService.save(mealplan);
-       long mpID = mealplan.getMealPlanID();
-       model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
+    //confirm page
+    @RequestMapping(value = "/createMealPlan",method = RequestMethod.GET)
+    public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
+        //TODO all ingredients added to a shopping list
+        //TODO recipe titles from meal plan shown
+        User sessionUser = (User) session.getAttribute("LoggedInUser");
+        model.addAttribute("LoggedInUser", sessionUser);
+        if (sessionUser != null) {
+            mealPlan.setUser(sessionUser);
+        }
 
-       System.out.println(mealplan.getMealPlanID());
+        mealPlan.setNumberOfWeekDay(7);
+        mealPlan.setRecipeCategory(Category);
+        mealPlanService.save(mealPlan);
+        mealPlan.setRecipes(weekdays);
 
-        //recipe ingredients from mealplan
+        model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
+        long mpID = mealPlan.getMealPlanID();
+        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
+
+        // sama breyta og weekdays
         model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
 
-
-        return "confirm";
+        //
+        System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
+        return "/confirm";
     }
 
 }

@@ -38,7 +38,12 @@ public class User {
 
     public List<MealPlan> getUserMealPlan(){ return mealPlanList;}
 
-    public void setMealPlan(List<MealPlan> mealPlanList){ this.mealPlanList=mealPlanList;}
+    public void setMealPlan(List<MealPlan> mealPlanList){
+        this.mealPlanList=mealPlanList;
+    }
+    public void addToMealPlan(MealPlan mealPlan){
+        mealPlanList.add(mealPlan);
+    }
 
     public String getUsername() {
         return username;
