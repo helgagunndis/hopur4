@@ -63,7 +63,16 @@
                                     </div>
                                     <div class="modal-body">
                                         <div>
-                                            <div th:text="${recipe.recipeMethod}">
+                                            <div>
+
+                                            <tr th:each="ingred : ${recipe.ingredients}">
+                                                <div>
+                                                <td th:text="${ingred.amount}"></td>
+                                                <td th:text="${ingred.ingredientInfo.ingredientName}"></td>
+                                                </div>
+                                            </div>
+                                            <p>
+                                            <div th:text="${recipe.recipeMethod}"></p>
                                             </div>
                                         </div>
                                     </div>
