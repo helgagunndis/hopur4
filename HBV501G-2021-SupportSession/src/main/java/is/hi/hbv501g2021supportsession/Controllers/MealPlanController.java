@@ -22,7 +22,6 @@ public class MealPlanController {
     MealPlanService mealPlanService;
 
     private int Category=4;
-    private long temp_mp;
 
    private ArrayList<Recipe> weekdays; //Monday, Tuesday ...
    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
@@ -91,16 +90,18 @@ public class MealPlanController {
     //redirct to confirm page and saves mealplan
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String confirm(Model model, Recipe recipe, MealPlan mealplan){
+        //TODO skipun tekur ekki inn gildi, þarf að laga
        mealPlanService.save(mealplan);
        long mpID = mealplan.getMealPlanID();
        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
 
        System.out.println(mealplan.getMealPlanID());
 
-        //TODO all ingredients added to a shopping list
-        //TODO recipe titles from meal plan shown
+        //recipe ingredients from mealplan
+        model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
+
 
         return "confirm";
     }
-    
+
 }
