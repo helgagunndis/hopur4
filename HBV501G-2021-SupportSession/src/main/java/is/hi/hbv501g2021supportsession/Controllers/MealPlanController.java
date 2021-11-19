@@ -94,7 +94,7 @@ public class MealPlanController {
 
 
     //confirm page
-    @RequestMapping(value = "/createMealPlan",method = RequestMethod.GET)
+    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
         //TODO all ingredients added to a shopping list
         //TODO recipe titles from meal plan shown
@@ -109,15 +109,13 @@ public class MealPlanController {
         mealPlanService.save(mealPlan);
         mealPlan.setRecipes(weekdays);
 
-        model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
+        //model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
         long mpID = mealPlan.getMealPlanID();
         model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
 
         // sama breyta og weekdays
         model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
 
-        //
-        System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
         return "/confirm";
     }
 
