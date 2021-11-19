@@ -102,40 +102,29 @@ public class MealPlanController {
 
     //confirm page
     @RequestMapping(value = "/createMealPlan",method = RequestMethod.GET)
-    public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan){
+    public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
         //TODO all ingredients added to a shopping list
         //TODO recipe titles from meal plan shown
-
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         model.addAttribute("LoggedInUser", sessionUser);
-
-        if(sessionUser!=null){
+        if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
-            mealPlan.setNumberOfWeekDay(7);
-            mealPlan.setRecipeCategory(Category);
-            mealPlanService.save(mealPlan);
-            model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
         }
 
-        model.addAttribute("weekdays", weekdays);
-       System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
+        mealPlan.setNumberOfWeekDay(7);
+        mealPlan.setRecipeCategory(Category);
+        mealPlanService.save(mealPlan);
+        mealPlan.setRecipes(weekdays);
 
+        model.addAttribute("mealPlanID", mealPlan.getMealPlanID());
+        long mpID = mealPlan.getMealPlanID();
+        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
 
-       // mealPlanService.save(mealplan(mealPlanService.getID));
-    //redirct to confirm page and saves mealplan
-    @RequestMapping(value = "/confirm",method = RequestMethod.GET)
-    public String confirm(Model model, Recipe recipe, MealPlan mealplan){
-        //TODO skipun tekur ekki inn gildi, þarf að laga
-       mealPlanService.save(mealplan);
-       long mpID = mealplan.getMealPlanID();
-       model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
-
-       System.out.println(mealplan.getMealPlanID());
-
-        //recipe ingredients from mealplan
+        // sama breyta og weekdays
         model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
 
-
+        //
+        System.out.println(weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName());
         return "/confirm";
     }
 
