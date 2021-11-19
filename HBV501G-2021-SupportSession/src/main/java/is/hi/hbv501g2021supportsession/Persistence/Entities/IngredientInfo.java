@@ -14,7 +14,7 @@ public class IngredientInfo {
 
     private String ingredientName;
 
-    @OneToMany(mappedBy = "ingredientInfo")
+    @OneToMany(mappedBy = "ingredientInfo",fetch = FetchType.EAGER)
     private List<Ingredient> ingredient = new ArrayList<Ingredient>();
 
     public IngredientInfo(String ingredientName, List<Ingredient> ingredient) {

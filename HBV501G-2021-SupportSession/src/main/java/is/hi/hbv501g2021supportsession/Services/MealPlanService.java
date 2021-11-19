@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MealPlanService {
-    //List<MealPlan> findAllMealPlan(User user);
     MealPlan save(MealPlan mealPlan);
     MealPlan findByMealPlanID(Long ID);
 
