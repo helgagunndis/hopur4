@@ -11,6 +11,20 @@
     <h2 th:case="null">Engar máltíðir fundust</h2>
     <div th:case="*">
     </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Dagur</th>
+            <th>Máltíð</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mp : ${mealplan}">
+            <td th:text="${mp.numberOfWeekDay}"></td>
+            <td th:text="${mp.recipes}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
