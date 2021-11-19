@@ -107,25 +107,25 @@ public class MealPlanController {
             mealPlan.setUser(sessionUser);
         }
 
-        /*
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
-        mealPlanService.save(mealPlan);
-        //mealPlan.setRecipes(weekdays);*/
+        //mealPlanService.save(mealPlan);
 
-        List<MPList> mpL = mealPlan.getMpLists();
+
+        List<MPList> mpL = mealPlan.getMpLists(); //Þarf að setja recipes hér inn
+        //mealPlan.setMpLists(mpL);
 
         mealPlanService.save(mealPlan);
 
         for (MPList mpList : mpL) {
-           // MPList newList = MPListService.save(new MPList(mpList.getRecipe(), mealPlan));
+            MPList newList = mpListService.save(new MPList(mpList.getRecipe(), mealPlan)); //Þarf loopu til að save-a lista
         }
 
         long mpID = mealPlan.getMealPlanID();
         model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
 
         // sama breyta og weekdays
-        //model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getRecipes());
+        //model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
 
 
 
