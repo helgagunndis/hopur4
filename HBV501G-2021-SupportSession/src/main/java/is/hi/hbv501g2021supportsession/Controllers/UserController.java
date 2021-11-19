@@ -95,7 +95,7 @@ public class UserController {
         User exists = userService.login(user);
         if(exists != null){
             List<MealPlan> mealPlanList = userService.ViewArchived(exists);
-            System.out.println(mealPlanList.get(0).getRecipes());
+            //System.out.println(mealPlanList.get(0).getRecipes());
 
             session.setAttribute("LoggedInUser", exists);
             model.addAttribute("LoggedInUser", exists);
@@ -118,7 +118,7 @@ public class UserController {
             model.addAttribute("LoggedInUser", sessionUser);
 
             List<MealPlan> mealPlanList = userService.ViewArchived(sessionUser);
-            System.out.println(mealPlanList.get(0).getRecipes());
+            //System.out.println(mealPlanList.get(0).getRecipes());
             return "/LoggedInUser";
         }
         // ef hann er ekki skráður inn fer hann á login síðuna
