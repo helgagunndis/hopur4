@@ -25,8 +25,8 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe",fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
-    @ManyToOne
-    private MealPlan mealPlan;
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
+    private List<MPList> mpLists = new ArrayList<>();
 
     public Recipe() {
     }

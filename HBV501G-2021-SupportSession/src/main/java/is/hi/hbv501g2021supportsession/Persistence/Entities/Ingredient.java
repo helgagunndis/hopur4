@@ -25,21 +25,12 @@ public class Ingredient {
 
     public Ingredient(String amount, IngredientInfo ingredientInfo, Recipe recipe) {
         this.amount= amount;
-       // this.ingredientName = ingredientName;
         this.ingredientInfo = ingredientInfo;
         this.recipe =recipe;
     }
 
     public Ingredient() {
     }
-
-    /*public String getIngredientName() {
-        return ingredientName;
-    }
-
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
-    }*/
 
     public String getAmount() {
         return amount;
@@ -64,12 +55,4 @@ public class Ingredient {
     public void setIngredientInfo(IngredientInfo ingredientInfo) {
         this.ingredientInfo = ingredientInfo;
     }
-
-   /* public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }*/
 }
