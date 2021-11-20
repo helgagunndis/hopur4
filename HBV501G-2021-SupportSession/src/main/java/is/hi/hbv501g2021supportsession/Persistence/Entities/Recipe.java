@@ -26,7 +26,7 @@ public class Recipe {
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
-    private List<MPList> mpLists = new ArrayList<>();
+    private List<MPList> mpLists = new ArrayList<MPList>();
 
     public Recipe() {
     }

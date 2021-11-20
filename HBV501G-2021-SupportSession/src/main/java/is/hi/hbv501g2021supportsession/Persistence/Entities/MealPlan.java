@@ -14,8 +14,8 @@ public class MealPlan {
     private int numberOfWeekDay;
     private int recipeCategory;
 
-    @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL)
-    private List<MPList> mpLists = new ArrayList<>();
+    @OneToMany(mappedBy = "mealPlan", fetch = FetchType.LAZY)
+    private List<MPList> mpLists = new ArrayList<MPList>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -24,9 +24,10 @@ public class MealPlan {
 
     }
 
-    public MealPlan(long mealPlanID, int recipeCategory) {
+    public MealPlan(long mealPlanID, int recipeCategory, List<MPList> mpLists) {
         this.mealPlanID = mealPlanID;
         this.recipeCategory = recipeCategory;
+        this.mpLists = mpLists;
     }
 
     public long getMealPlanID() {
