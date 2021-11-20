@@ -50,9 +50,9 @@ public class RecipeServiceImplementation implements RecipeService {
 
     // Býr til lista af uppskriftum sem hafa einstakt recipe id.
     @Override
-    public ArrayList<Recipe> findListOfRecipe(int category){
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        ArrayList<Recipe>  weekdays = new ArrayList<Recipe>();
+    public List<Recipe> findListOfRecipe(int category){
+        List<Integer> list = new ArrayList<Integer>();
+        List<Recipe>  weekdays = new ArrayList<Recipe>();
         List recipeCategory = findByRecipeCategoryLessThanEqual(category);
 
         for (int i=1; i < recipeCategory.size(); i++) {

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * A controller class for meal plan
@@ -46,7 +48,7 @@ public class MealPlanController {
         model.addAttribute("categoryRecipe", recipeCategory);
 
         if(weekdays==null){
-            //weekdays = new ArrayList<Recipe>();
+            weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
         }
 
@@ -99,7 +101,6 @@ public class MealPlanController {
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
-        //TODO all ingredients added to a shopping list
 
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         model.addAttribute("LoggedInUser", sessionUser);
@@ -111,23 +112,27 @@ public class MealPlanController {
         mealPlan.setRecipeCategory(Category);
         //mealPlanService.save(mealPlan);
 
+        List<Recipe> mpL = weekdays;
 
-        List<MPList> mpL = mealPlan.getMpLists(); //Þarf að setja recipes hér inn
+        //List<MPList> mpL = mealPlan.getMpLists(); //Þarf að setja recipes hér inn
         //mealPlan.setMpLists(mpL);
 
         mealPlanService.save(mealPlan);
+        int days = mealPlan.getNumberOfWeekDay();
 
-        for (MPList mpList : mpL) {
-            MPList newList = mpListService.save(new MPList(mpList.getRecipe(), mealPlan)); //Þarf loopu til að save-a lista
+        for (int i = 0; i <days; i++) {
+            mpListService.save(new MPList(mpL.get(i), mealPlan)); //Þarf loopu til að save-a lista
+            System.out.println("recipe"+mpL.get(i));
         }
 
         long mpID = mealPlan.getMealPlanID();
         model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
+        System.out.println("mealplanID"+mpID);
+        System.out.println("mealplan"+mealPlanService.findByMealPlanID(mpID));
+
 
         // sama breyta og weekdays
-        //model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
-
-
+        model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
 
         return "/confirm";
     }

@@ -69,20 +69,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mpRecipes : ${mealplan.mpLists}">
+        <tr th:each="mpRecipes : ${mealplan}">
             <!-- Þetta er bara ein tala en ekki listi af dögunum-->
             <!--<td th:text="${mp.numberOfWeekDay}"></td>-->
-            <td th:text="${mpRecipes.recipe}"></td>
+            <td th:text="${mpRecipes.mpLists}"></td>
+            <td th:text="${mpRecipes.numberOfWeekDay}"></td>
+            <td th:text="${mpRecipes.recipeCategory}"></td>
         </tr>
         </tbody>
     </table>
 
-    <!--
+<!--
     <div th:switch="${recipesList}">
         <h2 th:case="null">Engar máltíðir fundust</h2>
         <div th:case="*">
         </div>
-    <table>
+
+        <table>
         <thead>
         <tr>
             <th>Innkaupalisti</th>
@@ -92,13 +95,13 @@
         <tbody>
         <tr th:each="list : ${recipesList.ingredients}">
                 <td th:text="${list.amount}"></td>
-            </div>
+
         </tr>
         </tbody>
-    </table> -->
+    </table>
 
     </div>
-</div>
+</div> -->
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
