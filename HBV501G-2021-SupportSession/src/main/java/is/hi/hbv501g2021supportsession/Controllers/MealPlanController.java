@@ -110,18 +110,18 @@ public class MealPlanController {
 
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
-        //mealPlanService.save(mealPlan);
 
+        //Býr til lista af uppskriftum
         List<Recipe> mpL = weekdays;
 
-        //List<MPList> mpL = mealPlan.getMpLists(); //Þarf að setja recipes hér inn
-        //mealPlan.setMpLists(mpL);
-
+        //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
         int days = mealPlan.getNumberOfWeekDay();
 
         for (int i = 0; i <days; i++) {
-            mpListService.save(new MPList(mpL.get(i), mealPlan)); //Þarf loopu til að save-a lista
+            //vistar hverja uppskrift saman við mealplan í MPList gagnagrunninn
+            //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
+            mpListService.save(new MPList(mpL.get(i), mealPlan));
             System.out.println("recipe"+mpL.get(i));
         }
 
@@ -131,7 +131,7 @@ public class MealPlanController {
         System.out.println("mealplan"+mealPlanService.findByMealPlanID(mpID));
 
 
-        // sama breyta og weekdays
+        // Innkaupalisti-sækir mpList úr mealplan
         model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
 
         return "/confirm";

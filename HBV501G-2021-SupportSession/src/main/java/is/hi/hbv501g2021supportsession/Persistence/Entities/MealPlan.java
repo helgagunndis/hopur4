@@ -14,7 +14,7 @@ public class MealPlan {
     private int numberOfWeekDay;
     private int recipeCategory;
 
-    @OneToMany(mappedBy = "mealPlan", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "mealPlan", fetch = FetchType.LAZY)
     private List<MPList> mpLists = new ArrayList<MPList>();
 
     @ManyToOne(fetch = FetchType.LAZY)
