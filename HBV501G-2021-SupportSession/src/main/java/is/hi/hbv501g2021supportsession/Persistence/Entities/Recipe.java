@@ -22,11 +22,11 @@ public class Recipe {
     private int recipeServings;
     private String recipeCredit;
 
-    @OneToMany(mappedBy = "recipe",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe",fetch = FetchType.LAZY)
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
-    @ManyToOne
-    private MealPlan mealPlan;
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
+    private List<MPList> mpLists = new ArrayList<MPList>();
 
     public Recipe() {
     }

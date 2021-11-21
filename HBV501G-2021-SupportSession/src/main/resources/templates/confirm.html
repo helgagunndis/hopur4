@@ -69,34 +69,37 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mpRecipes : ${mealplan.recipes}">
+        <tr th:each="mpRecipes : ${mealplan}">
             <!-- Þetta er bara ein tala en ekki listi af dögunum-->
-           <!-- <td th:text="${mp.numberOfWeekDay}"></td>-->
-            <td th:text="${mpRecipes.recipeTitle}"></td>
+            <!--<td th:text="${mp.numberOfWeekDay}"></td>-->
+            <td th:text="${mpRecipes.mpLists}"></td>
         </tr>
         </tbody>
     </table>
 
-    <table>
+<!--
+    <div th:switch="${recipesList}">
+        <h2 th:case="null">Engar máltíðir fundust</h2>
+        <div th:case="*">
+        </div>
+
+        <table>
         <thead>
         <tr>
             <th>Innkaupalisti</th>
+
         </tr>
         </thead>
         <tbody>
+        <tr th:each="list : ${recipesList.ingredients}">
+                <td th:text="${list.amount}"></td>
 
-        <!--weekdays.get(0).getIngredients().get(0).getIngredientInfo().getIngredientName();-->
-        <!--day.getIngredients().get(0).getIngredientInfo().getIngredientName();-->
-
-        <tr th:each="day : ${recipesList}"> <!--hérna fæ ég hvern vikudag-->
-            <div th:each="list :${day.ingredients}" ><!--hérna fæ ég innihaldsefni í hverri uppskrift-->
-                    <td th:text="${list}"></td>
-            </div>
         </tr>
         </tbody>
     </table>
+
     </div>
-</div>
+</div> -->
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

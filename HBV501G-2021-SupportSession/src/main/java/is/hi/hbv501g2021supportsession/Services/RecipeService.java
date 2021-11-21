@@ -12,7 +12,7 @@ public interface RecipeService {
     Recipe findByRecipeID(Long id);
     Recipe findRandomRecipe(int category);
     Recipe findRecipe(int category, int randomNumber);
-    ArrayList<Recipe> findListOfRecipe(int category);
+    List<Recipe> findListOfRecipe(int category);
     List<Recipe> findByRecipeCategoryLessThanEqual(int category);
 
 

@@ -11,12 +11,11 @@ public class MealPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanID;
-
     private int numberOfWeekDay;
     private int recipeCategory;
 
-    @OneToMany(mappedBy = "mealPlan", cascade = CascadeType.ALL)
-    private List<Recipe> recipes = new ArrayList<>();
+    @OneToMany(mappedBy = "mealPlan", fetch = FetchType.LAZY)
+    private List<MPList> mpLists = new ArrayList<MPList>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -25,9 +24,10 @@ public class MealPlan {
 
     }
 
-    public MealPlan(long mealPlanID, int recipeCategory) {
+    public MealPlan(long mealPlanID, int recipeCategory, List<MPList> mpLists) {
         this.mealPlanID = mealPlanID;
         this.recipeCategory = recipeCategory;
+        this.mpLists = mpLists;
     }
 
     public long getMealPlanID() {
@@ -54,14 +54,6 @@ public class MealPlan {
         this.user = user;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
     public int getNumberOfWeekDay() {
         return numberOfWeekDay;
     }
@@ -70,4 +62,11 @@ public class MealPlan {
         this.numberOfWeekDay = numberOfWeekDay;
     }
 
+    public List<MPList> getMpLists() {
+        return mpLists;
+    }
+
+    public void setMpLists(List<MPList> mpLists) {
+        this.mpLists = mpLists;
+    }
 }
