@@ -63,16 +63,20 @@
     </div>
     <table>
         <thead>
-        <tr>
-            <th>Dagur</th>
-            <th>Máltíð</th>
-        </tr>
+            <tr>
+                <th>Dagur</th>
+                <th>Máltíð</th>
+            </tr>
         </thead>
         <tbody>
-        <tr th:each="mpRecipes : ${mealplan}">
+        <tr>
             <!-- Þetta er bara ein tala en ekki listi af dögunum-->
             <!--<td th:text="${mp.numberOfWeekDay}"></td>-->
-            <td th:text="${mpRecipes.mpLists}"></td>
+            <div class="col-5">
+                    <div th:each="recipe : ${mealPlanRecipes}">
+                        <h5 class="" th:text="${recipe.recipeTitle}"></h5>
+                    </div>
+            </div>
         </tr>
         </tbody>
     </table>
