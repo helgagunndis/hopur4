@@ -47,6 +47,7 @@ public class MealPlanController {
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
         model.addAttribute("categoryRecipe", recipeCategory);
 
+        //þarf að skilgreina betur hvenær á að keyra þetta.
         if(weekdays==null){
             weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
@@ -107,36 +108,26 @@ public class MealPlanController {
         if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
         }
-
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
 
-        //Býr til lista af uppskriftum
-        List<Recipe> mpL = weekdays;
-
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
+        
+        List<MPList> mpLists=new ArrayList<MPList>();
         int days = mealPlan.getNumberOfWeekDay();
-
         for (int i = 0; i <days; i++) {
             //vistar hverja uppskrift saman við mealplan í MPList gagnagrunninn
             //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
-            mpListService.save(new MPList(mpL.get(i), mealPlan));
-            System.out.println("recipe"+mpL.get(i));
+            MPList list=new MPList(weekdays.get(i), mealPlan);
+            mpListService.save(list);
+            mpLists.add(list);
         }
+        mealPlan.setMpLists(mpLists);
 
-        long mpID = mealPlan.getMealPlanID();
-        model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
-        model.addAttribute("mealPlanRecipes", mpL);
-        System.out.println("mealplanID"+mpID);
-        System.out.println("mealplan"+mealPlanService.findByMealPlanID(mpID));
-
-
-        // Innkaupalisti-sækir mpList úr mealplan
-        List<MPList> ingredientsList = mealPlanService.findByMealPlanID(mpID).getMpLists();
-
-        model.addAttribute("recipesList", ingredientsList);
-
+        // Sækir allar uppskriftirnar sem eru í mealplan
+        List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
+        model.addAttribute("recipesList", recipesList);
         return "/confirm";
     }
 

@@ -22,7 +22,7 @@ public class Recipe {
     private int recipeServings;
     private String recipeCredit;
 
-    @OneToMany(mappedBy = "recipe",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recipe",fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
