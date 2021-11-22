@@ -123,7 +123,6 @@ public class MealPlanController {
             //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
             mpListService.save(new MPList(mpL.get(i), mealPlan));
             System.out.println("recipe"+mpL.get(i));
-            System.out.println("uppskrift nr.5" + mpL.get(5).getRecipeTitle());
         }
 
         long mpID = mealPlan.getMealPlanID();
@@ -134,7 +133,9 @@ public class MealPlanController {
 
 
         // Innkaupalisti-sækir mpList úr mealplan
-        model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
+        List<MPList> ingredientsList = mealPlanService.findByMealPlanID(mpID).getMpLists();
+
+        model.addAttribute("recipesList", ingredientsList);
 
         return "/confirm";
     }
