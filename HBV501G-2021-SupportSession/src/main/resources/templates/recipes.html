@@ -46,13 +46,14 @@
        <h2 th:case="null">No recipes</h2>
         <div th:case="*">
             <div class="row justify-content-center mt-2">
-                    <div th:each="recipe : ${recipes}" class="card mx-1 mt-2" style="width: 18rem;">
+                    <div th:each="recipe: ${recipes}" class="card mx-1 mt-2" style="width: 18rem;">
                         <!-- Button trigger modal -->
-                        <button class="btn" type="button" data-toggle="modal"  th:data-target="'#' + ${recipe.recipeTitle}">
-                        <img th:src="${recipe.recipeImage}" class="card-img-top" alt="..." style="max-height: 18rem;">
+                        <button class="btn" type="button" data-toggle="modal" th:data-target="${'#customerModel'+recipe.recipeID}" >
+                            <img th:src="${recipe.recipeImage}" class="card-img-top" alt="..." style="max-height: 15rem;">
                         </button>
+
                         <!-- Modal -->
-                        <div class="modal fade" th:id="${recipe.recipeTitle}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" th:id="${'customerModel'+recipe.recipeID}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -78,7 +79,6 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Loka</button>
-                                        <button type="button" class="btn btn-primary">Vista PDF</button>
                                     </div>
                                 </div>
                             </div>
