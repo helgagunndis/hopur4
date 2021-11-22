@@ -45,8 +45,8 @@
     <div class ="row">
         <!-- if user is loggedin -->
         <div th:if="${LoggedInUser}">
-            <div>Velkomin/nn, <span th:text="' ' + ${LoggedInUser.username}"></span></div>
-            <div>Matarplanið þitt er komið á síðuna þína , svo þú getur ná í það hvenær sem er</div>
+            <div>Velkomin/n, <span th:text="' ' + ${LoggedInUser.username}"></span></div>
+            <div><a href="/loggedin">Matarplanið þitt er komið á síðuna þína , svo þú getur náð í það hvenær sem er</a></div>
         </div>
         <!-- else -->
         <div th:unless="${LoggedInUser}">
@@ -54,7 +54,8 @@
         </div>
     </div>
     <div class="row">
-        <h1>máltíðir vikunnar</h1>
+
+        <h1>Matseðill vikunar</h1>
     </div>
 
         <div class="col">
