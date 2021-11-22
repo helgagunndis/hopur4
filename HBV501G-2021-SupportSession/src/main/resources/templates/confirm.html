@@ -54,18 +54,22 @@
         </div>
     </div>
     <div class="row">
-        <h1>máltíðir vikunar</h1>
+        <h1>máltíðir vikunnar</h1>
     </div>
 
         <div class="col">
             <div th:each="rp: ${recipesList}">
-                <div th:text="${rp.recipe.recipeTitle}"></div>
+                <h5 th:text="${rp.recipe.recipeTitle}"></h5>
             </div>
         </div>
     <p></p>
 
+    <div class="row">
+        <h2>Innkaupalisti</h2>
+    </div>
 
     <div th:each="rp: ${recipesList}">
+        <h6 th:text="${rp.recipe.recipeTitle}" ></h6>
         <div th:each="ingredient: ${rp.recipe.ingredients}">
             <td th:text="${ingredient.amount}"></td>
             <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
