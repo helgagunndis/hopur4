@@ -63,26 +63,30 @@
             </div>
         </div>
     <p></p>
-    <table>
+
+
+    <div th:each="rp: ${recipesList}">
+        <div th:each="ingredient: ${rp.recipe.ingredients}">
+            <td th:text="${ingredient.amount}"></td>
+            <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
+        </div>
+    </div>
+    <!--<table>
         <thead>
         <tr>
             <th>Innkaupalisti</th>
-
         </tr>
         </thead>
         <tbody>
-            <div class="col">
-                <tr th:each="rp: ${recipesList}">
-                    <div th:each="ingredient: ${rp.recipe.ingredients}">
-                        <div>
-                            <td th:text="${ingredient.amount}"></td>
-                            <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
-                        </div>
-                    </div>
-                </tr>
+        <tr th:each="rp: ${recipesList}">
+            <div th:each="ingredient: ${rp.recipe.ingredients}">
+                <td th:text="${ingredient.amount}"></td>
+                <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
             </div>
+        </tr>
         </tbody>
     </table>
+    -->
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
