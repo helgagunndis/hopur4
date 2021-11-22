@@ -4,6 +4,7 @@ import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
+import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,13 @@ public class UserController {
 
 
     UserService userService;
+    MealPlanService mealplanService;
     private Object model;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, MealPlanService mealPlanService){
         this.userService=userService;
+        this.mealplanService=mealplanService;
     }
 
 
@@ -94,11 +97,10 @@ public class UserController {
         }
         User exists = userService.login(user);
         if(exists != null){
-            List<MealPlan> mealPlanList = userService.ViewArchived(exists);
-            //System.out.println(mealPlanList.get(0).getRecipes());
-
             session.setAttribute("LoggedInUser", exists);
             model.addAttribute("LoggedInUser", exists);
+            List<MealPlan> mealPlanList = userService.ViewArchived(exists);
+            model.addAttribute("mealPlanList", mealPlanList);
             return "/LoggedInUser";
         }
 
@@ -116,12 +118,10 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
-
             List<MealPlan> mealPlanList = userService.ViewArchived(sessionUser);
-            //System.out.println(mealPlanList.get(0).getRecipes());
+            model.addAttribute("mealPlanList", mealPlanList);
             return "/LoggedInUser";
         }
-        // ef hann er ekki skráður inn fer hann á login síðuna
         return "redirect:/login";
     }
 

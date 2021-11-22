@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface MealPlanService {
     MealPlan save(MealPlan mealPlan);
     MealPlan findByMealPlanID(Long ID);
+    List<MealPlan> findAll();
 
 }

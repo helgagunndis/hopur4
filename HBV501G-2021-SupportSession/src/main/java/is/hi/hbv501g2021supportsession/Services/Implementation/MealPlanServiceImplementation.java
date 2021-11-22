@@ -33,4 +33,9 @@ public class MealPlanServiceImplementation implements MealPlanService {
       return mealPlanRepository.findByMealPlanID(ID);
    }
 
+    @Override
+    public List<MealPlan> findAll() {
+        return mealPlanRepository.findAll();
+    }
+
 }
