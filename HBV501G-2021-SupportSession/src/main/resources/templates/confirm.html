@@ -54,21 +54,36 @@
         </div>
     </div>
     <div class="row">
-        <h1>máltíðir vikunar</h1>
-    </div>
-
         <div class="col">
-            <div th:each="rp: ${recipesList}">
-                <div th:text="${rp.recipe.recipeTitle}"></div>
+            <h2>máltíðir vikunar</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <div th:each="day: ${weekdaysName}">
+                <td th:text="${day}"></td>
             </div>
         </div>
-    <p></p>
+        <div class="col-4">
+            <div th:each="rp: ${recipesList}">
+                <td th:text="${rp.recipe.recipeTitle}"></td>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col">
+            <h2>Innkaupalisti</h2>
+        </div>
+    </div>
 
-    <div th:each="rp: ${recipesList}">
-        <div th:each="ingredient: ${rp.recipe.ingredients}">
-            <td th:text="${ingredient.amount}"></td>
-            <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
+    <div class="row row-cols-4 g-3">
+        <div class="col-3" th:each="rp,iter: ${recipesList}">
+            <div class="mb-2 fw-bold" th:text="${weekdaysName[iter.index]}"></div>
+            <div th:each="ingredient: ${rp.recipe.ingredients}">
+                <td th:text="${ingredient.amount}"></td>
+                <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
+            </div>
         </div>
     </div>
     <!--<table>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.thymeleaf.expression.Lists;
 
 import javax.servlet.http.HttpSession;
 import java.awt.*;
@@ -30,9 +31,10 @@ public class MealPlanController {
     MPListService mpListService;
 
     private int Category=4;
+    private List<Recipe> weekdays; //Monday, Tuesday ...
+    private List<String> weekdaysName = new ArrayList<>(List.of("Mánudagur", "Þriðjudagur", "Miðvikudagur","Fimmtudagur","Föstudagur","Laugardagur","Sunnudagur"));
 
-   private List<Recipe> weekdays; //Monday, Tuesday ...
-   /*private List weekdaysCheckbox; // 1 for on 0 for off*/
+    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
 
     @Autowired
     public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService,MPListService mpListService, UserService userService){
@@ -47,7 +49,6 @@ public class MealPlanController {
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
         model.addAttribute("categoryRecipe", recipeCategory);
 
-        //þarf að skilgreina betur hvenær á að keyra þetta.
         if(weekdays==null){
             weekdays = new ArrayList<Recipe>();
             weekdays = recipeService.findListOfRecipe(Category);
@@ -102,7 +103,6 @@ public class MealPlanController {
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
     public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
-
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         model.addAttribute("LoggedInUser", sessionUser);
         if (sessionUser != null) {
@@ -110,7 +110,6 @@ public class MealPlanController {
         }
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
-
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
         
@@ -125,9 +124,13 @@ public class MealPlanController {
         }
         mealPlan.setMpLists(mpLists);
 
+
+
         // Sækir allar uppskriftirnar sem eru í mealplan
         List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
         model.addAttribute("recipesList", recipesList);
+        model.addAttribute("weekdaysName",weekdaysName);
+
         return "/confirm";
     }
 
