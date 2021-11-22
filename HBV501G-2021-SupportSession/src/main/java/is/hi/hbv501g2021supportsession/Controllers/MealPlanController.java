@@ -127,12 +127,15 @@ public class MealPlanController {
 
         long mpID = mealPlan.getMealPlanID();
         model.addAttribute("mealplan", mealPlanService.findByMealPlanID(mpID));
+        model.addAttribute("mealPlanRecipes", mpL);
         System.out.println("mealplanID"+mpID);
         System.out.println("mealplan"+mealPlanService.findByMealPlanID(mpID));
 
 
         // Innkaupalisti-sækir mpList úr mealplan
-        model.addAttribute("recipesList", mealPlanService.findByMealPlanID(mpID).getMpLists());
+        List<MPList> ingredientsList = mealPlanService.findByMealPlanID(mpID).getMpLists();
+
+        model.addAttribute("recipesList", ingredientsList);
 
         return "/confirm";
     }

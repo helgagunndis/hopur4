@@ -52,16 +52,60 @@
             <p class="fs-5"> Mínar uppskriftir</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            Hérna koma uppskriftir / vikumatseðlar sem viðskiptavinur hefur verið með.
+    <div th:if="${mealPlanList}">
+        <div class="accordion" id="accordionExample">
+            <div th:each="mp ,i : ${mealPlanList}">
+            <div class="card">
+                <div class="card-header" th:id="'heading'+${i.count}">
+                    <h5 class="mb-0">
+                        <button class="btn collapsed" type="button" data-toggle="collapse" th:data-target="${'#collapse'+i.count}" aria-expanded="false" th:aria-controls="${'collapse'+i.count}">
+                            <h4 th:text="'vika ' +${i.count}"></h4>
+                        </button>
+                    </h5>
+                </div>
+                <div th:id="${'collapse'+i.count}" class="collapse" th:aria-labelledby="'heading'+${i.count}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div th:each="rp: ${mp.mpLists}">
+                                <div class="row">
+                                <div class="col-4">
+                                    <div class="fw-bold" th:text="${rp.recipe.recipeTitle}"></div>
+                                    <tr th:each="ingredient: ${rp.recipe.ingredients}">
+                                        <div>
+                                            <td th:text="${ingredient.amount}"></td>
+                                            <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
+                                        </div>
+                                    </tr>
+                                </div>
+                                <div class="col-8">
+                                    <div th:text="${rp.recipe.recipeMethod}"></div>
+                                </div>
+                                    <p></p>
+                                </div>
+                            </div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
         </div>
     </div>
-    <div>
-        <div>
+    <!-- else -->
+    <div th:unless="${mealPlanList}">
+        <div>Þú ert ekki búin að gera neinn matseðill</div>
+    </div>
+
+    <div class="row">
+        <div class="col">
             <a href ="logout">Skrá sig út</a>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
