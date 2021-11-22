@@ -57,49 +57,24 @@
         <h1>máltíðir vikunar</h1>
     </div>
 
-<div th:switch="${mealplan}">
-    <h2 th:case="null">Engar máltíðir fundust</h2>
-    <div th:case="*">
-    </div>
-    <table>
-        <thead>
-        <tr>
-            <th>Dagur</th>
-            <th>Máltíð</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="mpRecipes : ${mealplan}">
-            <!-- Þetta er bara ein tala en ekki listi af dögunum-->
-            <!--<td th:text="${mp.numberOfWeekDay}"></td>-->
-            <td th:text="${mpRecipes.mpLists}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-<!--
-    <div th:switch="${recipesList}">
-        <h2 th:case="null">Engar máltíðir fundust</h2>
-        <div th:case="*">
+        <div class="col">
+            <div th:each="rp: ${recipesList}">
+                <div th:text="${rp.recipe.recipeTitle}"></div>
+            </div>
         </div>
-
-        <table>
-        <thead>
-        <tr>
-            <th>Innkaupalisti</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="list : ${recipesList.ingredients}">
-                <td th:text="${list.amount}"></td>
-
-        </tr>
-        </tbody>
-    </table>
-</div> -->
-
+    <p></p>
+    <div class="col">
+        <div th:each="rp: ${recipesList}">
+            <div th:each="ingredient: ${rp.recipe.ingredients}">
+                <div>
+                    <td th:text="${ingredient.amount}"></td>
+                    <td th:text="${ingredient.ingredientInfo.ingredientName}"></td>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

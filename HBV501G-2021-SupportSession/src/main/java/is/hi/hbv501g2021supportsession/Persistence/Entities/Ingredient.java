@@ -20,7 +20,7 @@ public class Ingredient {
     @ManyToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private IngredientInfo ingredientInfo;
 
     public Ingredient(String amount, IngredientInfo ingredientInfo, Recipe recipe) {
