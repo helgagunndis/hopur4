@@ -54,13 +54,9 @@ public class MealPlanController {
             weekdays = recipeService.findListOfRecipe(Category);
         }
 
-        model.addAttribute("mondayRecipe", weekdays.get(0));
-        model.addAttribute("tuesdayRecipe", weekdays.get(1));
-        model.addAttribute("wednesdayRecipe", weekdays.get(2));
-        model.addAttribute("thursdayRecipe", weekdays.get(3));
-        model.addAttribute("fridayRecipe", weekdays.get(4));
-        model.addAttribute("saturdayRecipe", weekdays.get(5));
-        model.addAttribute("sundayRecipe", weekdays.get(6));
+        model.addAttribute("weekdaysRecipes",weekdays);
+        model.addAttribute("weekdaysName",weekdaysName);
+
         return "mealplan";
     }
 
@@ -68,6 +64,7 @@ public class MealPlanController {
     @RequestMapping(value = "/category" , method = RequestMethod.GET)
     public String recipeListGET(Recipe recipe){
         Category = recipe.getRecipeCategory();
+        weekdays = null;
         return "redirect:/";
     }
 
@@ -92,10 +89,6 @@ public class MealPlanController {
     @RequestMapping(value = "/generateWholeWeek",method = RequestMethod.GET)
     public String generateWholeWeek(){
         weekdays= null;
-        /*ArrayList<Recipe> newWeekdays = recipeService.findListOfRecipe(Category);
-        for (int i=0; i<7; i++) {
-            weekdays.set(i,newWeekdays.get(i));
-        }*/
         return "redirect:/";
     }
 
@@ -108,9 +101,8 @@ public class MealPlanController {
         if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
         }
-
-
-        mealPlan.setNumberOfWeekDay(7);
+        
+        //mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
@@ -127,6 +119,9 @@ public class MealPlanController {
         mealPlan.setMpLists(mpLists);
 
 
+        // prufa hérna er ekki valið máltíð á miðvikudag
+        weekdaysName.set(2, null);
+        // þá þarf miðvikudagur líka að vera null í mpList
 
         // Sækir allar uppskriftirnar sem eru í mealplan
         List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
