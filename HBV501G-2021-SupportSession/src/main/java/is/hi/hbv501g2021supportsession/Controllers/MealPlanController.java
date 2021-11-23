@@ -108,6 +108,8 @@ public class MealPlanController {
         if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
         }
+
+
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
         //vistar mealplan en ekki recipes
