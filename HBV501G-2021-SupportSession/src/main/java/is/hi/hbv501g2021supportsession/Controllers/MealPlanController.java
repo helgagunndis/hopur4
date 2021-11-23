@@ -102,7 +102,7 @@ public class MealPlanController {
             mealPlan.setUser(sessionUser);
         }
         
-        //mealPlan.setNumberOfWeekDay(7);
+        mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
