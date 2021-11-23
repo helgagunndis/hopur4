@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div th:if="${mealPlanList}">
+    <div th:if="${not #lists.isEmpty(mealPlanList)}">
         <div class="accordion" id="accordionExample">
             <div th:each="mp ,i : ${mealPlanList}">
             <div class="card">
@@ -93,7 +93,7 @@
         </div>
     </div>
     <!-- else -->
-    <div th:unless="${mealPlanList}">
+    <div th:unless="${not #lists.isEmpty(mealPlanList)}">
         <div>Þú ert ekki búin að gera neinn matseðill</div>
     </div>
 

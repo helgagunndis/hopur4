@@ -101,6 +101,7 @@ public class UserController {
             model.addAttribute("LoggedInUser", exists);
             List<MealPlan> mealPlanList = userService.ViewArchived(exists);
             model.addAttribute("mealPlanList", mealPlanList);
+            System.out.println(mealPlanList);
             return "/LoggedInUser";
         }
 
