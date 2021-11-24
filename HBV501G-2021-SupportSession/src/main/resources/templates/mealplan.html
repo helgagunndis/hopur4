@@ -65,11 +65,17 @@
 <div class="container px-5">
     <div th:each="day ,iter : ${weekdaysName}">
         <div class="row mt-2 px-5 gx-2">
-            <div class="col-3 ps-5">
-                <input type="checkbox" th:id="${iter.count}" checked>
-                <label  th:for="${iter.count}" th:text="${day}"></label>
-                </input>
-            </div>
+
+                <div class="col-3 ps-5">
+                    <form action="#" th:action="@{/getCheckboxinfo}" th:object="${mealplan}" method="get">
+                        <input type="hidden" name="numberOfWeekDay" th:value="${iter.index}" />
+                        <input type="checkbox" onChange="this.form.submit()"  th:checked="${weekdaysCheckbox[iter.index]}" />
+                        <label  th:text="${day}"></label>
+                    </form>
+                </div>
+
+
+
             <div class="col-5">
                 <h5 class="mb-2" th:text="${weekdaysRecipes[iter.index].recipeTitle}"></h5>
             </div>
