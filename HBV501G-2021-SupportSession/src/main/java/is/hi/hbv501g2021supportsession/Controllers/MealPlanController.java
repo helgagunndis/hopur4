@@ -33,8 +33,7 @@ public class MealPlanController {
     private int Category=4;
     private List<Recipe> weekdays; //Monday, Tuesday ...
     private List<String> weekdaysName = new ArrayList<>(List.of("Mánudagur", "Þriðjudagur", "Miðvikudagur","Fimmtudagur","Föstudagur","Laugardagur","Sunnudagur"));
-
-    /*private List weekdaysCheckbox; // 1 for on 0 for off*/
+    private List <Boolean> weekdaysCheckbox= new ArrayList<>(List.of(true,true,true,true,true,true,true));
 
     @Autowired
     public MealPlanController(MealPlanService mealPlanService , RecipeService recipeService,MPListService mpListService, UserService userService){
@@ -56,6 +55,7 @@ public class MealPlanController {
 
         model.addAttribute("weekdaysRecipes",weekdays);
         model.addAttribute("weekdaysName",weekdaysName);
+        model.addAttribute("weekdaysCheckbox",weekdaysCheckbox);
 
         return "mealplan";
     }
@@ -92,6 +92,20 @@ public class MealPlanController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/getCheckboxinfo",method = RequestMethod.GET)
+    public String getCheckboxinfo(MealPlan mealPlan){
+        int weekday = mealPlan.getNumberOfWeekDay();
+        boolean isture =weekdaysCheckbox.get(weekday);
+        if(isture){
+            weekdaysCheckbox.set(weekday,false);
+        }
+        else {
+            weekdaysCheckbox.set(weekday,true);
+        }
+
+        return "redirect:/";
+    }
+
 
     //confirm page
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
@@ -101,7 +115,6 @@ public class MealPlanController {
         if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
         }
-        
         mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
         //vistar mealplan en ekki recipes
@@ -109,22 +122,28 @@ public class MealPlanController {
         
         List<MPList> mpLists=new ArrayList<MPList>();
         int days = mealPlan.getNumberOfWeekDay();
-        for (int i = 0; i <days; i++) {
+        for (int i = 0; i <7; i++) {
             //vistar hverja uppskrift saman við mealplan í MPList gagnagrunninn
             //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
-            MPList list=new MPList(weekdays.get(i), mealPlan);
-            mpListService.save(list);
-            mpLists.add(list);
+
+            if(weekdaysCheckbox.get(i)==false){
+                weekdaysName.set(i, null);
+                MPList list = new MPList(null, mealPlan);
+                mpLists.add(list);
+            }
+            else {
+                MPList list = new MPList(weekdays.get(i), mealPlan);
+                mpListService.save(list);
+                mpLists.add(list);
+            }
         }
         mealPlan.setMpLists(mpLists);
 
+        System.out.println(mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists().get(0).getRecipe());
 
-        // prufa hérna er ekki valið máltíð á miðvikudag
-        weekdaysName.set(2, null);
-        // þá þarf miðvikudagur líka að vera null í mpList
+        List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
 
         // Sækir allar uppskriftirnar sem eru í mealplan
-        List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
         model.addAttribute("recipesList", recipesList);
         model.addAttribute("weekdaysName",weekdaysName);
 

@@ -68,7 +68,7 @@
         </div>
         <div class="col-4">
             <div th:each="rp: ${recipesList}">
-                <div th:if="rp">
+                <div th:if="${rp.recipe}">
                     <td th:text="${rp.recipe.recipeTitle}"></td>
                 </div>
             </div>
