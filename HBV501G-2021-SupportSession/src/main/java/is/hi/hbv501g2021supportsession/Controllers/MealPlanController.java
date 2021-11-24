@@ -126,7 +126,6 @@ public class MealPlanController {
             //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
 
             if(weekdaysCheckbox.get(i)==false){
-                weekdaysName.set(i, null);
                 MPList list = new MPList(null, mealPlan);
                 mpLists.add(list);
             }
@@ -142,8 +141,6 @@ public class MealPlanController {
         // Sækir allar uppskriftirnar sem eru í mealplan
         model.addAttribute("recipesList", recipesList);
         model.addAttribute("weekdaysName",weekdaysName);
-
-        weekdaysName=new ArrayList<>(List.of("Mánudagur", "Þriðjudagur", "Miðvikudagur","Fimmtudagur","Föstudagur","Laugardagur","Sunnudagur"));
         return "/confirm";
     }
 
