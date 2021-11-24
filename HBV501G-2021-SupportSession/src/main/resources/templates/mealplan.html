@@ -63,7 +63,70 @@
 
 
 <div class="container px-5">
-    <!-- Monday -->
+    <div th:each="day ,iter : ${weekdaysName}">
+        <div class="row mt-2 px-5 gx-2">
+
+                <div class="col-3 ps-5">
+                    <form action="#" th:action="@{/getCheckboxinfo}" th:object="${mealplan}" method="get">
+                        <input type="hidden" name="numberOfWeekDay" th:value="${iter.index}" />
+                        <input type="checkbox" onChange="this.form.submit()"  th:checked="${weekdaysCheckbox[iter.index]}" />
+                        <label  th:text="${day}"></label>
+                    </form>
+                </div>
+
+
+
+            <div class="col-5">
+                <h5 class="mb-2" th:text="${weekdaysRecipes[iter.index].recipeTitle}"></h5>
+            </div>
+            <div class="col-md-2 ps-5">
+                <form action="#" th:action="@{/generateOneMeal}" th:object="${mealplan}" method="get">
+                    <button class="btn btn-warning btn-sm" type="submit" name="numberOfWeekDay" th:value="${iter.index}">Reyna aftur</button>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <!-- Button trigger modal -->
+                <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" th:data-target="${'#customerModel'+ iter.index}">Velja uppskrift</button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="${'customerModel'+ iter.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel10">Uppskriftalisti</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tbody>
+                                    <tr th:each="recipes: ${categoryRecipe}">
+
+                                        <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
+                                            <td>
+                                                <!--<data-dismiss="modal"-->
+                                                <input type="hidden" name="numberOfWeekDay"  th:value="${iter.index}" />
+                                                <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
+                                                    <h5 class="" th:text="${recipes.recipeTitle}"></h5>
+                                                </button>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="monday" checked>
@@ -81,9 +144,9 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
+
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal">Velja uppskrift</button>
-            <!-- Modal -->
+
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -100,7 +163,7 @@
 
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                         <!--<data-dismiss="modal"-->
+
                                             <input type="hidden" name="numberOfWeekDay" value="0" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -116,7 +179,7 @@
             </div>
         </div>
     </div>
-<!-- Tuesday -->
+
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="tuesday" checked>
@@ -134,9 +197,9 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
+
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal2">Velja uppskrift</button>
-            <!-- Modal -->
+
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -152,7 +215,7 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
+
                                             <input type="hidden" name="numberOfWeekDay" value="1" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -168,7 +231,7 @@
             </div>
         </div>
     </div>
-<!-- Wednesday -->
+
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="wednesday" checked>
@@ -188,9 +251,9 @@
         </div>
         <div class="col-md-2">
 
-            <!-- Button trigger modal -->
+
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal3">Velja uppskrift</button>
-            <!-- Modal -->
+
             <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -206,7 +269,6 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
                                             <input type="hidden" name="numberOfWeekDay" value="2" />
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -222,7 +284,6 @@
             </div>
         </div>
     </div>
-<!-- Thursday -->
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="thursday" checked>
@@ -240,9 +301,7 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal4">Velja uppskrift</button>
-            <!-- Modal -->
             <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -258,7 +317,7 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
+
                                             <input type="hidden" name="numberOfWeekDay" value="3"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -274,7 +333,6 @@
             </div>
         </div>
     </div>
-<!-- Friday -->
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="friday" checked>
@@ -292,9 +350,7 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal5">Velja uppskrift</button>
-            <!-- Modal -->
             <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -310,7 +366,7 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
+
                                             <input type="hidden" name="numberOfWeekDay" value="4"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -326,7 +382,6 @@
             </div>
         </div>
     </div>
-<!-- Saturday -->
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="saturday" checked>
@@ -344,9 +399,7 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal6">Velja uppskrift</button>
-            <!-- Modal -->
             <div class="modal fade" id="exampleModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -362,7 +415,7 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
+
                                             <input type="hidden" name="numberOfWeekDay" value="5"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -378,7 +431,6 @@
             </div>
         </div>
     </div>
-<!-- Sunday -->
     <div class="row mt-2 px-5 gx-2">
         <div class="col-3 ps-5">
             <input type="checkbox" id="sunday" checked>
@@ -396,9 +448,7 @@
             </form>
         </div>
         <div class="col-md-2">
-            <!-- Button trigger modal -->
             <button class="btn btn-warning btn-sm " type="button" data-toggle="modal" data-target="#exampleModal7">Velja uppskrift</button>
-            <!-- Modal -->
             <div class="modal fade" id="exampleModal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -414,7 +464,6 @@
                                 <tr th:each="recipes: ${categoryRecipe}">
                                     <form action="#" th:action="@{/manualRecipes}" th:object="${mealplan}" method="get" >
                                         <td>
-                                            <!--<data-dismiss="modal"-->
                                             <input type="hidden" name="numberOfWeekDay" value="6"/>
                                             <button class="btn" type="submit" name="recipeID" th:value="${recipes.recipeID}">
                                                 <h5 class="" th:text="${recipes.recipeTitle}"></h5>
@@ -428,7 +477,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+
     </div>
 </div>
 <div class="container px-4 pt-4">

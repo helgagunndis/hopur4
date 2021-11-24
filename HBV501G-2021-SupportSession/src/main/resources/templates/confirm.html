@@ -46,28 +46,26 @@
         <!-- if user is loggedin -->
         <div th:if="${LoggedInUser}">
             <div>Velkomin/n, <span th:text="' ' + ${LoggedInUser.username}"></span></div>
-            <div><a href="/loggedin">Matarplanið þitt er komið á síðuna þína , svo þú getur náð í það hvenær sem er</a></div>
+            <div>Matarplanið þitt er komið á <a href="/loggedin"> síðuna þína </a>, svo þú getur náð í það hvenær sem er</div>
         </div>
         <!-- else -->
         <div th:unless="${LoggedInUser}">
             <div>Þú ert ekki skáður inn </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <h2>Matseðill vikunar</h2>
         </div>
     </div>
-    <div class="row mb-2">
+    <!-- if day is chosen-->
+    <div class="row mb-2" th:each="rp,iter: ${recipesList}" th:if="${rp.recipe}">
         <div class="col-3">
-            <div th:each="day: ${weekdaysName}">
-                <td th:text="${day}"></td>
-            </div>
+            <td th:text="${weekdaysName[iter.index]}"></td>
         </div>
         <div class="col-4">
-            <div th:each="rp: ${recipesList}">
-                <td th:text="${rp.recipe.recipeTitle}"></td>
-            </div>
+            <td th:text="${rp.recipe.recipeTitle}"></td>
         </div>
     </div>
 
@@ -76,9 +74,8 @@
             <h2>Innkaupalisti</h2>
         </div>
     </div>
-
     <div class="row row-cols-4 g-3">
-        <div class="col-3" th:each="rp,iter: ${recipesList}">
+        <div class="col-3" th:each="rp,iter: ${recipesList}" th:if="${rp.recipe}">
             <div class="mb-2 fw-bold" th:text="${weekdaysName[iter.index]}"></div>
             <div th:each="ingredient: ${rp.recipe.ingredients}">
                 <td th:text="${ingredient.amount}"></td>
