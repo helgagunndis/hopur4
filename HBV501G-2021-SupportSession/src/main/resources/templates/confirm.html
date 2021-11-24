@@ -46,7 +46,7 @@
         <!-- if user is loggedin -->
         <div th:if="${LoggedInUser}">
             <div>Velkomin/n, <span th:text="' ' + ${LoggedInUser.username}"></span></div>
-            <div><a href="/loggedin">Matarplanið þitt er komið á síðuna þína , svo þú getur náð í það hvenær sem er</a></div>
+            <div>Matarplanið þitt er komið á <a href="/loggedin"> síðuna þína </a>, svo þú getur náð í það hvenær sem er</div>
         </div>
         <!-- else -->
         <div th:unless="${LoggedInUser}">
@@ -61,6 +61,7 @@
     <div class="row mb-2">
         <div class="col-3">
             <div th:each="day: ${weekdaysName}">
+                <!-- if day is chosen-->
                 <div th:if="day">
                     <td th:text="${day}"></td>
                 </div>
@@ -68,6 +69,7 @@
         </div>
         <div class="col-4">
             <div th:each="rp: ${recipesList}">
+                <!-- if day is chosen-->
                 <div th:if="${rp.recipe}">
                     <td th:text="${rp.recipe.recipeTitle}"></td>
                 </div>

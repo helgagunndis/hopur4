@@ -115,11 +115,10 @@ public class MealPlanController {
         if (sessionUser != null) {
             mealPlan.setUser(sessionUser);
         }
-        mealPlan.setNumberOfWeekDay(7);
         mealPlan.setRecipeCategory(Category);
+
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
-        
         List<MPList> mpLists=new ArrayList<MPList>();
         int days = mealPlan.getNumberOfWeekDay();
         for (int i = 0; i <7; i++) {
@@ -139,14 +138,12 @@ public class MealPlanController {
         }
         mealPlan.setMpLists(mpLists);
 
-        System.out.println(mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists().get(0).getRecipe());
-
         List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
-
         // Sækir allar uppskriftirnar sem eru í mealplan
         model.addAttribute("recipesList", recipesList);
         model.addAttribute("weekdaysName",weekdaysName);
 
+        weekdaysName=new ArrayList<>(List.of("Mánudagur", "Þriðjudagur", "Miðvikudagur","Fimmtudagur","Föstudagur","Laugardagur","Sunnudagur"));
         return "/confirm";
     }
 
