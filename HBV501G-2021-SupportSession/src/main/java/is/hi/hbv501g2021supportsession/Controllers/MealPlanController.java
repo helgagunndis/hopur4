@@ -30,7 +30,7 @@ public class MealPlanController {
     UserService userService;
     MPListService mpListService;
 
-    private int Category=4;
+    private int Category = 4;
     private List<Recipe> weekdays; //Monday, Tuesday ...
     private List<String> weekdaysName = new ArrayList<>(List.of("Mánudagur", "Þriðjudagur", "Miðvikudagur","Fimmtudagur","Föstudagur","Laugardagur","Sunnudagur"));
     private List <Boolean> weekdaysCheckbox= new ArrayList<>(List.of(true,true,true,true,true,true,true));
@@ -43,6 +43,7 @@ public class MealPlanController {
         this.mpListService = mpListService;
     }
 
+    // notar valið category til þess að finna hvaða uppskriftir eru mögulegar
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String mealplan(Model model, HttpSession session) {
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
@@ -71,8 +72,8 @@ public class MealPlanController {
     // random recipe
     @RequestMapping(value = "/manualRecipes",method = RequestMethod.GET)
     public String manualRecipes(Recipe recipe, MealPlan mealplan){
-        int weekday=mealplan.getNumberOfWeekDay();
-        Recipe newRecipe =recipeService.findByRecipeID(recipe.getRecipeID());
+        int weekday = mealplan.getNumberOfWeekDay();
+        Recipe newRecipe = recipeService.findByRecipeID(recipe.getRecipeID());
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
@@ -81,7 +82,7 @@ public class MealPlanController {
     @RequestMapping(value = "/generateOneMeal",method = RequestMethod.GET)
     public String generateOneMeal(MealPlan mealPlan){
         int weekday = mealPlan.getNumberOfWeekDay();
-        Recipe newRecipe =recipeService.findRandomRecipe(Category);
+        Recipe newRecipe = recipeService.findRandomRecipe(Category);
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
@@ -120,7 +121,7 @@ public class MealPlanController {
         //vistar mealplan en ekki recipes
         mealPlanService.save(mealPlan);
         List<MPList> mpLists=new ArrayList<MPList>();
-        int days = mealPlan.getNumberOfWeekDay();
+
         for (int i = 0; i <7; i++) {
             //vistar hverja uppskrift saman við mealplan í MPList gagnagrunninn
             //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
