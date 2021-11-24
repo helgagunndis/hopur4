@@ -54,6 +54,12 @@ public class MealPlanController {
             weekdays = recipeService.findListOfRecipe(Category);
         }
 
+        for (int i = 0; i <7; i++) {
+            if(weekdaysCheckbox.get(i)==false){
+                weekdays.set(i,null);
+            }
+        }
+
         model.addAttribute("weekdaysRecipes",weekdays);
         model.addAttribute("weekdaysName",weekdaysName);
         model.addAttribute("weekdaysCheckbox",weekdaysCheckbox);
