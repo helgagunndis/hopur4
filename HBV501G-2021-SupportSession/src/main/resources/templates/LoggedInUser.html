@@ -68,6 +68,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div th:each="rp: ${mp.mpLists}">
+                                <div th:if="${rp.recipe}">
                                 <div class="row">
                                 <div class="col-4">
                                     <div class="fw-bold" th:text="${rp.recipe.recipeTitle}"></div>
@@ -85,6 +86,7 @@
                                 </div>
                             </div>
                             <p></p>
+                        </div>
                         </div>
                     </div>
                 </div>
