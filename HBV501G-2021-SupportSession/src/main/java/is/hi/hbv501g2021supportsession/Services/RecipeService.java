@@ -15,5 +15,4 @@ public interface RecipeService {
     List<Recipe> findListOfRecipe(int category);
     List<Recipe> findByRecipeCategoryLessThanEqual(int category);
 
-
 }

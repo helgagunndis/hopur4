@@ -6,7 +6,6 @@ import java.util.List;
 
 
 public interface IngredientInfoService {
-    //IngredientInfo add(IngredientInfo ingredientInfo);
     IngredientInfo save(IngredientInfo ingredientInfo);
     List<IngredientInfo> findAll();
 

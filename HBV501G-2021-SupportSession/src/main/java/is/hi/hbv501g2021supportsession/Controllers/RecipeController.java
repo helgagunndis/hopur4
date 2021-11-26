@@ -22,12 +22,9 @@ import java.util.List;
  */
 @Controller
 public class RecipeController {
-
-
     private RecipeService recipeService;
     private IngredientInfoService infoIngredientService;
     private IngredientService ingredientService;
-
 
     @Autowired
     public RecipeController(RecipeService recipeService, IngredientInfoService infoIngredientService, IngredientService ingredientService) {
@@ -40,7 +37,6 @@ public class RecipeController {
     public List<IngredientInfo> populateIngredients() {
         return this.infoIngredientService.findAll();
     }
-
 
     /**
      * Adds all recipes in db to html
@@ -79,10 +75,9 @@ public class RecipeController {
         if (result.hasErrors()) {
             return "redirect:/error";
         }
-        List<Ingredient> ingredientList = recipe.getIngredients();
-
         recipeService.save(recipe);
 
+        List<Ingredient> ingredientList = recipe.getIngredients();
         for (Ingredient ingredient : ingredientList) {
             Ingredient newIngredient = ingredientService.save(new Ingredient(ingredient.getAmount(), ingredient.getIngredientInfo(), recipe));
         }
@@ -103,6 +98,5 @@ public class RecipeController {
         recipe.getIngredients().add(new Ingredient());
         return "admin";
     }
-
 
 }

@@ -30,6 +30,11 @@ public class RecipeServiceImplementation implements RecipeService {
         return recipeRepository.findByRecipeID(id);
     }
 
+    /**
+     * From chosen category find one random recipe.
+     * @param category
+     * @return Recipe recipe
+     */
     @Override
     public Recipe findRandomRecipe(int category) {
         List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
@@ -37,6 +42,12 @@ public class RecipeServiceImplementation implements RecipeService {
         return recipeCategory.get(random);
     }
 
+    /**
+     * From chosen category find recipe that has the ID randomNumber
+     * @param category
+     * @param randomNumber
+     * @return Recipe recipe
+     */
     @Override
     public Recipe findRecipe(int category, int randomNumber) {
         List<Recipe> recipeCategory = recipeRepository.findByRecipeCategoryLessThanEqual(category);
@@ -48,7 +59,12 @@ public class RecipeServiceImplementation implements RecipeService {
         return recipeRepository.findByRecipeCategoryLessThanEqual(category);
     }
 
-    // Býr til lista af uppskriftum sem hafa einstakt recipe id.
+
+    /**
+     * Makes a list of recipes that are generated with unique recipe ID
+     * @param category
+     * @return List<Recipe> weekdays
+     */
     @Override
     public List<Recipe> findListOfRecipe(int category){
         List<Integer> list = new ArrayList<Integer>();
@@ -62,18 +78,6 @@ public class RecipeServiceImplementation implements RecipeService {
         for (int i=0; i<7; i++) {
             weekdays.add(findRecipe(category, list.get(i)));
         }
-
         return weekdays;
     }
-
-
-
-
-    //  @Override
-   // public void add(Ingredient ingredient) {
-     //   this.recipeRepository.add(ingredient);
-   // }
-
-
-
 }

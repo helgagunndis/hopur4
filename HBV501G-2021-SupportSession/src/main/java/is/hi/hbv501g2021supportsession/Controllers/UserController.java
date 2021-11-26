@@ -1,8 +1,6 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.MealPlanService;
 import is.hi.hbv501g2021supportsession.Services.UserService;
@@ -22,16 +20,11 @@ import java.util.List;
  */
 @Controller
 public class UserController {
-
-
     UserService userService;
-    MealPlanService mealplanService;
-    private Object model;
 
     @Autowired
-    public UserController(UserService userService, MealPlanService mealPlanService){
+    public UserController(UserService userService){
         this.userService=userService;
-        this.mealplanService=mealplanService;
     }
 
 
@@ -48,7 +41,7 @@ public class UserController {
      * @param user
      * @param result
      * @param model
-     * @return mealpaln
+     * @return signup.html
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model){
@@ -65,16 +58,15 @@ public class UserController {
     }
 
     /**
-     * Get login only ef user isn't login
+     * Get login only if the user isn't login
      * @param user
      * @param session
      * @param model
-     * @return login
+     * @return login.html
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user, HttpSession session, Model model){
         User sessionUser = (User) session.getAttribute("LoggedInUser");
-        //System.out.println("userControler:   " + sessionUser );
         if(sessionUser  != null){
             model.addAttribute("LoggedInUser", sessionUser);
             return "LoggedInUser";
@@ -84,11 +76,12 @@ public class UserController {
 
     /**
      * Finds errors in login and checks if user exists in db
+     * and add all mealplans that he has.
      * @param user
      * @param result
      * @param model
      * @param session
-     * @return LoggedInUser
+     * @return LoggedInUser.html
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
@@ -101,18 +94,17 @@ public class UserController {
             model.addAttribute("LoggedInUser", exists);
             List<MealPlan> mealPlanList = userService.ViewArchived(exists);
             model.addAttribute("mealPlanList", mealPlanList);
-            System.out.println(mealPlanList);
             return "/LoggedInUser";
         }
-
         return "login";
     }
 
     /**
-     * Check if user is logged in
+     * Check if user is logged in and add all mealsplans that this
+     * user has.
      * @param model
      * @param session
-     * @return LoggedInUser
+     * @return LoggedInUser.html
      */
     @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
@@ -129,7 +121,7 @@ public class UserController {
     /**
      * user log out
      * @param request
-     * @return mealplan
+     * @return mealplan.html
      */
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
@@ -140,6 +132,10 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * frequently asked questions
+     * @return fag.html
+     */
     @RequestMapping(value = "/faq",method = RequestMethod.GET)
     public String fag() {
         return "/faq";

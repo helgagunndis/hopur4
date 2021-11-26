@@ -13,10 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.thymeleaf.expression.Lists;
 
 import javax.servlet.http.HttpSession;
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -43,9 +41,14 @@ public class MealPlanController {
         this.mpListService = mpListService;
     }
 
-    // notar valið category til þess að finna hvaða uppskriftir eru mögulegar
+    /**
+     * uses the chosen category to find a recipes list to work with
+     * giving an attribute to the html.
+     * @param model
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String mealplan(Model model, HttpSession session) {
+    public String mealplan(Model model) {
         List recipeCategory = recipeService.findByRecipeCategoryLessThanEqual(Category);
         model.addAttribute("categoryRecipe", recipeCategory);
 
@@ -59,7 +62,6 @@ public class MealPlanController {
                 weekdays.set(i,null);
             }
         }
-
         model.addAttribute("weekdaysRecipes",weekdays);
         model.addAttribute("weekdaysName",weekdaysName);
         model.addAttribute("weekdaysCheckbox",weekdaysCheckbox);
@@ -67,7 +69,12 @@ public class MealPlanController {
         return "mealplan";
     }
 
-    // Velur category
+
+    /**
+     * Get new category
+     * @param recipe
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/category" , method = RequestMethod.GET)
     public String recipeListGET(Recipe recipe){
         Category = recipe.getRecipeCategory();
@@ -75,7 +82,14 @@ public class MealPlanController {
         return "redirect:/";
     }
 
-    // random recipe
+
+    /**
+     * The recipe that is chosen is put in the right
+     * place in the weekday recipes list.
+     * @param recipe
+     * @param mealplan
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/manualRecipes",method = RequestMethod.GET)
     public String manualRecipes(Recipe recipe, MealPlan mealplan){
         int weekday = mealplan.getNumberOfWeekDay();
@@ -84,24 +98,38 @@ public class MealPlanController {
         return "redirect:/";
     }
 
-    // fær nýja uppskrift og setur inn í listan á réttan stað miðað við valdan dag
+    /**
+     * Get the weekday and generated a new random recipe for that day.
+     * @param mealplan
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/generateOneMeal",method = RequestMethod.GET)
-    public String generateOneMeal(MealPlan mealPlan){
-        int weekday = mealPlan.getNumberOfWeekDay();
+    public String generateOneMeal(MealPlan mealplan){
+        int weekday = mealplan.getNumberOfWeekDay();
         Recipe newRecipe = recipeService.findRandomRecipe(Category);
         weekdays.set(weekday,newRecipe);
         return "redirect:/";
     }
 
+    /**
+     * The recipes list is set to null,
+     * to get new randoms recipes in the list.
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/generateWholeWeek",method = RequestMethod.GET)
     public String generateWholeWeek(){
         weekdays= null;
         return "redirect:/";
     }
 
+    /**
+     * Getting info about chosen day if it is checked or not
+     * @param mealplan
+     * @return mealplan.html
+     */
     @RequestMapping(value = "/getCheckboxinfo",method = RequestMethod.GET)
-    public String getCheckboxinfo(MealPlan mealPlan){
-        int weekday = mealPlan.getNumberOfWeekDay();
+    public String getCheckboxinfo(MealPlan mealplan){
+        int weekday = mealplan.getNumberOfWeekDay();
         boolean isture =weekdaysCheckbox.get(weekday);
         if(isture){
             weekdaysCheckbox.set(weekday,false);
@@ -109,43 +137,47 @@ public class MealPlanController {
         else {
             weekdaysCheckbox.set(weekday,true);
         }
-
         return "redirect:/";
     }
 
 
     //confirm page
+
+    /**
+     * if the user is logged in, set him on the mealplan.
+     * save the mealplan and add it to MP list,
+     * giving an attribute recipes list to the html.
+     * @param model
+     * @param session
+     * @param mealplan
+     * @return confirm.html
+     */
     @RequestMapping(value = "/confirm",method = RequestMethod.GET)
-    public String createMealPlan(Model model,HttpSession session, MealPlan mealPlan) {
+    public String createMealPlan(Model model,HttpSession session, MealPlan mealplan) {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
         model.addAttribute("LoggedInUser", sessionUser);
         if (sessionUser != null) {
-            mealPlan.setUser(sessionUser);
+            mealplan.setUser(sessionUser);
         }
-        mealPlan.setRecipeCategory(Category);
+        mealplan.setRecipeCategory(Category);
+        mealPlanService.save(mealplan);
 
-        //vistar mealplan en ekki recipes
-        mealPlanService.save(mealPlan);
+
         List<MPList> mpLists=new ArrayList<MPList>();
-
         for (int i = 0; i <7; i++) {
-            //vistar hverja uppskrift saman við mealplan í MPList gagnagrunninn
-            //villa hér? vistast rétt í gagnagrunni en null gildi þegar debuggað
-
             if(weekdaysCheckbox.get(i)==false){
-                MPList list = new MPList(null, mealPlan);
+                MPList list = new MPList(null, mealplan);
                 mpLists.add(list);
             }
             else {
-                MPList list = new MPList(weekdays.get(i), mealPlan);
+                MPList list = new MPList(weekdays.get(i), mealplan);
                 mpListService.save(list);
                 mpLists.add(list);
             }
         }
-        mealPlan.setMpLists(mpLists);
+        mealplan.setMpLists(mpLists);
 
-        List recipesList =mealPlanService.findByMealPlanID(mealPlan.getMealPlanID()).getMpLists();
-        // Sækir allar uppskriftirnar sem eru í mealplan
+        List recipesList =mealPlanService.findByMealPlanID(mealplan.getMealPlanID()).getMpLists();
         model.addAttribute("recipesList", recipesList);
         model.addAttribute("weekdaysName",weekdaysName);
         return "/confirm";
