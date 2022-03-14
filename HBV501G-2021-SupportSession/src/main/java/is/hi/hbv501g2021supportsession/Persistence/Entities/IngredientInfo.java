@@ -14,12 +14,12 @@ public class IngredientInfo {
 
     private String ingredientName;
 
-    @OneToMany(mappedBy = "ingredientInfo",fetch = FetchType.LAZY)
-    private List<Ingredient> ingredient = new ArrayList<Ingredient>();
+    // @OneToMany(mappedBy = "ingredientInfo",fetch = FetchType.LAZY)
+    //private List<Ingredient> ingredient = new ArrayList<Ingredient>();
 
     public IngredientInfo(String ingredientName, List<Ingredient> ingredient) {
         this.ingredientName= ingredientName;
-        this.ingredient = ingredient;
+        // this.ingredient = ingredient;
     }
 
     public IngredientInfo() {
@@ -33,13 +33,13 @@ public class IngredientInfo {
         this.ingredientName = ingredientName;
     }
 
-    public List<Ingredient> getIngredient() {
+    /* public List<Ingredient> getIngredient() {
         return ingredient;
     }
 
     public void setIngredient(List<Ingredient> ingredient) {
         this.ingredient = ingredient;
-    }
+    }*/
 
     public long getId() {
         return id;

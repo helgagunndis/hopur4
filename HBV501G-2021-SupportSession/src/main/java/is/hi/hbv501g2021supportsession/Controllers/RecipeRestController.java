@@ -33,46 +33,10 @@ public class RecipeRestController {
         this.ingredientService = ingredientService;
     }
 
-
-   /* @RequestMapping(value = "/recipes",method = RequestMethod.GET, consumes = "application/json")
-    @ResponseBody
-    public List getRecipes() {
-        List recipes = recipeService.findAll();
-        return recipes;
-    } */
-
     @GetMapping("/recipes")
-    public List getAllReports() {
-        List recipes = recipeService.findAll();
-        return recipes;
+    public List<Recipe> getAllReports() {
+        List<Recipe> list= recipeService.findAll();
+
+        return list;
     }
-
-
-    /* @RequestMapping(value = "/admin") //, method = RequestMethod.GET)
-    public String adminPage(Recipe recipe, Model model) {
-        return "admin";
-    }
-
-    @RequestMapping(value = "/admin", params = {"save"})
-    public String adminSave(Recipe recipe, Ingredient ingredients, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "redirect:/error";
-        }
-        recipeService.save(recipe);
-
-        List<Ingredient> ingredientList = recipe.getIngredients();
-        for (Ingredient ingredient : ingredientList) {
-            Ingredient newIngredient = ingredientService.save(new Ingredient(ingredient.getAmount(), ingredient.getIngredientInfo(), recipe));
-        }
-
-        return "redirect:/recipes";
-    }
-
-
-    @RequestMapping(value = "/admin", params = {"addRow"})
-    public String addRow(Recipe recipe, Ingredient ingredient, BindingResult bindingResult, Model model) {
-        recipe.getIngredients().add(new Ingredient());
-        return "admin";
-    }*/
-
 }

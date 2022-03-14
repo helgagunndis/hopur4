@@ -30,6 +30,8 @@ public class UserRestController {
     public User userLogin(@RequestBody User user) {
         User exists = userService.login(user);
         if(exists != null){
+            List<MealPlan> mealPlanList = userService.ViewArchived(exists);
+            user.setMealPlan(mealPlanList);
             return user;
         }
         return null;
