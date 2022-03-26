@@ -28,14 +28,18 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/rest/login",method = RequestMethod.POST, consumes = "application/json")
-    public User userLogin(@RequestBody User user, BindingResult result) {
+    public Object userLogin(@RequestBody User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
         User exists = userService.login(user);
+
         if(exists != null){
             List<MealPlan> mealPlanList = userService.ViewArchived(exists);
             user.setMealPlan(mealPlanList);
-            return user;
+            return ResponseEntity.ok(user);
         }
-        return null;
+        return new ResponseEntity<String>("this user dosen't have account",HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "/rest/signup", method = RequestMethod.POST, consumes = "application/json")
@@ -51,17 +55,7 @@ public class UserRestController {
 
         return ResponseEntity.ok(user);
     }
-
-
-    /*@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(User user, HttpSession session, Model model){
-        User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if(sessionUser  != null){
-            model.addAttribute("LoggedInUser", sessionUser);
-            return "LoggedInUser";
-        }
-        return "/login";
-    }*/
+    
 
 
    /* @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
