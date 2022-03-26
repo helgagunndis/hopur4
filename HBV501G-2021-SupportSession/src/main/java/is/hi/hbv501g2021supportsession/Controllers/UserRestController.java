@@ -4,6 +4,8 @@ import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,9 +27,8 @@ public class UserRestController {
         this.userService=userService;
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public User userLogin(@RequestBody User user) {
+    @RequestMapping(value = "/rest/login",method = RequestMethod.POST, consumes = "application/json")
+    public User userLogin(@RequestBody User user, BindingResult result) {
         User exists = userService.login(user);
         if(exists != null){
             List<MealPlan> mealPlanList = userService.ViewArchived(exists);
@@ -37,15 +38,18 @@ public class UserRestController {
         return null;
     }
 
-    @RequestMapping(value = "/signup",method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public User userSignup(@RequestBody User user) {
+    @RequestMapping(value = "/rest/signup", method = RequestMethod.POST, consumes = "application/json")
+    public Object signupUser(@RequestBody User user , BindingResult result) {
+        if (result.hasErrors()) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
         User usernameExists = userService.findByUsername(user.getUsername());
         if(usernameExists != null){
-            return null;
+            return new ResponseEntity<String>("this username is not available", HttpStatus.BAD_REQUEST);
         }
         userService.save(user);
-        return user;
+
+        return ResponseEntity.ok(user);
     }
 
 
