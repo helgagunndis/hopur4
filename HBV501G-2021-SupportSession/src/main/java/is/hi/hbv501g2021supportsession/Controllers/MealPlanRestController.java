@@ -10,6 +10,7 @@ import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,9 +42,8 @@ public class MealPlanRestController {
         this.mpListService = mpListService;
     }
 
-    @RequestMapping(value = "/rest/mealplan", method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public Object makeMealPlan(@RequestBody MealPlan mealPlan) {
+    @RequestMapping(value = "/rest/mealplan", method = RequestMethod.POST,  produces = "application/json;charset=UTF-8")
+    public ResponseEntity<Object> makeMealPlan(@RequestBody MealPlan mealPlan) {
         List<Recipe> recipesList = recipeService.findByRecipeCategoryLessThanEqual(mealPlan.getRecipeCategory());
         List<Integer> list = new ArrayList<Integer>();
         List<Recipe>  weekdays = new ArrayList<Recipe>();
@@ -57,7 +57,7 @@ public class MealPlanRestController {
         }
         System.out.println(weekdays.get(0).getRecipeTitle());
 
-        return ResponseEntity.ok(weekdays);
+        return ResponseEntity.ok(recipesList);
     }
 
     @GetMapping("/mealplan")
