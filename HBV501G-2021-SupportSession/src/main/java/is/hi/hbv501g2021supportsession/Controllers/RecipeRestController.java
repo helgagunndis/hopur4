@@ -1,13 +1,11 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Ingredient;
-import is.hi.hbv501g2021supportsession.Persistence.Entities.IngredientInfo;
-import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
-import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.*;
 import is.hi.hbv501g2021supportsession.Services.IngredientInfoService;
 import is.hi.hbv501g2021supportsession.Services.IngredientService;
 import is.hi.hbv501g2021supportsession.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,10 +33,12 @@ public class RecipeRestController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/recipes")
+    @GetMapping("/rest/recipes")
     public List<Recipe> getAllReports() {
         List<Recipe> list= recipeService.findAll();
 
         return list;
     }
+
+
 }
