@@ -41,8 +41,8 @@ public class MealPlanRestController {
     }
 
     @GetMapping("/rest/mealplan")
-    public List<Recipe> getMealPlan() {
-        List<Recipe> recipesList = recipeService.findByRecipeCategoryLessThanEqual(1);
+    public List<Recipe> getMealPlan(@RequestParam(value = "recipeCategory") int recipeCategory, @RequestParam(value = "numberOfWeekDay") int numberOfWeekDay) {
+        List<Recipe> recipesList = recipeService.findByRecipeCategoryLessThanEqual(recipeCategory);
         List<Integer> list = new ArrayList<Integer>();
         List<Recipe>  weekdays = new ArrayList<Recipe>();
 
@@ -50,12 +50,11 @@ public class MealPlanRestController {
             list.add(i);
         }
         Collections.shuffle(list);
-        for (int i=0; i< 7; i++) {
-            weekdays.add(recipeService.findRecipe(1, list.get(i)));
+        for (int i=0; i< numberOfWeekDay; i++) {
+            weekdays.add(recipeService.findRecipe(recipeCategory, list.get(i)));
         }
-        System.out.println(weekdays.get(0).getRecipeTitle());
 
         return weekdays;
     }
-    
+
 }
