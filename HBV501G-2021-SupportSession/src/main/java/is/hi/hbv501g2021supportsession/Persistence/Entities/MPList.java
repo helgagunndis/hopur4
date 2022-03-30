@@ -1,5 +1,7 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class MPList {
     @ManyToOne
     Recipe recipe;
 
+    @JsonIgnore
     @ManyToOne
     MealPlan mealPlan;
 

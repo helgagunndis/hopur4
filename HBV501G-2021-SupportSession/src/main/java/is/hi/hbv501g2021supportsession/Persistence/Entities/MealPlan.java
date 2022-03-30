@@ -1,5 +1,7 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +16,11 @@ public class MealPlan {
     private int numberOfWeekDay;
     private int recipeCategory;
 
+
     @OneToMany(mappedBy = "mealPlan", fetch = FetchType.LAZY)
     private List<MPList> mpLists = new ArrayList<MPList>();
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 

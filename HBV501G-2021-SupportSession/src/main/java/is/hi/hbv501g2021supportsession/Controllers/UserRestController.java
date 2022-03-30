@@ -1,6 +1,8 @@
 package is.hi.hbv501g2021supportsession.Controllers;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.MealPlan;
+import is.hi.hbv501g2021supportsession.Persistence.Entities.Recipe;
 import is.hi.hbv501g2021supportsession.Persistence.Entities.User;
 import is.hi.hbv501g2021supportsession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +29,6 @@ public class UserRestController {
         this.userService=userService;
     }
 
-    @RequestMapping(value = "/rest/login",method = RequestMethod.POST, consumes = "application/json")
-    public Object userLogin(@RequestBody User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-        }
-        User exists = userService.login(user);
-
-        if(exists != null){
-            List<MealPlan> mealPlanList = userService.ViewArchived(exists);
-            user.setMealPlan(mealPlanList);
-            return ResponseEntity.ok(user);
-        }
-        return new ResponseEntity<String>("this user dosen't have account",HttpStatus.BAD_REQUEST);
-    }
 
     @RequestMapping(value = "/rest/signup", method = RequestMethod.POST, consumes = "application/json")
     public Object signupUser(@RequestBody User user , BindingResult result) {
@@ -55,6 +43,28 @@ public class UserRestController {
 
         return ResponseEntity.ok(user);
     }
+    @RequestMapping(value = "/rest/login",method = RequestMethod.POST, consumes = "application/json")
+    public User userLogin(@RequestBody User user) {
+        User exists = userService.login(user);
+        if(exists != null){
+            return user;
+        }
+        return null;
+    }
+
+    @GetMapping("/rest/user/mealplan")
+    public List<MealPlan> userMealplan(@RequestParam(value = "username") String username) {
+        User user= userService.findByUsername(username);
+        List<MealPlan> mealPlanList = userService.ViewArchived(user);
+        if(mealPlanList!=null){
+            return mealPlanList;
+        }
+        MealPlan emptyMealPlan= new MealPlan();
+        List<MealPlan> emptyMealPlanList = null;
+        emptyMealPlanList.add(emptyMealPlan);
+        return emptyMealPlanList;
+    }
+
     
 
 
