@@ -1,8 +1,10 @@
 package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class MealPlan {
     private long mealPlanID;
     private int numberOfWeekDay;
     private int recipeCategory;
+    @CreationTimestamp
+    private Timestamp created;
 
 
     @OneToMany(mappedBy = "mealPlan", fetch = FetchType.LAZY)
@@ -72,5 +76,11 @@ public class MealPlan {
 
     public void setMpLists(List<MPList> mpLists) {
         this.mpLists = mpLists;
+    }
+
+    public Timestamp getCreated() { return created;}
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }
