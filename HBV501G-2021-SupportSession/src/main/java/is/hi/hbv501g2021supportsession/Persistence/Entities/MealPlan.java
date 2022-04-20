@@ -32,8 +32,7 @@ public class MealPlan {
 
     }
 
-    public MealPlan(long mealPlanID, int recipeCategory, List<MPList> mpLists) {
-        this.mealPlanID = mealPlanID;
+    public MealPlan( int recipeCategory, List<MPList> mpLists) {
         this.recipeCategory = recipeCategory;
         this.mpLists = mpLists;
     }

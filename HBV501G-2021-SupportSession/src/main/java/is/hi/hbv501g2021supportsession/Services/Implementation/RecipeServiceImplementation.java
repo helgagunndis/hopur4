@@ -27,6 +27,10 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Override
     public Recipe findByRecipeID(Long id) {
+        long badRequest = (long) -1;
+        if (id == badRequest){
+            return null;
+        }
         return recipeRepository.findByRecipeID(id);
     }
 
