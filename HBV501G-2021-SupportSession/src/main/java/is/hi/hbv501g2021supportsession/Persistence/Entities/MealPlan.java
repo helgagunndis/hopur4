@@ -25,7 +25,7 @@ public class MealPlan {
     private List<MPList> mpLists = new ArrayList<MPList>();
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.LAZY)
     private User user;
 
     public MealPlan() {

@@ -2,6 +2,7 @@ package is.hi.hbv501g2021supportsession.Persistence.Entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class User {
     private String username;
     private String userEmail;
     private String userPassword;
+    @Nullable
+    @Column(columnDefinition = "varchar(255) default '4'")
+    private String userCategory;
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -25,10 +29,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String userEmail, String userPassword) {
+    public User(String username, String userEmail, String userPassword, String userCategory ) {
         this.username = username;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.userCategory = userCategory;
     }
 
     public long getID() {
@@ -70,5 +75,25 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String isUserCategory() {
+        return userCategory;
+    }
+
+    public void setUserCategory(String userCategory) {
+        this.userCategory = userCategory;
+    }
+    public String getUserCategory() {
+        return userCategory;
+    }
+
+
+    public List<MealPlan> getMealPlanList() {
+        return mealPlanList;
+    }
+
+    public void setMealPlanList(List<MealPlan> mealPlanList) {
+        this.mealPlanList = mealPlanList;
     }
 }

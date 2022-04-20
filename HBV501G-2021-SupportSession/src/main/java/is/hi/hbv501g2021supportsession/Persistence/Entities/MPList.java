@@ -18,7 +18,7 @@ public class MPList {
     Recipe recipe;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne //(fetch = FetchType.LAZY)
     MealPlan mealPlan;
 
     public MPList() {

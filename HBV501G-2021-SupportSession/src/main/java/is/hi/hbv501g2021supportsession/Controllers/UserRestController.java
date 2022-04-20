@@ -64,30 +64,21 @@ public class UserRestController {
         emptyMealPlanList.add(emptyMealPlan);
         return emptyMealPlanList;
     }
+    @GetMapping("/rest/user/category")
+    public User userCategory(@RequestParam(value = "username") String username, @RequestParam(value = "category") String category) {
+        User user= userService.findByUsername(username);
+        user.setUserCategory(category);
+        userService.save(user);
+        return user;
+    }
+
+    @GetMapping("/rest/user/user")
+    public User findUser(@RequestParam(value = "username") String username) {
+        User user= userService.findByUsername(username);
+        return user;
+    }
 
     
 
-
-   /* @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
-    public String loggedinGET(HttpSession session, Model model){
-        User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if(sessionUser  != null){
-            model.addAttribute("LoggedInUser", sessionUser);
-            List<MealPlan> mealPlanList = userService.ViewArchived(sessionUser);
-            model.addAttribute("mealPlanList", mealPlanList);
-            return "/LoggedInUser";
-        }
-        return "redirect:/login";
-    }
-
-
-    @RequestMapping(value = "/logout",method = RequestMethod.GET)
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        return "redirect:/";
-    }*/
 
 }
