@@ -81,8 +81,7 @@ public class MealPlanRestController {
             @RequestParam(value = "recipe3") long recipe3,
             @RequestParam(value = "recipe4") long recipe4,
             @RequestParam(value = "recipe5") long recipe5,
-            @RequestParam(value = "recipe6") long recipe6,
-            @RequestParam(value = "recipe7") long recipe7
+            @RequestParam(value = "recipe6") long recipe6
     ) {
         System.out.println("Fyrsta línan"+ recipe6);
         MealPlan mealPlan = new MealPlan();
@@ -93,6 +92,8 @@ public class MealPlanRestController {
         mealPlan.setRecipeCategory(Integer.parseInt(user.getUserCategory()));
         mealPlanService.save(mealPlan);
 
+        // long l = (long) -1;
+        // Með því að setja inn l fyrir einhver uppskrift er hún ekki partur af mealPlan
         List<Recipe> listRecipe = new ArrayList<Recipe>();
         listRecipe.add(recipeService.findByRecipeID(recipe0));
         listRecipe.add(recipeService.findByRecipeID(recipe1));
@@ -101,7 +102,6 @@ public class MealPlanRestController {
         listRecipe.add(recipeService.findByRecipeID(recipe4));
         listRecipe.add(recipeService.findByRecipeID(recipe5));
         listRecipe.add(recipeService.findByRecipeID(recipe6));
-        listRecipe.add(recipeService.findByRecipeID(recipe7));
 
         List<MPList> mpLists=new ArrayList<MPList>();
         for (int i = 0; i <7; i++) {
